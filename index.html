@@ -61,8 +61,11 @@
 <meta name="geo.position" content="24.8170;93.9368">
 <meta name="ICBM" content="24.8170, 93.9368">
 <link rel="sitemap" type="application/xml" href="sitemap.xml">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400;1,600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400;1,600&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400;1,600&display=swap"></noscript>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""></noscript>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -164,7 +167,7 @@ body{
 .pin.hotspot{color:var(--red)}.pin.border{color:var(--amber)}
 @keyframes mappulse{0%{transform:scale(1);opacity:.55}80%{opacity:0}100%{transform:scale(3);opacity:0}}
 /* Highway permanent route labels */
-.leaflet-tooltip.m-hwlabel{background:rgba(20,17,13,0.85);border:1px solid rgba(212,172,125,0.45);color:var(--gold-l);font-size:9.5px;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;padding:4px 10px;border-radius:100px;box-shadow:0 4px 14px rgba(0,0,0,0.5);backdrop-filter:blur(8px);white-space:nowrap}
+.leaflet-tooltip.m-hwlabel{background:rgba(20,17,13,0.85);border:1px solid rgba(212,172,125,0.45);color:var(--gold-l);font-size:9.5px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;padding:4px 10px;border-radius:100px;box-shadow:0 4px 14px rgba(0,0,0,0.5);backdrop-filter:blur(8px);white-space:nowrap}
 .leaflet-tooltip.m-hwlabel::before{display:none}
 /* Marker hover name labels */
 .leaflet-tooltip.m-placelabel{background:rgba(20,17,13,0.96);border:1px solid var(--border-h);color:var(--text);font-size:11px;font-weight:700;letter-spacing:-0.01em;padding:4px 10px;border-radius:8px;box-shadow:0 6px 20px rgba(0,0,0,0.55);backdrop-filter:blur(8px);white-space:nowrap}
@@ -460,7 +463,7 @@ section:last-of-type::after{display:none}
 .flow-n .fi svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
 .flow-n .fl{font-size:14px;font-weight:700;letter-spacing:-0.01em;color:var(--text)}
 .flow-n .fs{font-size:11.5px;color:var(--text-soft);line-height:1.5}
-.flow-a{display:flex;align-items:center;color:var(--gold);font-size:18px;padding:0 2px;flex-shrink:0;font-weight:300;opacity:0.6}
+.flow-a{display:flex;align-items:center;color:var(--gold);font-size:18px;padding:0 2px;flex-shrink:0;font-weight:400;opacity:0.6}
 .flow-n.active{border-color:rgba(212,172,125,0.35);background:linear-gradient(160deg,rgba(212,172,125,0.10),rgba(212,172,125,0.03))}
 .flow-n.active .fi{color:var(--gold);border-color:rgba(212,172,125,0.4)}
 .flow-n.active .fl{color:var(--gold)}
@@ -1174,14 +1177,16 @@ section:last-of-type::after{display:none}
 <!-- ============================================================
      JAVASCRIPT — Leaflet + Scroll Reveal + Progress + Dot Nav
      ============================================================ -->
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script>
 (function(){
   'use strict';
 
   // — Map: corrected coords (OSM-verified), real highway routes, categorized interactive markers
-  const mapEl = document.getElementById('map');
-  if(mapEl && window.L){
+  // (deferred: Leaflet loads with `defer`; init runs on DOMContentLoaded when L is ready)
+  function initMap(){
+    const mapEl = document.getElementById('map');
+    if(!mapEl || !window.L) return;
     const map = L.map('map',{scrollWheelZoom:false,attributionControl:true,zoomControl:true}).setView([24.85,94.0],7);
     window.__manipurMap = map;
     L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{
@@ -1239,6 +1244,8 @@ section:last-of-type::after{display:none}
     setTimeout(()=>map.invalidateSize(),500);
     setTimeout(()=>map.invalidateSize(),1300);
   }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',initMap);
+  else initMap();
 
   // — Scroll progress (rAF-throttled, passive — no layout thrash)
   const prog=document.getElementById('progress');
