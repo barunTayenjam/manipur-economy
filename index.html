@@ -1174,10 +1174,9 @@ section:last-of-type::after{display:none}
 
 </div><!-- /wrap -->
 
-<!-- ============================================================
-     JAVASCRIPT — Leaflet + Scroll Reveal + Progress + Dot Nav
-     ============================================================ -->
-<script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+ <!-- ============================================================
+      JAVASCRIPT — Leaflet (lazy) + Scroll Reveal + Progress + Dot Nav
+      ============================================================ -->
 <script>
 (function(){
   'use strict';
@@ -1244,15 +1243,23 @@ section:last-of-type::after{display:none}
     setTimeout(()=>map.invalidateSize(),500);
     setTimeout(()=>map.invalidateSize(),1300);
   }
-  // lazy-init: defer Leaflet map (and its ~200KB of tile fetches) until the user approaches it
+  // lazy-load: defer Leaflet (download + parse + exec) AND map init until the user approaches the map
   (function(){
     const mapEl=document.getElementById('map');
     if(!mapEl) return;
+    const start=()=>{
+      if(window.L){ initMap(); return; }
+      const s=document.createElement('script');
+      s.src='https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+      s.integrity='sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=';
+      s.crossOrigin='anonymous';
+      s.onload=()=>initMap();
+      document.body.appendChild(s);
+    };
     if('IntersectionObserver' in window){
-      const mo=new IntersectionObserver(es=>{ if(es[0].isIntersecting){ initMap(); mo.disconnect(); } },{rootMargin:'250px'});
+      const mo=new IntersectionObserver(es=>{ if(es[0].isIntersecting){ start(); mo.disconnect(); } },{rootMargin:'300px'});
       mo.observe(mapEl);
-    } else if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',initMap);
-    else initMap();
+    } else { start(); }
   })();
 
   // — Scroll progress (rAF-throttled, passive — no layout thrash)
