@@ -1163,11 +1163,6 @@ section:last-of-type::after{display:none}
     highwayLayer.addLayer(drawHW(nh2,'#D4AC7D','NH-2'));
     highwayLayer.addLayer(drawHW(nh37,'#A6845B','NH-37'));
 
-    L.control.layers(null,{
-      'Highways (NH-2 / NH-37)': highwayLayer,
-      'Conflict hotspots': hotspotLayer,
-      'Districts & nodes': nodeLayer
-    },{position:'topright',collapsed:false}).addTo(map);
     L.control.scale({position:'bottomleft',imperial:false,maxWidth:120}).addTo(map);
 
     map.fitBounds(L.latLngBounds(allBounds),{padding:[36,36]});
