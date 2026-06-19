@@ -3,6 +3,16 @@
 > An interactive, Awwwards-tier data-journalism infographic documenting the
 > economic impact of the **2023–2026 Manipur ethnic conflict**.
 
+[![Live](https://img.shields.io/website?label=live&up_message=online&up_color=1a7f37&down_message=offline&down_color=cf222e&url=https%3A%2F%2Fbaruntayenjam.github.io%2Fmanipur-economy%2F)](https://baruntayenjam.github.io/manipur-economy/)
+[![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)](https://developer.mozilla.org/docs/Glossary/HTML5)
+[![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)](https://developer.mozilla.org/docs/Web/CSS)
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)](https://developer.mozilla.org/docs/Web/JavaScript)
+[![Leaflet](https://img.shields.io/badge/Leaflet-199900?logo=leaflet&logoColor=white)](https://leafletjs.com/)
+[![No deps](https://img.shields.io/badge/dependencies-0-1a7f37)](#)
+[![WCAG AA](https://img.shields.io/badge/WCAG-AA-passed-1a7f37)](#-performance--accessibility)
+[![License](https://img.shields.io/github/license/barunTayenjam/manipur-economy?color=blue)](./LICENSE)
+[![Last verified](https://img.shields.io/badge/data%20verified-19%20Jun%202026-blue)](#-data-verification)
+
 **🔗 Live site:** https://baruntayenjam.github.io/manipur-economy/
 
 A single self-contained `index.html` — no build step, no framework, no API keys.
