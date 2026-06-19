@@ -94,8 +94,12 @@ body{
 .pin .pulse{position:absolute;inset:0;border-radius:50%;border:2px solid currentColor;opacity:.55;animation:mappulse 2.4s var(--ease-out) infinite;pointer-events:none}
 .pin.hotspot{color:var(--red)}.pin.border{color:var(--amber)}
 @keyframes mappulse{0%{transform:scale(1);opacity:.55}80%{opacity:0}100%{transform:scale(3);opacity:0}}
-.leaflet-tooltip.m-label{background:rgba(20,17,13,0.92);border:1px solid var(--border-h);color:var(--text-soft);font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;border-radius:6px;box-shadow:0 6px 18px rgba(0,0,0,0.5);backdrop-filter:blur(6px)}
-.leaflet-tooltip.m-label::before{display:none}
+/* Highway permanent route labels */
+.leaflet-tooltip.m-hwlabel{background:rgba(20,17,13,0.85);border:1px solid rgba(212,172,125,0.45);color:var(--gold-l);font-size:9.5px;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;padding:4px 10px;border-radius:100px;box-shadow:0 4px 14px rgba(0,0,0,0.5);backdrop-filter:blur(8px);white-space:nowrap}
+.leaflet-tooltip.m-hwlabel::before{display:none}
+/* Marker hover name labels */
+.leaflet-tooltip.m-placelabel{background:rgba(20,17,13,0.96);border:1px solid var(--border-h);color:var(--text);font-size:11px;font-weight:700;letter-spacing:-0.01em;padding:4px 10px;border-radius:8px;box-shadow:0 6px 20px rgba(0,0,0,0.55);backdrop-filter:blur(8px);white-space:nowrap}
+.leaflet-tooltip.m-placelabel::before{display:none}
 
 /* Popup content */
 .mpop{min-width:190px;max-width:232px}
@@ -1136,7 +1140,9 @@ section:last-of-type::after{display:none}
     const hotspotLayer = L.layerGroup(), nodeLayer = L.layerGroup();
     const allBounds = [];
     places.forEach(p=>{
-      const m = L.marker(p.c,{icon:pinIcon(p.cat),title:p.name,alt:p.name,riseOnHover:true}).bindPopup(popupHTML(p),{className:'m-popup',maxWidth:250});
+      const m = L.marker(p.c,{icon:pinIcon(p.cat),title:p.name,alt:p.name,riseOnHover:true})
+        .bindTooltip(p.name,{direction:'top',offset:[0,-11],className:'m-placelabel',opacity:1})
+        .bindPopup(popupHTML(p),{className:'m-popup',maxWidth:250});
       allBounds.push(p.c);
       (p.cat==='hotspot'?hotspotLayer:nodeLayer).addLayer(m);
     });
@@ -1147,9 +1153,15 @@ section:last-of-type::after{display:none}
     const nh37 = [[24.7991,93.9364],[24.8024,93.1165],[24.8303,92.7876]];
     allBounds.push(...nh2, ...nh37);
     const highwayLayer = L.layerGroup().addTo(map);
-    const drawHW = (pts,color,label)=> L.polyline(pts,{color:color,weight:3.5,opacity:0.9,lineCap:'round',lineJoin:'round'}).bindTooltip(label,{sticky:true,className:'m-label',direction:'top',offset:[0,-4]});
-    highwayLayer.addLayer(drawHW(nh2,'#D4AC7D','NH-2 · Imphal–Dimapur'));
-    highwayLayer.addLayer(drawHW(nh37,'#A6845B','NH-37 · Imphal–Silchar'));
+    const drawHW = (pts,color,code)=>{
+      const g = L.layerGroup();
+      g.addLayer(L.polyline(pts,{color:color,weight:9,opacity:0.13,lineCap:'round',lineJoin:'round'}));            // soft halo
+      g.addLayer(L.polyline(pts,{color:color,weight:3,opacity:0.95,lineCap:'round',lineJoin:'round'})               // route line
+        .bindTooltip(code,{permanent:true,direction:'center',className:'m-hwlabel'}));
+      return g;
+    };
+    highwayLayer.addLayer(drawHW(nh2,'#D4AC7D','NH-2'));
+    highwayLayer.addLayer(drawHW(nh37,'#A6845B','NH-37'));
 
     L.control.layers(null,{
       'Highways (NH-2 / NH-37)': highwayLayer,
