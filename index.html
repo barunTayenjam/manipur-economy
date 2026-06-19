@@ -1244,8 +1244,16 @@ section:last-of-type::after{display:none}
     setTimeout(()=>map.invalidateSize(),500);
     setTimeout(()=>map.invalidateSize(),1300);
   }
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',initMap);
-  else initMap();
+  // lazy-init: defer Leaflet map (and its ~200KB of tile fetches) until the user approaches it
+  (function(){
+    const mapEl=document.getElementById('map');
+    if(!mapEl) return;
+    if('IntersectionObserver' in window){
+      const mo=new IntersectionObserver(es=>{ if(es[0].isIntersecting){ initMap(); mo.disconnect(); } },{rootMargin:'250px'});
+      mo.observe(mapEl);
+    } else if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',initMap);
+    else initMap();
+  })();
 
   // — Scroll progress (rAF-throttled, passive — no layout thrash)
   const prog=document.getElementById('progress');
