@@ -1257,7 +1257,7 @@ section:last-of-type::after{display:none}
       document.body.appendChild(s);
     };
     if('IntersectionObserver' in window){
-      const mo=new IntersectionObserver(es=>{ if(es[0].isIntersecting){ start(); mo.disconnect(); } },{rootMargin:'300px'});
+      const mo=new IntersectionObserver(es=>{ if(es[0].isIntersecting){ start(); mo.disconnect(); } },{rootMargin:'0px',threshold:0});
       mo.observe(mapEl);
     } else { start(); }
   })();
