@@ -195,6 +195,33 @@ body{
 .mpop-stat{font-size:10px;font-weight:700;color:var(--gold);letter-spacing:0.06em;text-transform:uppercase;padding-top:8px;border-top:1px solid var(--border)}
 @media(max-width:768px){#map{height:360px}}
 
+/* ===== HERO CTA — magnetic island button (button-in-button) ===== */
+.cta{
+  display:inline-flex;align-items:center;gap:14px;
+  margin-top:38px;
+  padding:13px 13px 13px 28px;
+  border-radius:100px;
+  background:linear-gradient(160deg,rgba(212,172,125,0.16),rgba(212,172,125,0.05));
+  border:1px solid rgba(212,172,125,0.35);
+  color:var(--text);text-decoration:none;
+  font-size:15px;font-weight:700;letter-spacing:-0.01em;
+  box-shadow:inset 0 1px 1px rgba(255,245,228,0.10),0 18px 50px -22px rgba(0,0,0,0.8);
+  transition:transform 0.6s var(--ease),border-color 0.6s var(--ease),background 0.6s var(--ease),box-shadow 0.6s var(--ease);
+  position:relative;
+}
+.cta:hover{transform:translateY(-2px);border-color:rgba(212,172,125,0.6);background:linear-gradient(160deg,rgba(212,172,125,0.22),rgba(212,172,125,0.08))}
+.cta:active{transform:scale(0.98)}
+.cta-ic{
+  width:38px;height:38px;border-radius:50%;
+  background:rgba(10,8,6,0.55);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--gold-l);
+  box-shadow:inset 0 1px 1px rgba(255,245,228,0.12),0 4px 14px -4px rgba(0,0,0,0.6);
+  transition:transform 0.6s var(--ease),background 0.6s var(--ease);
+}
+.cta:hover .cta-ic{transform:translate(3px,-3px) scale(1.06);background:rgba(10,8,6,0.7)}
+.cta-ic svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+
 /* ===== SCROLL PROGRESS ===== */
 #progress{
   position:fixed;top:0;left:0;z-index:1000;height:2px;width:0%;
@@ -463,8 +490,14 @@ section:last-of-type::after{display:none}
   border:1px solid var(--border);
   transition:all 0.6s var(--ease);
   position:relative;display:flex;flex-direction:column;align-items:center;gap:10px;
+  box-shadow:0 0 0 1px var(--border),inset 0 1px 1px rgba(255,245,228,0.06),0 22px 56px -28px rgba(0,0,0,0.8);
 }
-.flow-n:hover{background:rgba(245,235,220,0.06);transform:translateY(-4px);border-color:var(--border-h)}
+.flow-n::before{
+  content:'';position:absolute;inset:1.5px;border-radius:calc(18px - 1.5px);
+  background:linear-gradient(135deg,var(--border-h) 0%,transparent 32%,transparent 68%,var(--border-h) 100%);
+  opacity:0;transition:opacity 0.6s var(--ease);pointer-events:none;
+}
+.flow-n:hover{background:rgba(245,235,220,0.06);transform:translateY(-4px);border-color:var(--border-h);box-shadow:0 0 0 1px var(--border-h),inset 0 1px 1px rgba(255,245,228,0.10),0 30px 70px -28px rgba(0,0,0,0.85)}
 .flow-n .fi{
   width:42px;height:42px;border-radius:12px;
   background:rgba(245,235,220,0.05);border:1px solid var(--border);
@@ -527,9 +560,15 @@ section:last-of-type::after{display:none}
   min-width:230px;padding:24px 24px 22px;flex-shrink:0;position:relative;
   border:1px solid var(--border);border-radius:18px;
   margin-right:18px;background:rgba(245,235,220,0.025);
-  transition:border-color 0.5s var(--ease),background 0.5s var(--ease),transform 0.5s var(--ease);
+  transition:border-color 0.5s var(--ease),background 0.5s var(--ease),transform 0.5s var(--ease),box-shadow 0.5s var(--ease);
+  box-shadow:0 0 0 1px var(--border),inset 0 1px 1px rgba(255,245,228,0.06),0 22px 56px -28px rgba(0,0,0,0.85);
 }
-.tl-e:hover{border-color:rgba(212,172,125,0.35);background:rgba(212,172,125,0.05);transform:translateY(-3px)}
+.tl-e::before{
+  content:'';position:absolute;inset:1.5px;border-radius:calc(18px - 1.5px);
+  background:linear-gradient(135deg,var(--border-h) 0%,transparent 32%,transparent 68%,var(--border-h) 100%);
+  opacity:0;transition:opacity 0.5s var(--ease);pointer-events:none;
+}
+.tl-e:hover{border-color:rgba(212,172,125,0.35);background:rgba(212,172,125,0.05);transform:translateY(-3px);box-shadow:0 0 0 1px rgba(212,172,125,0.35),inset 0 1px 1px rgba(255,245,228,0.10),0 30px 70px -28px rgba(0,0,0,0.9)}
 .tl-e::before{
   content:'';position:absolute;top:-6px;left:26px;
   width:11px;height:11px;border-radius:50%;
@@ -550,10 +589,16 @@ section:last-of-type::after{display:none}
 .phase{
   position:relative;z-index:1;background:rgba(245,235,220,0.025);
   border:1px solid var(--border);border-radius:20px;padding:26px 24px 24px;
-  transition:border-color 0.6s var(--ease),background 0.6s var(--ease),transform 0.6s var(--ease);
+  transition:border-color 0.6s var(--ease),background 0.6s var(--ease),transform 0.6s var(--ease),box-shadow 0.6s var(--ease);
   display:flex;flex-direction:column;
+  box-shadow:0 0 0 1px var(--border),inset 0 1px 1px rgba(255,245,228,0.06),0 26px 64px -30px rgba(0,0,0,0.85);
 }
-.phase:hover{transform:translateY(-4px);background:rgba(245,235,220,0.05)}
+.phase::before{
+  content:'';position:absolute;inset:1.5px;border-radius:calc(20px - 1.5px);
+  background:linear-gradient(135deg,var(--border-h) 0%,transparent 32%,transparent 68%,var(--border-h) 100%);
+  opacity:0;transition:opacity 0.6s var(--ease);pointer-events:none;
+}
+.phase:hover{transform:translateY(-4px);background:rgba(245,235,220,0.05);border-color:var(--border-h);box-shadow:0 0 0 1px var(--border-h),inset 0 1px 1px rgba(255,245,228,0.10),0 34px 80px -30px rgba(0,0,0,0.9)}
 .phase .p-node{
   width:14px;height:14px;border-radius:50%;border:3px solid var(--black);
   background:var(--gold);margin-bottom:18px;position:relative;z-index:2;
@@ -612,7 +657,7 @@ section:last-of-type::after{display:none}
   background:rgba(245,235,220,0.02);
   transition:all 0.4s var(--ease);
 }
-.ft-l a:hover{color:var(--gold-l);border-color:rgba(212,172,125,0.4);background:rgba(212,172,125,0.06)}
+.ft-l a:hover{color:var(--gold-l);border-color:rgba(212,172,125,0.4);background:rgba(212,172,125,0.06);transform:translateY(-2px)}
 .ft-note{margin-top:24px;padding-top:20px;border-top:1px solid var(--border);font-size:13px;color:var(--faint);line-height:1.7;max-width:880px}
 
 .note{
@@ -796,9 +841,15 @@ section:last-of-type::after{display:none}
     <div class="it"><span class="n" data-count-to="3" data-suffix="+">3+</span><span class="l">Years of conflict</span></div>
     <div class="it"><span class="n" data-count-to="280" data-suffix="+">280+</span><span class="l">Lives lost</span></div>
     <div class="it"><span class="n" data-count-to="60000" data-comma="1">60,000</span><span class="l">Displaced</span></div>
-    <div class="it"><span class="n"><span class="cnt" data-count-to="49937" data-prefix="&#8377;" data-comma="1">&#8377;49,937</span> <span class="sub">cr</span></span><span class="l">GSDP, 2024-25</span></div>
-  </div>
-</header>
+      <div class="it"><span class="n"><span class="cnt" data-count-to="49937" data-prefix="&#8377;" data-comma="1">&#8377;49,937</span> <span class="sub">cr</span></span><span class="l">GSDP, 2024-25</span></div>
+    </div>
+    <a href="#phases" class="cta r d4" aria-label="Explore the report">
+      <span>Explore the report</span>
+      <span class="cta-ic" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </span>
+    </a>
+  </header>
 
 <!-- ============================================================
      CONFLICT PHASES — how the war economy evolved
