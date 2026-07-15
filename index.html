@@ -74,7 +74,7 @@
 </style>
 
 <!-- Agentic browsing fix: JS-gated scroll reveals + load fallback -->
-<script>(function(){document.documentElement.classList.add('js');window.addEventListener('load',function(){setTimeout(function(){document.querySelectorAll('.r').forEach(function(el){el.classList.add('v');});},1500);});})();</script>
+<script>(function(){document.documentElement.classList.add('js');window.addEventListener('load',function(){setTimeout(function(){document.querySelectorAll('.r').forEach(function(el){el.classList.add('v');});document.querySelectorAll('[data-count-to]').forEach(function(el){el.classList.add('ready');});},1500);});})();</script>
 
 <script type="application/ld+json">
 {
@@ -549,7 +549,7 @@ section:last-of-type::after{display:none}
 .phases{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;position:relative;margin-top:8px}
 /* continuous timeline rail behind the cards */
 .phases::before{
-  content:'';position:absolute;top:46px;left:5%;right:5%;height:2px;
+  content:'';position:absolute;top:32px;left:5%;right:5%;height:2px;
   background:linear-gradient(90deg,var(--red) 0%,var(--red) 32%,var(--gold-d) 50%,var(--amber) 68%,var(--amber) 100%);
   opacity:0.45;border-radius:1px;z-index:0;
 }
@@ -662,11 +662,16 @@ section:last-of-type::after{display:none}
 /* JS-gated: only hidden when JS runs; agents/crawlers without JS see content immediately */
 .js .r{opacity:0;transform:translateY(42px) scale(0.98);filter:blur(6px);transition:opacity 0.95s var(--ease-out),transform 0.95s var(--ease-out),filter 0.95s var(--ease-out)}
 .r.v{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}
+/* JS-gated count-up: hide the pre-rendered final value until runCount() sets its start
+   frame, otherwise the hero stats flash final→0→final. No-JS still sees the final value. */
+.js [data-count-to]{visibility:hidden}
+.js [data-count-to].ready{visibility:visible}
 .d1{transition-delay:0.08s}.d2{transition-delay:0.16s}.d3{transition-delay:0.24s}
 .d4{transition-delay:0.32s}.d5{transition-delay:0.40s}.d6{transition-delay:0.48s}
 
 @media(prefers-reduced-motion:reduce){
   .js .r{opacity:1!important;transform:none!important;filter:none!important;transition:none!important}
+  [data-count-to]{visibility:visible!important}
   #ambient span{animation:none!important}
   html{scroll-behavior:auto}
 }
@@ -1469,16 +1474,18 @@ section:last-of-type::after{display:none}
   // — Count-up animation for hero stats (respects reduced motion)
   function runCount(el){
     const to=parseFloat(el.getAttribute('data-count-to'));
-    if(isNaN(to))return;
     const prefix=el.getAttribute('data-prefix')||'';
     const suffix=el.getAttribute('data-suffix')||'';
     const comma=el.getAttribute('data-comma')==='1';
     const fmt=v=>comma?Math.round(v).toLocaleString('en-IN'):Math.round(v).toString();
     const render=v=>{el.textContent=prefix+fmt(v)+suffix;};
+    if(isNaN(to)){el.classList.add('ready');return;}
+    render(0);                 // set start value before revealing -> no flash of the final value
+    el.classList.add('ready');
     if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){render(to);return;}
     const dur=1700,start=performance.now();
     function step(now){
-      const t=Math.min(1,(now-start)/dur);
+      const t=Math.min(1,Math.max(0,(now-start)/dur));
       render(to*(1-Math.pow(1-t,3))); // easeOutCubic
       if(t<1)requestAnimationFrame(step);
     }
