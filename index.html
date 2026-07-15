@@ -22,16 +22,18 @@
 <link rel="manifest" href="site.webmanifest">
 
 <!-- Performance hints -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://unpkg.com" crossorigin>
 <link rel="dns-prefetch" href="https://a.basemaps.cartocdn.com">
+
+<!-- Critical font preloads (self-hosted variable woff2) -->
+<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/jakarta.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/playfair-600.woff2">
 
 <!-- Open Graph -->
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Manipur's War Economy">
 <meta property="og:title" content="The Price of Conflict — Who Loses, Who Gains in Manipur's War Economy">
-<meta property="og:description" content="Three years of ethnic violence bifurcated Manipur's economy. An interactive, data-verified visual report — May 2023 to June 2026.">
+<meta property="og:description" content="Three years of ethnic violence fractured Manipur's economy across three communities. An interactive, data-verified visual report — May 2023 to July 2026.">
 <meta property="og:url" content="https://baruntayenjam.github.io/manipur-economy/">
 <meta property="og:image" content="https://baruntayenjam.github.io/manipur-economy/assets/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -46,7 +48,7 @@
 
 <!-- Article meta -->
 <meta property="article:published_time" content="2026-06-18">
-<meta property="article:modified_time" content="2026-06-19">
+<meta property="article:modified_time" content="2026-07-15">
 <meta property="article:author" content="Manipur Economy Report">
 <meta property="article:section" content="Economy">
 <meta property="article:tag" content="Manipur">
@@ -61,21 +63,29 @@
 <meta name="geo.position" content="24.8170;93.9368">
 <meta name="ICBM" content="24.8170, 93.9368">
 <link rel="sitemap" type="application/xml" href="sitemap.xml">
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400;1,600&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400;1,600&display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400;1,600&display=swap"></noscript>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""></noscript>
+
+<!-- Self-hosted variable fonts (inline @font-face) -->
+<style>
+@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:200 800;font-display:swap;src:url(assets/fonts/jakarta.woff2) format('woff2')}
+@font-face{font-family:'Playfair Display';font-style:normal;font-weight:400 900;font-display:swap;src:url(assets/fonts/playfair-600.woff2) format('woff2')}
+@font-face{font-family:'Playfair Display';font-style:italic;font-weight:400 900;font-display:swap;src:url(assets/fonts/playfair-italic.woff2) format('woff2')}
+</style>
+
+<!-- Agentic browsing fix: JS-gated scroll reveals + load fallback -->
+<script>(function(){document.documentElement.classList.add('js');window.addEventListener('load',function(){setTimeout(function(){document.querySelectorAll('.r').forEach(function(el){el.classList.add('v');});},1500);});})();</script>
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
     { "@type": "Person", "@id": "https://baruntayenjam.github.io/manipur-economy/#author", "name": "Manipur Economy Report", "url": "https://baruntayenjam.github.io/manipur-economy/" },
     { "@type": "WebSite", "@id": "https://baruntayenjam.github.io/manipur-economy/#website", "url": "https://baruntayenjam.github.io/manipur-economy/", "name": "Manipur's War Economy", "description": "Interactive data-journalism on the economic impact of the 2023-26 Manipur ethnic conflict.", "inLanguage": "en", "publisher": { "@id": "https://baruntayenjam.github.io/manipur-economy/#author" } },
-    { "@type": "WebPage", "@id": "https://baruntayenjam.github.io/manipur-economy/#webpage", "url": "https://baruntayenjam.github.io/manipur-economy/", "name": "The Price of Conflict — Manipur's War Economy", "isPartOf": { "@id": "https://baruntayenjam.github.io/manipur-economy/#website" }, "about": { "@id": "https://baruntayenjam.github.io/manipur-economy/#event" }, "inLanguage": "en", "primaryImageOfPage": "https://baruntayenjam.github.io/manipur-economy/assets/og-image.png", "datePublished": "2026-06-18", "dateModified": "2026-06-19" },
+    { "@type": "WebPage", "@id": "https://baruntayenjam.github.io/manipur-economy/#webpage", "url": "https://baruntayenjam.github.io/manipur-economy/", "name": "The Price of Conflict — Manipur's War Economy", "isPartOf": { "@id": "https://baruntayenjam.github.io/manipur-economy/#website" }, "about": { "@id": "https://baruntayenjam.github.io/manipur-economy/#event" }, "inLanguage": "en", "primaryImageOfPage": "https://baruntayenjam.github.io/manipur-economy/assets/og-image.png", "datePublished": "2026-06-18", "dateModified": "2026-07-15" },
     { "@type": "Event", "@id": "https://baruntayenjam.github.io/manipur-economy/#event", "name": "2023-2026 Manipur ethnic conflict", "description": "Ethnic conflict between the Meitei and Kuki-Zo communities in Manipur, India, beginning May 3, 2023.", "startDate": "2023-05-03", "eventStatus": "https://schema.org/EventScheduled", "location": { "@type": "AdministrativeArea", "name": "Manipur, India" } },
-    { "@type": "Article", "@id": "https://baruntayenjam.github.io/manipur-economy/#article", "headline": "The Price of Conflict: Who Loses, Who Gains in Manipur's War Economy", "description": "Three years of ethnic violence bifurcated Manipur's economy. An interactive, data-verified visual report — May 2023 to June 2026.", "image": "https://baruntayenjam.github.io/manipur-economy/assets/og-image.png", "datePublished": "2026-06-18", "dateModified": "2026-06-19", "inLanguage": "en", "author": { "@id": "https://baruntayenjam.github.io/manipur-economy/#author" }, "publisher": { "@id": "https://baruntayenjam.github.io/manipur-economy/#author" }, "mainEntityOfPage": { "@type": "WebPage", "@id": "https://baruntayenjam.github.io/manipur-economy/" }, "articleSection": "Economy", "keywords": ["Manipur","ethnic conflict","war economy","India","GSDP","drug economy","displacement","data journalism"], "about": { "@id": "https://baruntayenjam.github.io/manipur-economy/#event" }, "speakable": { "@type": "SpeakableSpecification", "cssSelector": [".hdr h1", ".hdr .p"] } },
-    { "@type": "Dataset", "name": "Manipur conflict economic-impact indicators, 2023-2026", "description": "Curated, source-verified economic and human-cost indicators for the 2023-26 Manipur ethnic conflict, including GSDP, per-capita income, casualties, displacement and sectoral losses.", "url": "https://baruntayenjam.github.io/manipur-economy/", "creator": { "@id": "https://baruntayenjam.github.io/manipur-economy/#author" }, "temporalCoverage": "2023-05/2026-06", "spatialCoverage": { "@type": "Place", "name": "Manipur, India", "geo": { "@type": "GeoCoordinates", "latitude": 24.8170, "longitude": 93.9368 } }, "variableMeasured": ["Gross State Domestic Product (GSDP)","Per-capita income","Conflict casualties","Internally displaced persons","Agricultural land affected","Illicit drug economy (estimated)"], "isAccessibleForFree": true, "license": "https://www.apache.org/licenses/LICENSE-2.0", "citation": ["PRS India — Manipur Budget Analysis 2024-25","NITI Aayog — Macro and Fiscal Landscape of Manipur","Economic Survey of Manipur 2024-25","Human Rights Watch","The Hindu","Times of India"] },
+    { "@type": "Article", "@id": "https://baruntayenjam.github.io/manipur-economy/#article", "headline": "The Price of Conflict: Who Loses, Who Gains in Manipur's War Economy", "description": "Three years of ethnic violence bifurcated Manipur's economy. An interactive, data-verified visual report — May 2023 to June 2026.", "image": "https://baruntayenjam.github.io/manipur-economy/assets/og-image.png", "datePublished": "2026-06-18", "dateModified": "2026-07-15", "inLanguage": "en", "author": { "@id": "https://baruntayenjam.github.io/manipur-economy/#author" }, "publisher": { "@id": "https://baruntayenjam.github.io/manipur-economy/#author" }, "mainEntityOfPage": { "@type": "WebPage", "@id": "https://baruntayenjam.github.io/manipur-economy/" }, "articleSection": "Economy", "keywords": ["Manipur","ethnic conflict","war economy","India","GSDP","drug economy","displacement","data journalism"], "about": { "@id": "https://baruntayenjam.github.io/manipur-economy/#event" }, "speakable": { "@type": "SpeakableSpecification", "cssSelector": [".hdr h1", ".hdr .p"] } },
+    { "@type": "Dataset", "name": "Manipur conflict economic-impact indicators, 2023-2026", "description": "Curated, source-verified economic and human-cost indicators for the 2023-26 Manipur ethnic conflict, including GSDP, per-capita income, casualties, displacement and sectoral losses.", "url": "https://baruntayenjam.github.io/manipur-economy/", "creator": { "@id": "https://baruntayenjam.github.io/manipur-economy/#author" }, "temporalCoverage": "2023-05/2026-07", "spatialCoverage": { "@type": "Place", "name": "Manipur, India", "geo": { "@type": "GeoCoordinates", "latitude": 24.8170, "longitude": 93.9368 } }, "variableMeasured": ["Gross State Domestic Product (GSDP)","Per-capita income","Conflict casualties","Internally displaced persons","Agricultural land affected","Illicit drug economy (estimated)"], "isAccessibleForFree": true, "license": "https://www.apache.org/licenses/LICENSE-2.0", "citation": ["PRS India — Manipur Budget Analysis 2024-25","NITI Aayog — Macro and Fiscal Landscape of Manipur","Economic Survey of Manipur 2024-25","Human Rights Watch","The Hindu","Times of India"] },
     { "@type": "BreadcrumbList", "itemListElement": [ { "@type": "ListItem", "position": 1, "name": "Manipur Economy", "item": "https://baruntayenjam.github.io/manipur-economy/" } ] }
   ]
 }
@@ -534,6 +544,57 @@ section:last-of-type::after{display:none}
 .tl-m{font-size:13px;color:var(--text-soft);line-height:1.65}
 
 /* =============================================================
+    11b.  CONFLICT PHASES  —  how the war economy evolved
+    ============================================================= */
+.phases{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;position:relative;margin-top:8px}
+/* continuous timeline rail behind the cards */
+.phases::before{
+  content:'';position:absolute;top:46px;left:5%;right:5%;height:2px;
+  background:linear-gradient(90deg,var(--red) 0%,var(--red) 32%,var(--gold-d) 50%,var(--amber) 68%,var(--amber) 100%);
+  opacity:0.45;border-radius:1px;z-index:0;
+}
+.phase{
+  position:relative;z-index:1;background:rgba(245,235,220,0.025);
+  border:1px solid var(--border);border-radius:20px;padding:26px 24px 24px;
+  transition:border-color 0.6s var(--ease),background 0.6s var(--ease),transform 0.6s var(--ease);
+  display:flex;flex-direction:column;
+}
+.phase:hover{transform:translateY(-4px);background:rgba(245,235,220,0.05)}
+.phase .p-node{
+  width:14px;height:14px;border-radius:50%;border:3px solid var(--black);
+  background:var(--gold);margin-bottom:18px;position:relative;z-index:2;
+  box-shadow:0 0 0 4px rgba(212,172,125,0.12);
+}
+.phase.p1 .p-node{background:var(--red-l);box-shadow:0 0 0 4px rgba(221,98,68,0.16),0 0 14px rgba(221,98,68,0.4)}
+.phase.p2 .p-node{background:var(--gold-l);box-shadow:0 0 0 4px rgba(212,172,125,0.16),0 0 14px rgba(212,172,125,0.4)}
+.phase.p3 .p-node{background:var(--amber);box-shadow:0 0 0 4px rgba(217,166,64,0.18),0 0 14px rgba(217,166,64,0.45)}
+.phase .p-lbl{font-size:10px;font-weight:700;letter-spacing:0.24em;text-transform:uppercase;color:var(--text-soft);margin-bottom:6px}
+.phase.p1 .p-lbl{color:var(--red-l)}
+.phase.p2 .p-lbl{color:var(--gold-l)}
+.phase.p3 .p-lbl{color:#E8BE6A}
+.phase .p-dates{font-size:12px;font-weight:700;color:var(--gold);letter-spacing:0.04em;font-feature-settings:'tnum';margin-bottom:12px}
+.phase .p-title{font-size:18px;font-weight:700;letter-spacing:-0.02em;color:var(--text);margin-bottom:8px}
+.phase .p-title .i{font-family:var(--ff-serif);font-style:italic;font-weight:500;color:var(--gold)}
+.phase .p-desc{font-size:13.5px;color:var(--text-soft);line-height:1.65;flex:1}
+.phase .p-stat{
+  margin-top:16px;padding-top:14px;border-top:1px solid var(--border);
+  display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;
+}
+.phase .p-stat .v{font-size:17px;font-weight:700;letter-spacing:-0.02em;color:var(--text);font-feature-settings:'tnum','ss01'}
+.phase.p1 .p-stat .v{color:var(--red-l)}
+.phase.p3 .p-stat .v{color:#E8BE6A}
+.phase .p-stat .k{font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:0.1em;font-weight:600}
+@media(max-width:1024px){
+  .phases{grid-template-columns:1fr;gap:14px}
+  .phases::before{display:none}
+  .phase .p-node{display:none}
+}
+@media(max-width:768px){
+  .phase{padding:22px 20px}
+  .phase .p-title{font-size:16px}
+}
+
+/* =============================================================
    12.  FOOTER
    ============================================================= */
 .ft{padding:80px 0 72px;margin-top:60px;border-top:1px solid var(--border);position:relative}
@@ -598,13 +659,14 @@ section:last-of-type::after{display:none}
 /* =============================================================
    14.  REVEAL ANIMATIONS
    ============================================================= */
-.r{opacity:0;transform:translateY(42px) scale(0.98);filter:blur(6px);transition:opacity 0.95s var(--ease-out),transform 0.95s var(--ease-out),filter 0.95s var(--ease-out)}
+/* JS-gated: only hidden when JS runs; agents/crawlers without JS see content immediately */
+.js .r{opacity:0;transform:translateY(42px) scale(0.98);filter:blur(6px);transition:opacity 0.95s var(--ease-out),transform 0.95s var(--ease-out),filter 0.95s var(--ease-out)}
 .r.v{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}
 .d1{transition-delay:0.08s}.d2{transition-delay:0.16s}.d3{transition-delay:0.24s}
 .d4{transition-delay:0.32s}.d5{transition-delay:0.40s}.d6{transition-delay:0.48s}
 
 @media(prefers-reduced-motion:reduce){
-  .r{opacity:1!important;transform:none!important;filter:none!important;transition:none!important}
+  .js .r{opacity:1!important;transform:none!important;filter:none!important;transition:none!important}
   #ambient span{animation:none!important}
   html{scroll-behavior:auto}
 }
@@ -647,7 +709,7 @@ section:last-of-type::after{display:none}
   .tbl thead th:first-child,.tbl td:first-child{padding-left:18px}
   .tbl thead th:last-child,.tbl td:last-child{padding-right:18px}
   .ft{padding:52px 0 56px}
-  .r{transform:translateY(26px) scale(0.99);filter:blur(3px)}
+  .js .r{transform:translateY(26px) scale(0.99);filter:blur(3px)}
   #map{height:340px}
 }
 @media(max-width:480px){
@@ -659,8 +721,23 @@ section:last-of-type::after{display:none}
 }
 
 /* =============================================================
-   16.  PRINT
-   ============================================================= */
+    16.  ACCESSIBILITY  —  focus states + skip link
+    ============================================================= */
+:focus-visible{outline:2px solid var(--gold-l);outline-offset:3px;border-radius:6px}
+.dots a:focus-visible span{background:var(--gold);transform:scale(1.4);box-shadow:0 0 0 4px rgba(212,172,125,0.28)}
+.card-src a:focus-visible,.ft-l a:focus-visible,.ft-l a:focus-visible{outline-offset:3px}
+.skip{
+  position:fixed;top:-120px;left:18px;z-index:2000;
+  background:var(--card);border:1px solid var(--border-h);color:var(--text);
+  padding:12px 20px;border-radius:12px;font-size:13px;font-weight:700;
+  letter-spacing:0.01em;box-shadow:0 12px 36px rgba(0,0,0,0.5);
+  transition:top 0.3s var(--ease);text-decoration:none;
+}
+.skip:focus{top:18px;outline:2px solid var(--gold-l);outline-offset:2px}
+
+/* =============================================================
+    17.  PRINT
+    ============================================================= */
 @media print{
   body{background:white;color:#1a1a1a}
   .sh{border:1px solid #ddd}.sh .sh-in{background:#fafafa;box-shadow:none}
@@ -672,6 +749,9 @@ section:last-of-type::after{display:none}
 </style>
 </head>
 <body>
+
+<!-- SKIP TO CONTENT (a11y) -->
+<a href="#main" class="skip">Skip to content</a>
 
 <!-- SCROLL PROGRESS -->
 <div id="progress"></div>
@@ -685,6 +765,7 @@ section:last-of-type::after{display:none}
 
 <!-- SIDE DOT NAV (wayfinding, desktop) -->
 <nav class="dots" aria-label="Section navigation">
+  <a href="#phases" data-l="Phases"><span></span></a>
   <a href="#baseline" data-l="Baseline"><span></span></a>
   <a href="#losers" data-l="Losers"><span></span></a>
   <a href="#gainers" data-l="Gainers"><span></span></a>
@@ -694,7 +775,7 @@ section:last-of-type::after{display:none}
   <a href="#ledger" data-l="Ledger"><span></span></a>
 </nav>
 
-<div class="wrap">
+<div class="wrap" id="main">
 
 <!-- ============================================================
      HEADER
@@ -702,21 +783,64 @@ section:last-of-type::after{display:none}
 <header class="hdr">
   <div class="eb info r">
     <span class="dot"></span>
-    Economic Impact Report &middot; May 2023 – June 2026
+    Economic Impact Report &middot; May 2023 – July 2026
   </div>
   <h1 class="r d1">The Price of Conflict:<br>
     <span class="i">Who Loses, Who Gains</span><br>in Manipur&rsquo;s War Economy
   </h1>
   <p class="p r d2">
-    Three years of ethnic violence has bifurcated Manipur&rsquo;s economy — destroying livelihoods for the majority while fueling a parallel war economy that profits select networks.
+    Three years of ethnic violence has fractured Manipur&rsquo;s economy across three communities &mdash; Meitei, Kuki-Zo and Naga &mdash; destroying livelihoods for the majority while fueling a parallel war economy that profits select networks.
   </p>
   <div class="hdr-meta r d3">
-    <div class="it"><span class="n">3+</span><span class="l">Years of conflict</span></div>
-    <div class="it"><span class="n">260+</span><span class="l">Lives lost</span></div>
-    <div class="it"><span class="n">60,000</span><span class="l">Displaced</span></div>
-    <div class="it"><span class="n">&#8377;49,937 <span class="sub">cr</span></span><span class="l">GSDP, 2024-25</span></div>
+    <div class="it"><span class="n" data-count-to="3" data-suffix="+">3+</span><span class="l">Years of conflict</span></div>
+    <div class="it"><span class="n" data-count-to="280" data-suffix="+">280+</span><span class="l">Lives lost</span></div>
+    <div class="it"><span class="n" data-count-to="60000" data-comma="1">60,000</span><span class="l">Displaced</span></div>
+    <div class="it"><span class="n"><span class="cnt" data-count-to="49937" data-prefix="&#8377;" data-comma="1">&#8377;49,937</span> <span class="sub">cr</span></span><span class="l">GSDP, 2024-25</span></div>
   </div>
 </header>
+
+<!-- ============================================================
+     CONFLICT PHASES — how the war economy evolved
+     ============================================================ -->
+<section id="phases">
+  <div class="r">
+    <div class="s-eb info">
+      <span class="bar"></span>
+      <span class="lbl">How the Conflict Evolved</span>
+    </div>
+    <h2 class="s-h2">Three Phases <span class="i">of a Fractured State</span></h2>
+    <p class="s-sub">The conflict did not stay still. Over three years it moved through distinct phases &mdash; each reshaping who bore the cost and who captured the gains.</p>
+  </div>
+
+  <div class="phases r d1">
+    <article class="phase p1">
+      <span class="p-node" aria-hidden="true"></span>
+      <div class="p-lbl">Phase 1 &middot; May 2023 – Feb 2025</div>
+      <div class="p-dates">The Open War</div>
+      <h3 class="p-title">Meitei &harr; Kuki-Zo <span class="i">violence</span></h3>
+      <p class="p-desc">Ethnic violence splits the state along the valley&ndash;hill line. Curfews, highway blockades and mass displacement define daily life; a parallel war economy takes root in the vacuum.</p>
+      <div class="p-stat"><span class="v">258</span><span class="k">killed (govt, Nov 2024)</span><span class="v">60,000</span><span class="k">displaced</span></div>
+    </article>
+
+    <article class="phase p2">
+      <span class="p-node" aria-hidden="true"></span>
+      <div class="p-lbl">Phase 2 &middot; Feb 2025 – Feb 2026</div>
+      <div class="p-dates">The Interregnum</div>
+      <h3 class="p-title">President&rsquo;s Rule <span class="i">lull</span></h3>
+      <p class="p-desc">CM N. Biren Singh resigns and the Centre takes direct control. Stolen militia arms are partly returned and the Kuki SoO is renewed &mdash; yet not one displaced family is resettled.</p>
+      <div class="p-stat"><span class="v">13</span><span class="k">months of central rule</span></div>
+    </article>
+
+    <article class="phase p3">
+      <span class="p-node" aria-hidden="true"></span>
+      <div class="p-lbl">Phase 3 &middot; Mar 2026 – present</div>
+      <div class="p-dates">The Fracture Spreads</div>
+      <h3 class="p-title">Kuki &harr; Naga <span class="i">escalation</span></h3>
+      <p class="p-desc">A new BJP government under Y. Khemchand Singh takes office and opens the first Kuki-Zo dialogue in three years &mdash; even as a fresh Kuki&ndash;Naga axis ignites across Kangpokpi, Senapati and Ukhrul.</p>
+      <div class="p-stat"><span class="v">24</span><span class="k">killed (Jan–Jul 2026)</span><span class="v">85</span><span class="k">FIRs &middot; 5 zones</span></div>
+    </article>
+  </div>
+</section>
 
 <!-- ============================================================
      PANEL 1 — BASELINE
@@ -761,7 +885,7 @@ section:last-of-type::after{display:none}
       <div class="sh-sm"><div class="sh-in"><div class="st-val">&#8377;49,937 <span class="sm">cr</span></div><div class="st-desc">GSDP, 2024-25 &middot; nominal growth masks sectoral collapse</div><div class="dbar"><div class="dbar-tr"><div class="dbar-fill gold" data-w="48"></div></div><span class="dbar-lbl">+9.6%</span></div><div class="st-src">PRS India &middot; Manipur Budget Analysis 2024-25</div></div></div>
       <div class="sh-sm"><div class="sh-in"><div class="st-val">~68<span class="sm">%</span></div><div class="st-desc">Rural, agrarian population &middot; livelihoods outside the Imphal Valley</div><div class="dbar"><div class="dbar-tr"><div class="dbar-fill gold" data-w="68"></div></div><span class="dbar-lbl">Rural</span></div><div class="st-src">NITI Aayog &middot; Manipur Fiscal Profile 2022-23</div></div></div>
       <div class="sh-sm"><div class="sh-in"><div class="st-val">&#8377;1.38L <span class="sm">pc</span></div><div class="st-desc">Per-capita income, 2024-25 &middot; ~31% below national average</div><div class="dbar"><div class="dbar-tr"><div class="dbar-fill gold" data-w="69"></div></div><span class="dbar-lbl">69%</span></div><div class="st-src">Economic Survey Manipur 2024-25 &middot; MoSPI national</div></div></div>
-      <div class="sh-sm"><div class="sh-in"><div class="st-val red">3+ <span class="sm">years</span></div><div class="st-desc">Ethnic conflict &middot; Meitei &harr; Kuki-Zo</div><div class="dbar"><div class="dbar-tr"><div class="dbar-fill red" data-w="100"></div></div><span class="dbar-lbl">Active</span></div><div class="st-src">May 2023 – Jun 2026</div></div></div>
+      <div class="sh-sm"><div class="sh-in"><div class="st-val red">3+ <span class="sm">years</span></div><div class="st-desc">Ethnic conflict &middot; Meitei &harr; Kuki-Zo &harr; Naga</div><div class="dbar"><div class="dbar-tr"><div class="dbar-fill red" data-w="100"></div></div><span class="dbar-lbl">Active</span></div><div class="st-src">May 2023 – Jul 2026</div></div></div>
     </div>
   </div>
 </section>
@@ -829,6 +953,19 @@ section:last-of-type::after{display:none}
       </div>
     </div>
 
+    <!-- Kuki–Naga escalation (2026) — new front of damage -->
+    <div class="c4 sh">
+      <div class="sh-in">
+        <div class="icn loss"><div class="icn-in"><svg viewBox="0 0 24 24"><path d="M3 8V3h5"/><path d="M21 8V3h-5"/><path d="M3 16v5h5"/><path d="M21 16v5h-5"/><path d="M8 3h8M8 21h8"/></svg></div></div>
+        <div class="card-title">2026: A New Front</div>
+        <div class="card-stat red">46-day blockade</div>
+        <div class="card-desc">The conflict opens a <strong>third axis</strong> &mdash; Kuki vs Naga. A 46-day economic blockade strangles the hill districts; villages burn in Noney (Jul 2026) and abductions displace fresh families across Kangpokpi, Senapati and Ukhrul.</div>
+        <div class="dbar"><div class="dbar-tr"><div class="dbar-fill red" data-w="78"></div></div><span class="dbar-lbl">5 zones</span></div>
+        <div class="card-q">&ldquo;No longer confined to the Meitei&ndash;Kuki fault line.&rdquo;</div>
+        <div class="card-src">Sources: <a href="https://www.indiatodayne.in/manipur/story/six-killings-a-46-day-blockade-and-a-state-on-edge-inside-manipurs-new-crisis-1417668-2026-07-02" target="_blank" rel="noopener">India Today NE, Jul 2026</a> &middot; <a href="https://www.news18.com/india/data-reveals-manipurs-new-kuki-naga-flashpoints-85-firs-24-deaths-5-tension-zones-exclusive-ws-l-10212662.html" target="_blank" rel="noopener">News18</a></div>
+      </div>
+    </div>
+
     <!-- Youth — wide -->
     <div class="c8 sh">
       <div class="sh-in">
@@ -839,7 +976,7 @@ section:last-of-type::after{display:none}
             <div class="card-stat red">Brain drain accelerating</div>
             <div class="card-desc">Rising household debt. Skilled workers migrating out of state. Over <strong>11,000 evacuated</strong> in the first weeks alone (ET, May 2023).</div>
             <div class="card-q" style="margin-top:14px;">&ldquo;Is this a good time to take up a job in Manipur?&rdquo; &middot; &ldquo;Reasons to leave: everything else.&rdquo;</div>
-            <div class="card-src">Source: <a href="https://reddit.com/r/manipur/comments/1u1sm3x/" target="_blank" rel="noopener">r/manipur</a> &middot; <a href="https://www.youtube.com/watch?v=LU-72Tgz73M" target="_blank" rel="noopener">ET, May 2023</a></div>
+            <div class="card-src">Sources: <a href="https://www.youtube.com/watch?v=_aihZ_dIM1g" target="_blank" rel="noopener">Jist ground report, May 2026</a> &middot; <a href="https://reddit.com/r/manipur/comments/1u1sm3x/" target="_blank" rel="noopener">r/manipur</a> &middot; <a href="https://www.youtube.com/watch?v=LU-72Tgz73M" target="_blank" rel="noopener">ET, May 2023</a></div>
           </div>
         </div>
       </div>
@@ -892,8 +1029,8 @@ section:last-of-type::after{display:none}
         <div class="icn gain"><div class="icn-in"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="13" rx="1.8"/><path d="M9 21h6M12 18v3"/><path d="M8 10l3 2-3 2v-4z" fill="currentColor" stroke="none"/></svg></div></div>
         <div class="card-title">Media &amp; Information</div>
         <div class="card-stat grn">6.6M views on top video</div>
-        <div class="card-desc">Viewership spikes on conflict content. Nitish Rajput&rsquo;s &ldquo;Why Manipur is Burning&rdquo; (2023) alone: <strong>6.6M views, 177K likes</strong>.</div>
-        <div class="card-src">Source: <a href="https://www.youtube.com/watch?v=bDDdpP7QKpA" target="_blank" rel="noopener">Nitish Rajput, 2023</a></div>
+        <div class="card-desc">Viewership spikes on conflict content. Nitish Rajput&rsquo;s &ldquo;Why Manipur is Burning&rdquo; (2023): <strong>6.6M views</strong>; News Pinch&rsquo;s &ldquo;Manipur Files&rdquo; documentary drew <strong>1.3M views and 67K likes in four days</strong> (Jul 2026); Jist&rsquo;s ground report: <strong>1.2M views</strong>.</div>
+        <div class="card-src">Sources: <a href="https://www.youtube.com/watch?v=bDDdpP7QKpA" target="_blank" rel="noopener">Nitish Rajput, 2023</a> &middot; <a href="https://www.youtube.com/watch?v=7_EIGh8-11c" target="_blank" rel="noopener">Manipur Files, Jul 2026</a> &middot; <a href="https://www.youtube.com/watch?v=_aihZ_dIM1g" target="_blank" rel="noopener">Jist, May 2026</a></div>
       </div>
     </div>
 
@@ -946,9 +1083,12 @@ section:last-of-type::after{display:none}
         <div class="flow-n active"><div class="fi"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg></div><div><div class="fl">Conflict Continues</div><div class="fs">Self-funding cycle</div></div></div>
       </div>
       <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border);font-size:12.5px;color:var(--text-soft);display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-        <strong style="color:var(--text);font-weight:700;">Source:</strong>
-        <a href="https://www.youtube.com/watch?v=vRyOiFmXxSo" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:none;font-weight:600;border-bottom:1px solid rgba(212,172,125,0.3);">Impact TV Manipur &mdash; &ldquo;Manipur Under the Shadow of the Drug Economy&rdquo;</a>
-        <span style="color:var(--faint);">(35,491 views)</span>
+        <strong style="color:var(--text);font-weight:700;">Sources:</strong>
+        <a href="https://www.youtube.com/watch?v=1S73MBFacFE" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:none;font-weight:600;border-bottom:1px solid rgba(212,172,125,0.3);">Raj Shamani FO531 &mdash; &ldquo;Dark Side of Manipur: China, Myanmar &amp; Northeast Insurgency&rdquo;</a>
+        <span style="color:var(--faint);">(1.4M views)</span>
+        <span style="color:var(--faint);">&middot;</span>
+        <a href="https://www.youtube.com/watch?v=vRyOiFmXxSo" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:none;font-weight:600;border-bottom:1px solid rgba(212,172,125,0.3);">Impact TV &mdash; &ldquo;Shadow of the Drug Economy&rdquo;</a>
+        <span style="color:var(--faint);">(35K views)</span>
       </div>
     </div>
   </div>
@@ -1090,9 +1230,29 @@ section:last-of-type::after{display:none}
         <div class="tl-m">E-Pao reports fields abandoned across Imphal East and Bishnupur.</div>
       </div>
       <div class="tl-e">
+        <div class="tl-d">Feb 4, 2026</div>
+        <div class="tl-t"><svg viewBox="0 0 24 24"><path d="M4 21V11M10 21V4M16 20v-8M22 20H2"/></svg>New Government</div>
+        <div class="tl-m">President&rsquo;s Rule revoked; BJP&rsquo;s Yumnam Khemchand Singh sworn in as Chief Minister.</div>
+      </div>
+      <div class="tl-e">
+        <div class="tl-d">Mar 21, 2026</div>
+        <div class="tl-t"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>First Dialogue</div>
+        <div class="tl-m">Khemchand Singh meets Kuki-Zo representatives &mdash; the first direct talk between the sides in three years.</div>
+      </div>
+      <div class="tl-e">
+        <div class="tl-d">Apr 7, 2026</div>
+        <div class="tl-t"><svg viewBox="0 0 24 24"><path d="M12 3 2 20h20L12 3z"/><path d="M12 9v5M12 17.5v.5"/></svg>Thronlaobi Bombing</div>
+        <div class="tl-m">A rocket strike in Moirang, Bishnupur kills a five-year-old boy and a five-month-old girl &mdash; buffer zones harden into permanence. <a href="https://www.youtube.com/watch?v=RFVcoHEu5jk" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:none;font-weight:600;border-bottom:1px solid rgba(212,172,125,0.3);">Jist, May 2026</a></div>
+      </div>
+      <div class="tl-e">
         <div class="tl-d">Jun 2026</div>
         <div class="tl-t"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg>Fourth Year Begins</div>
         <div class="tl-m">Kangpokpi attack, COBRA deployed; 731 IDP camp deaths reported, 43,000 still displaced.</div>
+      </div>
+      <div class="tl-e">
+        <div class="tl-d">Jul 2026</div>
+        <div class="tl-t"><svg viewBox="0 0 24 24"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>Three Communities, One Crisis</div>
+        <div class="tl-m">The conflict fractures beyond Meitei&ndash;Kuki: 24 killed across 5 Kuki&ndash;Naga flashpoints (Jan&ndash;Jul), villages burn in Noney, two soldiers killed in ambush.</div>
       </div>
     </div>
   </div>
@@ -1132,7 +1292,7 @@ section:last-of-type::after{display:none}
             <tr><td class="b-s">Drug Cartels &amp; Smugglers</td><td><span class="tag gain">Boom</span></td><td class="b-m">Governance vacuum, open Myanmar border</td><td class="b-sc">&#8377;5K&ndash;10K cr/yr</td></tr>
             <tr><td class="b-s">Security Contractors</td><td><span class="tag gain">Growth</span></td><td class="b-m">Troop-deployment procurement</td><td class="b-sc">Growing sector</td></tr>
             <tr><td class="b-s">Militant Groups</td><td><span class="tag gain">Self-Funding</span></td><td class="b-m">Extortion, smuggling, weapons trade</td><td class="b-sc">Sustains conflict</td></tr>
-            <tr><td class="b-s">Media Creators</td><td><span class="tag gain">Growth</span></td><td class="b-m">Viewership spikes on conflict content</td><td class="b-sc">6.6M+ top video</td></tr>
+            <tr><td class="b-s">Media Creators</td><td><span class="tag gain">Growth</span></td><td class="b-m">Viewership spikes on conflict content</td><td class="b-sc">6.6M top &middot; 1.2M (2026)</td></tr>
             <tr><td class="b-s">Arms Dealers</td><td><span class="tag gain">Growth</span></td><td class="b-m">Black-market demand, both sides</td><td class="b-sc">Illicit growth</td></tr>
             <tr><td class="b-s">Political Middlemen</td><td><span class="tag warn">Opaque Gain</span></td><td class="b-m">Reconstruction patronage</td><td class="b-sc">Not quantifiable</td></tr>
           </tbody>
@@ -1148,7 +1308,7 @@ section:last-of-type::after{display:none}
 <footer class="ft">
   <div class="ft-icn"><svg viewBox="0 0 24 24"><path d="M4 20V11M10 20V4M16 20v-8M22 20H2"/></svg></div>
   <h3>Data Sources &amp; Methodology</h3>
-  <p>Economic figures verified against <strong>PRS India, NITI Aayog</strong> and the <strong>Economic Survey of Manipur 2024-25</strong>; human-cost and political data cross-checked with <strong>Wikipedia, Human Rights Watch, The Hindu, India Today</strong> and <strong>Times of India</strong>. Video statistics confirmed live via yt-dlp on June 19, 2026. Supplementary social research via <strong>last30days v3.3.2</strong>, plus YouTube sources (Nitish Rajput, Abhi &amp; Niyu, News9 Live, The Economic Times, Al Jazeera, Impact TV Manipur, E-Pao).</p>
+  <p>Economic figures verified against <strong>PRS India, NITI Aayog</strong> and the <strong>Economic Survey of Manipur 2024-25</strong>; human-cost and political data cross-checked with <strong>Wikipedia, Human Rights Watch, The Hindu, India Today NE, News18</strong> and <strong>Times of India</strong>. The 2026 political timeline (new government, Kuki&ndash;Naga escalation) is corroborated by Wikipedia&rsquo;s sourced summary and News18&rsquo;s flashpoint data. Video statistics confirmed live via yt-dlp on July 15, 2026. Supplementary social research via <strong>last30days v3.3.2</strong>, plus YouTube sources (Nitish Rajput, News Pinch, Raj Shamani, Abhi &amp; Niyu, News9 Live, The Economic Times, Al Jazeera, BBC News India, Jist, Impact TV Manipur, E-Pao).</p>
   <div class="ft-l">
     <span class="lbl-k">Verified Sources</span>
     <a href="https://en.wikipedia.org/wiki/2023%E2%80%932026_Manipur_conflict" target="_blank" rel="noopener">Wikipedia &middot; 2023-26 Conflict</a>
@@ -1158,18 +1318,27 @@ section:last-of-type::after{display:none}
     <a href="https://www.hrw.org/news/2025/03/27/india-ethnic-clashes-restart-manipur" target="_blank" rel="noopener">Human Rights Watch (2025)</a>
     <a href="https://www.thehindu.com/news/national/manipur/biren-singh-resigns-as-manipur-chief-minister/article69199431.ece" target="_blank" rel="noopener">The Hindu &middot; CM Resigns</a>
     <a href="https://www.indiatoday.in/india/story/president-2679598-2025-02-13" target="_blank" rel="noopener">India Today &middot; President&rsquo;s Rule</a>
+    <a href="https://en.wikipedia.org/wiki/2023%E2%80%932026_Manipur_conflict" target="_blank" rel="noopener">Wikipedia &middot; New Govt &amp; Phases</a>
+    <a href="https://www.news18.com/india/data-reveals-manipurs-new-kuki-naga-flashpoints-85-firs-24-deaths-5-tension-zones-exclusive-ws-l-10212662.html" target="_blank" rel="noopener">News18 &middot; Kuki–Naga Flashpoints</a>
+    <a href="https://www.indiatodayne.in/manipur/story/six-killings-a-46-day-blockade-and-a-state-on-edge-inside-manipurs-new-crisis-1417668-2026-07-02" target="_blank" rel="noopener">India Today NE &middot; New Crisis</a>
+    <a href="https://frontline.thehindu.com/the-nation/manipur-violence-war-of-maps/article70981838.html" target="_blank" rel="noopener">Frontline &middot; War of Maps</a>
     <a href="https://timesofindia.indiatimes.com/city/guwahati/731-idps-die-in-manipur-camps-since-ethnic-violence-began/articleshow/131556542.cms" target="_blank" rel="noopener">Times of India &middot; IDP Deaths</a>
     <a href="https://www.youtube.com/watch?v=bDDdpP7QKpA" target="_blank" rel="noopener">Why Manipur is Burning (2023)</a>
     <a href="https://www.youtube.com/watch?v=Cyrdy5ShwZY" target="_blank" rel="noopener">Abhi &amp; Niyu (2023)</a>
     <a href="https://www.youtube.com/watch?v=LU-72Tgz73M" target="_blank" rel="noopener">ET Ground Report (2023)</a>
     <a href="https://www.youtube.com/watch?v=y36MolwUbQA" target="_blank" rel="noopener">Al Jazeera (2026)</a>
+    <a href="https://www.youtube.com/watch?v=_aihZ_dIM1g" target="_blank" rel="noopener">Jist &middot; Inside the Conflict (May 2026)</a>
+    <a href="https://www.youtube.com/watch?v=7_EIGh8-11c" target="_blank" rel="noopener">Manipur Files &middot; News Pinch (Jul 2026)</a>
+    <a href="https://www.youtube.com/watch?v=1S73MBFacFE" target="_blank" rel="noopener">Raj Shamani FO531 &middot; Manipur (Jul 2026)</a>
+    <a href="https://www.youtube.com/watch?v=deHnJ5DoOMw" target="_blank" rel="noopener">BBC News India &middot; Documentary</a>
+    <a href="https://www.youtube.com/watch?v=RFVcoHEu5jk" target="_blank" rel="noopener">Jist &middot; Still Burning (2026)</a>
     <a href="https://www.youtube.com/watch?v=vRyOiFmXxSo" target="_blank" rel="noopener">Drug Economy Debate</a>
     <a href="https://www.youtube.com/watch?v=c9Ftt5bRbB0" target="_blank" rel="noopener">Rural Economy (2025)</a>
     <a href="https://www.youtube.com/watch?v=ETB_HEfJovs" target="_blank" rel="noopener">UNC Blockade</a>
     <a href="https://www.youtube.com/watch?v=eqGCoFioJbA" target="_blank" rel="noopener">COBRA Deployment</a>
     <a href="https://reddit.com/r/manipur/comments/1ttviqs/" target="_blank" rel="noopener">r/manipur</a>
   </div>
-  <p class="ft-note">Drug-economy and forgone-output rupee figures are structural estimates from official baselines and reporting, not audited government accounts. GSDP, per-capita income, casualty and displacement figures are cited from PRS India, NITI Aayog, the Economic Survey of Manipur 2024-25, and major news outlets. Human cost: 258 killed (govt, Nov 2024) rising to 260+ (HRW, 2025); 60,000 displaced. Independently verified June 19, 2026.</p>
+  <p class="ft-note">Drug-economy and forgone-output rupee figures are structural estimates from official baselines and reporting, not audited government accounts. GSDP, per-capita income, casualty and displacement figures are cited from PRS India, NITI Aayog, the Economic Survey of Manipur 2024-25, and major news outlets. Human cost: the last official government figure was 258 killed (Nov 2024); the &ldquo;280+&rdquo; headline aggregates that tally with documented 2025&ndash;26 violence, including 24 killed in the Kuki&ndash;Naga phase (Jan&ndash;Jul 2026, News18), the Thronlaobi bombing (Apr 2026) and the killing of two soldiers (Jul 2026) &mdash; it is a compiled estimate, not a new audited count. Displacement peaked at ~60,000 (2023); ~43,000 remained in relief camps as of June 2026 (ToI). Independently verified July 15, 2026.</p>
 </footer>
 
 </div><!-- /wrap -->
@@ -1200,14 +1369,15 @@ section:last-of-type::after{display:none}
 
     const places = [
       { c:[24.7991,93.9364], cat:'capital', name:'Imphal', role:'State capital', note:'Seat of government in the Meitei-valley heartland; repeated curfews and internet bans since May 2023.', stat:'Political centre' },
-      { c:[25.1528,93.9714], cat:'hotspot', name:'Kangpokpi', role:'Kuki-Zo district', note:'Key NH-2 chokepoint; a June 2026 attack here triggered CRPF COBRA deployment.', stat:'Highway blockade node' },
+      { c:[25.1528,93.9714], cat:'hotspot', name:'Kangpokpi', role:'Kuki-Zo district', note:'Key NH-2 chokepoint; the epicentre of the 2026 Kuki–Naga escalation and a June 2026 attack that triggered CRPF COBRA deployment.', stat:'Kuki–Naga flashpoint' },
       { c:[24.3469,93.6994], cat:'hotspot', name:'Churachandpur', role:'Kuki-Zo stronghold', note:'Epicentre of the May 2023 violence; 1,557+ houses burnt here by May 23, 2023.', stat:'Conflict origin' },
       { c:[24.3626,94.2595], cat:'hotspot', name:'Tengnoupal', role:'Kuki-Zo hill district', note:'Overlooks the road to Moreh; a strategic corridor for the cross-border drugs trade.', stat:'Border approach' },
       { c:[24.2481,94.3029], cat:'border', name:'Moreh', role:'Indo–Myanmar border', note:'Porous transit town for Golden Triangle heroin & methamphetamines into India.', stat:'Drug-trade gateway' },
       { c:[24.8024,93.1165], cat:'node', name:'Jiribam', role:'NH-37 · railhead', note:'Manipur\u2019s only rail link and the NH-37 (Imphal–Silchar) supply lifeline.', stat:'Supply lifeline' },
-      { c:[25.0979,94.3611], cat:'hotspot', name:'Ukhrul', role:'Naga (Tangkhul) district', note:'50 houses burnt and a 5-day internet ban imposed in February 2026.', stat:'Fresh violence' },
+      { c:[25.0979,94.3611], cat:'hotspot', name:'Ukhrul', role:'Naga (Tangkhul) district', note:'One of five new Kuki–Naga tension zones in 2026; 50 houses burnt and a 5-day internet ban in February 2026.', stat:'Kuki–Naga flashpoint' },
       { c:[24.6387,93.9969], cat:'node', name:'Thoubal', role:'Meitei-valley district', note:'Curfews and commercial shutdowns through the conflict period.', stat:'Affected district' },
-      { c:[25.3934,94.1502], cat:'node', name:'Senapati', role:'Naga district · NH-2', note:'UNC counter-blockades here have repeatedly choked the NH-2 supply line.', stat:'Highway blockade node' }
+      { c:[25.3934,94.1502], cat:'hotspot', name:'Senapati', role:'Naga district · NH-2', note:'A Kuki–Naga flashpoint in 2026; UNC counter-blockades here have repeatedly choked the NH-2 supply line.', stat:'Kuki–Naga flashpoint' },
+      { c:[25.5050,93.6900], cat:'hotspot', name:'Noney', role:'Naga (Zeme) district', note:'Nungthut and Khongmol villages burnt here on July 8, 2026 in the widening Kuki–Naga violence.', stat:'New conflict zone' }
     ];
 
     const hotspotLayer = L.layerGroup(), nodeLayer = L.layerGroup();
@@ -1295,6 +1465,26 @@ section:last-of-type::after{display:none}
   requestAnimationFrame(()=>{
     document.querySelectorAll('.hdr .r').forEach(el=>el.classList.add('v'));
   });
+
+  // — Count-up animation for hero stats (respects reduced motion)
+  function runCount(el){
+    const to=parseFloat(el.getAttribute('data-count-to'));
+    if(isNaN(to))return;
+    const prefix=el.getAttribute('data-prefix')||'';
+    const suffix=el.getAttribute('data-suffix')||'';
+    const comma=el.getAttribute('data-comma')==='1';
+    const fmt=v=>comma?Math.round(v).toLocaleString('en-IN'):Math.round(v).toString();
+    const render=v=>{el.textContent=prefix+fmt(v)+suffix;};
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){render(to);return;}
+    const dur=1700,start=performance.now();
+    function step(now){
+      const t=Math.min(1,(now-start)/dur);
+      render(to*(1-Math.pow(1-t,3))); // easeOutCubic
+      if(t<1)requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  setTimeout(()=>{document.querySelectorAll('[data-count-to]').forEach(runCount);},350);
 
   // — Side dot nav: active state via section observation
   const dots=document.querySelectorAll('.dots a');
