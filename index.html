@@ -547,13 +547,6 @@ section:last-of-type::after{display:none}
     11b.  CONFLICT PHASES  —  how the war economy evolved
     ============================================================= */
 .phases{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;position:relative;margin-top:8px}
-/* continuous timeline rail behind the cards */
-.phases::before{
-  content:'';position:absolute;top:32px;left:5%;right:5%;height:2px;
-  background:linear-gradient(90deg,var(--red) 0%,var(--red) 32%,var(--gold-d) 50%,var(--amber) 68%,var(--amber) 100%);
-  opacity:0.45;border-radius:1px;z-index:0;
-  pointer-events:none;
-}
 .phase{
   position:relative;z-index:1;background:rgba(245,235,220,0.025);
   border:1px solid var(--border);border-radius:20px;padding:26px 24px 24px;
@@ -587,7 +580,6 @@ section:last-of-type::after{display:none}
 .phase .p-stat .k{font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:0.1em;font-weight:600}
 @media(max-width:1024px){
   .phases{grid-template-columns:1fr;gap:14px}
-  .phases::before{display:none}
   .phase .p-node{display:none}
 }
 @media(max-width:768px){
@@ -598,7 +590,8 @@ section:last-of-type::after{display:none}
 /* =============================================================
    12.  FOOTER
    ============================================================= */
-.ft{padding:80px 0 72px;margin-top:60px;border-top:1px solid var(--border);position:relative;width:100%}
+.ft{padding:80px 28px 72px;margin-top:60px;border-top:1px solid var(--border);position:relative;width:100%}
+.ft>*{max-width:1320px;margin-left:auto;margin-right:auto}
 .ft-icn{
   width:44px;height:44px;border-radius:13px;
   background:rgba(245,235,220,0.04);border:1px solid var(--border);
@@ -714,7 +707,7 @@ section:last-of-type::after{display:none}
   .tbl td,.tbl th{padding:14px 16px}
   .tbl thead th:first-child,.tbl td:first-child{padding-left:18px}
   .tbl thead th:last-child,.tbl td:last-child{padding-right:18px}
-  .ft{padding:52px 0 56px}
+  .ft{padding:52px 18px 56px}
   .js .r{transform:translateY(26px) scale(0.99);filter:blur(3px)}
   #map{height:340px}
 }
@@ -1310,7 +1303,9 @@ section:last-of-type::after{display:none}
 
 <!-- ============================================================
      FOOTER
-     ============================================================ -->
+      ============================================================ -->
+</div><!-- /wrap -->
+
 <footer class="ft">
   <div class="ft-icn"><svg viewBox="0 0 24 24"><path d="M4 20V11M10 20V4M16 20v-8M22 20H2"/></svg></div>
   <h3>Data Sources &amp; Methodology</h3>
@@ -1347,9 +1342,7 @@ section:last-of-type::after{display:none}
   <p class="ft-note">Drug-economy and forgone-output rupee figures are structural estimates from official baselines and reporting, not audited government accounts. GSDP, per-capita income, casualty and displacement figures are cited from PRS India, NITI Aayog, the Economic Survey of Manipur 2024-25, and major news outlets. Human cost: the last official government figure was 258 killed (Nov 2024); the &ldquo;280+&rdquo; headline aggregates that tally with documented 2025&ndash;26 violence, including 24 killed in the Kuki&ndash;Naga phase (Jan&ndash;Jul 2026, News18), the Thronlaobi bombing (Apr 2026) and the killing of two soldiers (Jul 2026) &mdash; it is a compiled estimate, not a new audited count. Displacement peaked at ~60,000 (2023); ~43,000 remained in relief camps as of June 2026 (ToI). Independently verified July 15, 2026.</p>
 </footer>
 
-</div><!-- /wrap -->
-
- <!-- ============================================================
+  <!-- ============================================================
       JAVASCRIPT — Leaflet (lazy) + Scroll Reveal + Progress + Dot Nav
       ============================================================ -->
 <script>
