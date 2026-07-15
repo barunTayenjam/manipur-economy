@@ -591,7 +591,9 @@ section:last-of-type::after{display:none}
    12.  FOOTER
    ============================================================= */
 .ft{padding:80px 28px 72px;margin-top:60px;border-top:1px solid var(--border);position:relative;width:100%}
-.ft>*{max-width:1320px;margin-left:auto;margin-right:auto}
+@media(min-width:1368px){
+  .ft{padding-left:max(28px,calc((100vw - 1320px)/2 + 28px));padding-right:max(28px,calc((100vw - 1320px)/2 + 28px))}
+}
 .ft-icn{
   width:44px;height:44px;border-radius:13px;
   background:rgba(245,235,220,0.04);border:1px solid var(--border);
