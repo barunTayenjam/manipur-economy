@@ -552,6 +552,7 @@ section:last-of-type::after{display:none}
   content:'';position:absolute;top:32px;left:5%;right:5%;height:2px;
   background:linear-gradient(90deg,var(--red) 0%,var(--red) 32%,var(--gold-d) 50%,var(--amber) 68%,var(--amber) 100%);
   opacity:0.45;border-radius:1px;z-index:0;
+  pointer-events:none;
 }
 .phase{
   position:relative;z-index:1;background:rgba(245,235,220,0.025);
@@ -597,7 +598,7 @@ section:last-of-type::after{display:none}
 /* =============================================================
    12.  FOOTER
    ============================================================= */
-.ft{padding:80px 0 72px;margin-top:60px;border-top:1px solid var(--border);position:relative}
+.ft{padding:80px 0 72px;margin-top:60px;border-top:1px solid var(--border);position:relative;width:100%}
 .ft-icn{
   width:44px;height:44px;border-radius:13px;
   background:rgba(245,235,220,0.04);border:1px solid var(--border);
