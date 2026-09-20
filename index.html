@@ -373,11 +373,13 @@ h1{font-family:var(--ff-serif);font-weight:600}
   font-weight:600;letter-spacing:-0.025em;
   margin-bottom:12px;line-height:1.15;
   color:var(--text);
+  text-wrap:balance;
 }
 .s-h2 .i{font-style:italic;color:var(--gold)}
 .s-sub{
   font-size:16px;color:var(--text-soft);line-height:1.7;
   max-width:640px;margin-bottom:52px;
+  text-wrap:pretty;
 }
 
 /* Card typography */
@@ -393,6 +395,7 @@ h1{font-family:var(--ff-serif);font-weight:600}
 .card-desc{
   font-size:14.5px;color:var(--text-soft);line-height:1.78;flex:1;
   max-width:62ch;overflow-wrap:break-word;word-break:break-word;
+  text-wrap:pretty;
 }
 .card-desc strong{color:var(--text);font-weight:700}
 .card-q{
@@ -428,11 +431,13 @@ h1{font-family:var(--ff-serif);font-weight:600}
   line-height:1.04;letter-spacing:-0.03em;
   max-width:880px;position:relative;z-index:1;
   font-weight:600;
+  text-wrap:balance;
 }
 .hdr h1 .i{font-style:italic;color:var(--gold);font-weight:500}
 .hdr .p{
   font-size:17px;color:var(--text-soft);line-height:1.7;
   max-width:580px;margin-top:22px;position:relative;z-index:1;
+  text-wrap:pretty;
 }
 .hdr-meta{
   display:flex;gap:56px;margin-top:40px;padding-top:30px;
@@ -474,7 +479,11 @@ section:last-of-type::after{display:none}
 /* =============================================================
    9.  FLOW DIAGRAM
    ============================================================= */
-.flow{display:flex;align-items:stretch;gap:0;flex-wrap:wrap;justify-content:center}
+.flow{display:flex;align-items:stretch;gap:10px;flex-wrap:wrap;justify-content:center}
+@media(max-width:768px){
+  .flow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .flow-a{display:none}
+}
 .flow-n{
   flex:1;min-width:120px;text-align:center;
   padding:24px 14px;border-radius:18px;
@@ -573,7 +582,7 @@ section:last-of-type::after{display:none}
   .tl-d{font-size:12px;font-weight:700;color:var(--gold-l);letter-spacing:0.08em;margin-bottom:8px;font-feature-settings:'tnum'}
 .tl-t{font-size:15.5px;font-weight:700;margin-bottom:6px;letter-spacing:-0.015em;color:var(--text);display:flex;align-items:center;gap:8px}
 .tl-t svg{width:15px;height:15px;stroke:var(--gold);fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
-.tl-m{font-size:13px;color:var(--text-soft);line-height:1.65}
+.tl-m{font-size:13px;color:var(--text-soft);line-height:1.65;text-wrap:pretty}
 
 /* =============================================================
     11b.  CONFLICT PHASES  —  how the war economy evolved
@@ -607,11 +616,12 @@ section:last-of-type::after{display:none}
   .phase .p-dates{font-size:12px;font-weight:700;color:var(--gold-l);letter-spacing:0.04em;font-feature-settings:'tnum';margin-bottom:12px}
 .phase .p-title{font-size:18px;font-weight:700;letter-spacing:-0.02em;color:var(--text);margin-bottom:8px}
 .phase .p-title .i{font-family:var(--ff-serif);font-style:italic;font-weight:500;color:var(--gold)}
-.phase .p-desc{font-size:13.5px;color:var(--text-soft);line-height:1.65;flex:1}
+.phase .p-desc{font-size:13.5px;color:var(--text-soft);line-height:1.65;flex:1;text-wrap:pretty}
 .phase .p-stat{
   margin-top:16px;padding-top:14px;border-top:1px solid var(--border);
-  display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;
+  display:flex;align-items:baseline;gap:8px 18px;flex-wrap:wrap;
 }
+.phase .p-pair{display:inline-flex;align-items:baseline;gap:8px;white-space:nowrap}
 .phase .p-stat .v{font-size:17px;font-weight:700;letter-spacing:-0.02em;color:var(--text);font-feature-settings:'tnum','ss01'}
 .phase.p1 .p-stat .v{color:var(--red-l)}
   .phase.p3 .p-stat .v{color:var(--gold-l)}
@@ -905,7 +915,7 @@ section:last-of-type::after{display:none}
       <div class="p-dates">The Open War</div>
       <h3 class="p-title">Meitei &harr; Kuki-Zo <span class="i">violence</span></h3>
       <p class="p-desc">Ethnic violence splits the state along the valley&ndash;hill line. Curfews, highway blockades and mass displacement define daily life; a parallel war economy takes root in the vacuum.</p>
-      <div class="p-stat"><span class="v">258</span><span class="k">killed (govt, Nov 2024)</span><span class="v">60,000</span><span class="k">displaced</span></div>
+      <div class="p-stat"><span class="p-pair"><span class="v">258</span><span class="k">killed (govt, Nov 2024)</span></span><span class="p-pair"><span class="v">60,000</span><span class="k">displaced</span></span></div>
     </article>
 
     <article class="phase p2">
@@ -914,7 +924,7 @@ section:last-of-type::after{display:none}
       <div class="p-dates">The Interregnum</div>
       <h3 class="p-title">President&rsquo;s Rule <span class="i">lull</span></h3>
       <p class="p-desc">CM N. Biren Singh resigns and the Centre takes direct control. Stolen militia arms are partly returned and the Kuki SoO is renewed &mdash; yet not one displaced family is resettled.</p>
-      <div class="p-stat"><span class="v">13</span><span class="k">months of central rule</span></div>
+      <div class="p-stat"><span class="p-pair"><span class="v">13</span><span class="k">months of central rule</span></span></div>
     </article>
 
     <article class="phase p3">
@@ -923,7 +933,7 @@ section:last-of-type::after{display:none}
       <div class="p-dates">The Fracture Spreads</div>
       <h3 class="p-title">Kuki &harr; Naga <span class="i">escalation</span></h3>
       <p class="p-desc">A new BJP government under Y. Khemchand Singh takes office and opens the first Kuki-Zo dialogue in three years &mdash; even as a fresh Kuki&ndash;Naga axis ignites across Kangpokpi, Senapati and Ukhrul.</p>
-      <div class="p-stat"><span class="v">24</span><span class="k">killed (Jan–Jul 2026)</span><span class="v">85</span><span class="k">FIRs &middot; 5 zones</span></div>
+      <div class="p-stat"><span class="p-pair"><span class="v">24</span><span class="k">killed (Jan–Jul 2026)</span></span><span class="p-pair"><span class="v">85</span><span class="k">FIRs &middot; 5 zones</span></span></div>
     </article>
   </div>
 </section>
