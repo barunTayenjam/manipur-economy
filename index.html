@@ -150,12 +150,12 @@ body{
 .leaflet-popup-tip{background:var(--card);border:1px solid var(--border-h)}
 .leaflet-popup-content{margin:13px 16px;font-family:var(--ff)}
 .leaflet-popup-close-button{color:var(--faint)!important;padding:6px 8px 0 0!important;font-size:15px!important}
-.leaflet-control-attribution{background:rgba(252,248,240,0.82)!important;color:var(--text-soft)!important;font-size:12px!important;backdrop-filter:blur(8px);border-top-left-radius:6px}
+.leaflet-control-attribution{background:rgba(252,248,240,0.82)!important;color:var(--text-soft)!important;font-size:12px!important;border-top-left-radius:6px}
 .leaflet-control-attribution a{color:var(--gold)!important}
 .leaflet-bar,.leaflet-control-layers,.leaflet-control-scale-line{border:1px solid var(--border-h)!important;box-shadow:0 10px 28px rgba(43,33,24,0.16)!important}
-.leaflet-bar a{background:rgba(252,248,240,0.95)!important;color:var(--text)!important;backdrop-filter:blur(10px);border-bottom:1px solid var(--border)!important;width:30px!important;height:30px!important;line-height:30px!important}
+.leaflet-bar a{background:rgba(252,248,240,0.95)!important;color:var(--text)!important;border-bottom:1px solid var(--border)!important;width:30px!important;height:30px!important;line-height:30px!important}
 .leaflet-bar a:hover{background:#fff!important;color:var(--gold-l)!important}
-.leaflet-control-layers{background:rgba(252,248,240,0.95)!important;backdrop-filter:blur(10px);color:var(--text)!important;border-radius:10px;overflow:hidden}
+.leaflet-control-layers{background:rgba(252,248,240,0.95)!important;color:var(--text)!important;border-radius:10px;overflow:hidden}
 .leaflet-control-layers-expanded{padding:11px 13px!important;min-width:148px}
 .leaflet-control-layers-expanded .leaflet-control-layers-toggle{display:none}
 .leaflet-control-layers-list{font-size:12px;font-weight:600;letter-spacing:-0.01em}
@@ -163,7 +163,7 @@ body{
 .leaflet-control-layers-list label:hover{color:var(--text)}
 .leaflet-control-layers-list input{accent-color:var(--gold);margin:0}
 .leaflet-control-layers-separator{background:var(--border)!important;height:1px;margin:8px 0!important}
-.leaflet-control-scale-line{background:rgba(252,248,240,0.9)!important;color:var(--text-soft)!important;border-color:var(--border-h)!important;font-size:12px!important;font-weight:700;backdrop-filter:blur(6px);border-radius:4px}
+.leaflet-control-scale-line{background:rgba(252,248,240,0.9)!important;color:var(--text-soft)!important;border-color:var(--border-h)!important;font-size:12px!important;font-weight:700;border-radius:4px}
 
 /* Custom map markers */
 .m-pinwrap{background:transparent;border:none}
@@ -177,10 +177,10 @@ body{
 .pin.hotspot{color:var(--red)}.pin.border{color:var(--amber)}
 @keyframes mappulse{0%{transform:scale(1);opacity:.55}80%{opacity:0}100%{transform:scale(3);opacity:0}}
 /* Highway permanent route labels */
-  .leaflet-tooltip.m-hwlabel{background:rgba(252,248,240,0.94);border:1px solid rgba(168,117,46,0.45);color:var(--gold);font-size:12px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;padding:4px 10px;border-radius:100px;box-shadow:0 4px 14px rgba(43,33,24,0.18);backdrop-filter:blur(8px);white-space:nowrap}00;letter-spacing:0.18em;text-transform:uppercase;padding:4px 10px;border-radius:100px;box-shadow:0 4px 14px rgba(43,33,24,0.18);backdrop-filter:blur(8px);white-space:nowrap}
+  .leaflet-tooltip.m-hwlabel{background:rgba(252,248,240,0.94);border:1px solid rgba(168,117,46,0.45);color:var(--gold);font-size:12px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;padding:4px 10px;border-radius:100px;box-shadow:0 4px 14px rgba(43,33,24,0.18);white-space:nowrap}00;letter-spacing:0.18em;text-transform:uppercase;padding:4px 10px;border-radius:100px;box-shadow:0 4px 14px rgba(43,33,24,0.18);white-space:nowrap}
 .leaflet-tooltip.m-hwlabel::before{display:none}
 /* Marker hover name labels */
-  .leaflet-tooltip.m-placelabel{background:rgba(252,248,240,0.97);border:1px solid var(--border-h);color:var(--text);font-size:12px;font-weight:700;letter-spacing:-0.01em;padding:4px 10px;border-radius:8px;box-shadow:0 6px 20px rgba(43,33,24,0.20);backdrop-filter:blur(8px);white-space:nowrap}
+  .leaflet-tooltip.m-placelabel{background:rgba(252,248,240,0.97);border:1px solid var(--border-h);color:var(--text);font-size:12px;font-weight:700;letter-spacing:-0.01em;padding:4px 10px;border-radius:8px;box-shadow:0 6px 20px rgba(43,33,24,0.20);white-space:nowrap}
 .leaflet-tooltip.m-placelabel::before{display:none}
 
 /* Popup content */
@@ -234,11 +234,11 @@ body{
 
 
 /* ===== AMBIENT GLOW (fixed orbs) ===== */
-#ambient{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-#ambient span{position:absolute;border-radius:50%;filter:blur(120px)}
-#ambient .o1{top:-12%;right:-6%;width:760px;height:760px;background:radial-gradient(circle,rgba(205,159,108,0.14),transparent 70%);}
-#ambient .o2{bottom:-18%;left:-8%;width:660px;height:660px;background:radial-gradient(circle,rgba(184,58,30,0.09),transparent 70%);}
-#ambient .o3{top:42%;left:50%;transform:translate(-50%,-50%);width:540px;height:540px;background:radial-gradient(circle,rgba(94,140,78,0.06),transparent 70%)}
+
+
+
+
+
 
 
 
@@ -349,7 +349,7 @@ h1{font-family:var(--ff-serif);font-weight:600}
   font-size:12px;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;
   border:1px solid var(--border-h);
   color:var(--text);background:rgba(255,253,248,0.6);
-  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  -webkit-
   margin-bottom:22px;position:relative;z-index:1;
 }
 .eb .dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
@@ -691,8 +691,8 @@ section:last-of-type::after{display:none}
    14.  REVEAL ANIMATIONS
    ============================================================= */
 /* JS-gated: only hidden when JS runs; agents/crawlers without JS see content immediately */
-.js .r{opacity:0;transform:translateY(42px) scale(0.98);filter:blur(6px);transition:opacity 0.95s var(--ease-out),transform 0.95s var(--ease-out),filter 0.95s var(--ease-out)}
-.r.v{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}
+.js .r{opacity:0;transform:translateY(42px) scale(0.98);transition:opacity 0.95s var(--ease-out),transform 0.95s var(--ease-out)}
+.r.v{opacity:1;transform:translateY(0) scale(1)}
 /* JS-gated count-up: hide the pre-rendered final value until runCount() sets its start
    frame, otherwise the hero stats flash final→0→final. No-JS still sees the final value. */
 .js [data-count-to]{visibility:hidden}
@@ -703,7 +703,7 @@ section:last-of-type::after{display:none}
 @media(prefers-reduced-motion:reduce){
   .js .r{opacity:1!important;transform:none!important;filter:none!important;transition:none!important}
   [data-count-to]{visibility:visible!important}
-  #ambient span{animation:none!important}
+  
   html{scroll-behavior:auto}
 }
 
@@ -745,7 +745,7 @@ section:last-of-type::after{display:none}
   .tbl thead th:first-child,.tbl td:first-child{padding-left:18px}
   .tbl thead th:last-child,.tbl td:last-child{padding-right:18px}
   .ft{padding:52px 18px 56px}
-  .js .r{transform:translateY(26px) scale(0.99);filter:blur(3px)}
+  .js .r{transform:translateY(26px) scale(0.99)}
   #map{height:340px}
 }
 @media(max-width:480px){
@@ -793,11 +793,7 @@ section:last-of-type::after{display:none}
 <div id="progress"></div>
 
 <!-- AMBIENT GLOW ORBS -->
-<div id="ambient">
-  <span class="o1"></span>
-  <span class="o2"></span>
-  <span class="o3"></span>
-</div>
+
 
 <!-- SIDE DOT NAV (wayfinding, desktop) -->
 <nav class="dots" aria-label="Section navigation">
