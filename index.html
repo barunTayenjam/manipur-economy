@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>The Price of Conflict — Manipur's War Economy</title>
 
 <!-- Primary meta -->
@@ -107,13 +107,13 @@
   --text-soft:  #5E5343;
   --dim:        #7C705E;
   --faint:      #6F6149;
-  --gold:       #A8752E;
+  --gold:       #8F6328;
   --gold-l:     #8A5E1F;
   --gold-d:     #C9A45C;
   --red:        #B23A2E;
-  --red-l:      #C25A48;
+  --red-l:      #B04936;
   --green:      #4E7A3C;
-  --green-l:    #6E9655;
+  --green-l:    #53793F;
   --amber:      #8F5E10;
   --r-sm:       12px;
   --r-md:       18px;
@@ -126,7 +126,7 @@
   --ff-serif:   'Playfair Display',Georgia,serif;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:hidden}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{
   font-family:var(--ff);
   background:var(--black);
@@ -138,7 +138,8 @@ body{
   text-rendering:optimizeLegibility;
   font-feature-settings:'ss01','cv01','cv11';
   display:flex;flex-direction:column;align-items:center;
-  overflow-x:hidden;min-height:100dvh;
+  min-height:100dvh;
+  padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right);
 }
 
 /* Map styling */
@@ -177,7 +178,7 @@ body{
 .pin.hotspot{color:var(--red)}.pin.border{color:var(--amber)}
 @keyframes mappulse{0%{transform:scale(1);opacity:.55}80%{opacity:0}100%{transform:scale(3);opacity:0}}
 /* Highway permanent route labels */
-  .leaflet-tooltip.m-hwlabel{background:rgba(252,248,240,0.94);border:1px solid rgba(168,117,46,0.45);color:var(--gold);font-size:12px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;padding:4px 10px;border-radius:100px;box-shadow:0 4px 14px rgba(43,33,24,0.18);white-space:nowrap}00;letter-spacing:0.18em;text-transform:uppercase;padding:4px 10px;border-radius:100px;box-shadow:0 4px 14px rgba(43,33,24,0.18);white-space:nowrap}
+.leaflet-tooltip.m-hwlabel{background:rgba(252,248,240,0.94);border:1px solid rgba(168,117,46,0.45);color:var(--gold);font-size:12px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;padding:4px 10px;border-radius:100px;box-shadow:0 4px 14px rgba(43,33,24,0.18);white-space:nowrap}
 .leaflet-tooltip.m-hwlabel::before{display:none}
 /* Marker hover name labels */
   .leaflet-tooltip.m-placelabel{background:rgba(252,248,240,0.97);border:1px solid var(--border-h);color:var(--text);font-size:12px;font-weight:700;letter-spacing:-0.01em;padding:4px 10px;border-radius:8px;box-shadow:0 6px 20px rgba(43,33,24,0.20);white-space:nowrap}
@@ -351,7 +352,6 @@ h1{font-family:var(--ff-serif);font-weight:600}
   font-size:12px;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;
   border:1px solid var(--border-h);
   color:var(--text);background:rgba(255,253,248,0.6);
-  -webkit-
   margin-bottom:22px;position:relative;z-index:1;
 }
 .eb .dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
@@ -414,7 +414,7 @@ h1{font-family:var(--ff-serif);font-weight:600}
 }
 .st-val .sm{font-size:15px;font-weight:400;color:var(--faint);white-space:nowrap;letter-spacing:0}
 .st-val.red{color:var(--red-l)}
-.st-val.grn{color:var(--green-l)}
+.st-val.grn{color:var(--green)}
 .st-desc{font-size:14px;color:var(--text-soft);line-height:1.6;margin-top:8px}
 .st-src{font-size:12px;color:var(--faint);margin-top:14px;font-style:italic;letter-spacing:0.01em}
 
@@ -544,12 +544,13 @@ section:last-of-type::after{display:none}
    11.  TIMELINE
    ============================================================= */
 .tl-wrap{position:relative;margin-top:36px}
-.tl{display:flex;gap:0;overflow-x:auto;padding:28px 4px 16px;scrollbar-width:thin;scrollbar-color:var(--border-h) transparent}
+.tl{display:flex;gap:0;overflow-x:auto;padding:28px 4px 16px;scrollbar-width:thin;scrollbar-color:var(--border-h) transparent;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity}
 .tl::-webkit-scrollbar{height:5px}
 .tl::-webkit-scrollbar-track{background:transparent}
 .tl::-webkit-scrollbar-thumb{background:var(--border-h);border-radius:3px}
 .tl-e{
   min-width:230px;padding:24px 24px 22px;flex-shrink:0;position:relative;
+  scroll-snap-align:start;
   border:1px solid var(--border);border-radius:18px;
   margin-right:18px;background:rgba(255,253,248,0.5);
   transition:border-color 0.5s var(--ease),background 0.5s var(--ease),transform 0.5s var(--ease),box-shadow 0.5s var(--ease);
@@ -627,7 +628,7 @@ section:last-of-type::after{display:none}
 /* =============================================================
    12.  FOOTER
    ============================================================= */
-.ft{padding:80px 28px 72px;margin-top:60px;border-top:1px solid var(--border);position:relative;width:100%}
+.ft{padding:80px 28px max(72px,env(safe-area-inset-bottom));margin-top:60px;border-top:1px solid var(--border);position:relative;width:100%}
 @media(min-width:1368px){
   .ft{padding-left:max(28px,calc((100vw - 1320px)/2 + 28px));padding-right:max(28px,calc((100vw - 1320px)/2 + 28px))}
 }
@@ -714,6 +715,15 @@ section:last-of-type::after{display:none}
 /* =============================================================
    15.  RESPONSIVE
    ============================================================= */
+/* ===== 15. RESPONSIVE ===== */
+@media(hover:none) and (pointer:coarse){
+  .leaflet-bar a{width:44px!important;height:44px!important;line-height:44px!important;font-size:18px!important}
+  .leaflet-popup-close-button{padding:10px 10px 0 0!important;font-size:18px!important}
+  .faq-item summary{padding:18px 20px;min-height:48px}
+  .tl-e{padding:22px 20px}
+  .ft-l a{padding:10px 14px}
+  .cta:active{transform:scale(0.97)}
+}
 @media(max-width:1024px){
   .dots{display:none}
   .g12,.g8{grid-template-columns:repeat(6,1fr)}
@@ -724,38 +734,63 @@ section:last-of-type::after{display:none}
 @media(max-width:768px){
   .wrap{padding:0 18px}
   .hdr{padding:80px 0 56px}
-  .hdr h1{font-size:34px}
-  .hdr .p{font-size:15px}
-  .hdr-meta{gap:30px}
-  .hdr-meta .n{font-size:21px}
+  .hdr h1{font-size:clamp(29px,8vw,34px);line-height:1.1}
+  .hdr .p{font-size:clamp(14px,4vw,15px);line-height:1.6}
+  .hdr-meta{gap:clamp(20px,5vw,30px);flex-wrap:wrap}
+  .hdr-meta .n{font-size:clamp(19px,5.5vw,21px)}
+  .hdr-meta .it{min-width:calc(50% - 15px)}
   .g12,.g8,.g2{grid-template-columns:1fr;gap:16px}
   .c1,.c2,.c3,.c4,.c5,.c6,.c7,.c8,.c9,.c10,.c11,.c12{grid-column:span 1}
   .r2,.r3{grid-row:span 1}
-  .sh .sh-in{padding:24px}
+  .sh .sh-in{padding:20px}
   .sh{border-radius:calc(var(--r-md) + 3px)}
   .sh .sh-in{border-radius:var(--r-md)}
   section{padding:56px 0}
   section::after{left:8%;right:8%}
-  .s-h2{font-size:25px}
-  .s-sub{font-size:15px;margin-bottom:36px}
-  .tl-e{min-width:180px;padding:20px}
-  .flow-n{min-width:90px;padding:18px 10px}
+  .s-h2{font-size:clamp(22px,6vw,25px);line-height:1.2}
+  .s-sub{font-size:clamp(14px,4vw,15px);margin-bottom:36px;line-height:1.6}
+  .tl-e{min-width:200px;padding:20px}
+  .flow-n{min-width:100px;padding:18px 12px}
   .flow-n .fl{font-size:13px}
-  .flow-n .fs{font-size:12px}
+  .flow-n .fs{font-size:12px;line-height:1.4}
   .flow-a{font-size:14px;padding:0 1px}
-  .tbl td,.tbl th{padding:14px 16px}
+  .tbl td,.tbl th{padding:14px 16px;font-size:13px}
   .tbl thead th:first-child,.tbl td:first-child{padding-left:18px}
   .tbl thead th:last-child,.tbl td:last-child{padding-right:18px}
   .ft{padding:52px 18px 56px}
   .js .r{transform:translateY(26px) scale(0.99)}
-  #map{height:340px}
+  #map{height:clamp(300px,50vh,340px)}
+  .cta{padding:11px 11px 11px 24px;font-size:14px;gap:12px}
+  .cta-ic{width:34px;height:34px}
+  .cta-ic svg{width:16px;height:16px}
+  .icn{width:48px;height:48px;margin-bottom:18px}
+  .icn-in svg{width:20px;height:20px}
+  .card-title{font-size:16px;margin-bottom:7px}
+  .card-stat{font-size:20px;margin-bottom:12px}
+  .card-desc{font-size:14px;line-height:1.7}
+  .st-val{font-size:clamp(24px,7vw,28px)}
+  .st-desc{font-size:13px;line-height:1.55}
+  body{font-size:15px}
 }
 @media(max-width:480px){
-  .hdr h1{font-size:29px}
-  .hdr-meta{gap:22px}
-  .st-val{font-size:24px}
-  .card-stat{font-size:19px}
-  .eb{font-size:12px;letter-spacing:0.22em}
+  .hdr h1{font-size:clamp(26px,9vw,29px);line-height:1.08}
+  .hdr .p{font-size:14px;line-height:1.55}
+  .hdr-meta{gap:18px}
+  .hdr-meta .it{min-width:100%}
+  .hdr-meta .n{font-size:clamp(18px,6vw,20px)}
+  .st-val{font-size:clamp(22px,7vw,24px)}
+  .card-stat{font-size:18px}
+  .eb{font-size:11px;letter-spacing:0.20em;padding:6px 14px 6px 12px}
+  .s-h2{font-size:clamp(20px,7vw,23px)}
+  .s-sub{font-size:14px}
+  .flow-n{min-width:90px;padding:16px 10px}
+  .flow-n .fl{font-size:12px}
+  .flow-n .fs{font-size:12px}
+  .tl-e{min-width:180px;padding:18px}
+  .tl-t{font-size:14px}
+  .tl-m{font-size:12px}
+  .card-desc{font-size:13.5px}
+  body{font-size:14px}
 }
 
 /* ===== FAQ (AEO) ===== */
