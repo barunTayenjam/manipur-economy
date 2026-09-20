@@ -258,6 +258,14 @@ body{
 .c7{grid-column:span 7}.c8{grid-column:span 8}.c9{grid-column:span 9}
 .c10{grid-column:span 10}.c11{grid-column:span 11}.c12{grid-column:span 12}
 .r2{grid-row:span 2}.r3{grid-row:span 3}
+/* Equal bento rows on multi-column layouts (mobile stacks 1-col — excluded) */
+@media(min-width:769px){
+  .g12,.g2{grid-auto-rows:1fr}
+}
+/* Baseline: stat grid fills both rows next to the 2-row map card (12-col layouts only) */
+@media(min-width:1025px){
+  #baseline .c5.g2{grid-row:span 2}
+}
 
 /* =============================================================
    3.  DOUBLE-BEZEL SHELL  (Doppelrand — machined hardware)
@@ -297,13 +305,16 @@ body{
 .sh-alt:hover .sh-in{background:var(--card)}
 
 .sh-sm{
+  display:flex;
   border-radius:calc(var(--r-md) + 3px);
   padding:2px;
   background:rgba(255,253,248,0.45);
   border:1px solid var(--border);
   transition:inherit;
 }
-.sh-sm .sh-in{padding:22px;
+.sh-sm .sh-in{flex:1;
+  display:flex;flex-direction:column;
+  padding:22px;
   border-radius:var(--r-md);
   padding:22px;
   background:var(--card);
@@ -459,7 +470,7 @@ h1{font-family:var(--ff-serif);font-weight:600}
    ============================================================= */
 section{padding:100px 0;position:relative}
 section::after{
-  content:'';position:absolute;bottom:0;left:14%;right:14%;
+  content:'';position:absolute;bottom:0;left:0;right:0;
   height:1px;background:linear-gradient(90deg,transparent,rgba(205,159,108,0.18),transparent);
 }
 section:last-of-type::after{display:none}
@@ -712,6 +723,8 @@ section:last-of-type::after{display:none}
 .js [data-count-to].ready{visibility:visible}
 .d1{transition-delay:0.08s}.d2{transition-delay:0.16s}.d3{transition-delay:0.24s}
 .d4{transition-delay:0.32s}.d5{transition-delay:0.40s}.d6{transition-delay:0.48s}
+/* CTA carries .r reveal — keep its own hover transition snappy (0.2s), reveal opacity stays slow */
+.js .r.cta{transition:opacity 0.95s var(--ease-out),transform 0.2s var(--ease),border-color 0.2s var(--ease),background 0.2s var(--ease),box-shadow 0.2s var(--ease)}
 
 @media(prefers-reduced-motion:reduce){
   .js .r{opacity:1!important;transform:none!important;filter:none!important;transition:none!important}
@@ -757,7 +770,7 @@ section:last-of-type::after{display:none}
   .sh{border-radius:calc(var(--r-md) + 3px)}
   .sh .sh-in{border-radius:var(--r-md)}
   section{padding:56px 0}
-  section::after{left:8%;right:8%}
+  section::after{left:0;right:0}
   .s-h2{font-size:clamp(22px,6vw,25px);line-height:1.2}
   .s-sub{font-size:clamp(14px,4vw,15px);margin-bottom:36px;line-height:1.6}
   .tl-e{min-width:200px;padding:20px}
@@ -978,7 +991,7 @@ section:last-of-type::after{display:none}
     </div>
 
     <!-- Stat grid — right side -->
-    <div class="c5 g2" style="gap:14px;align-content:start;">
+    <div class="c5 g2" style="gap:14px;">
       <div class="sh-sm"><div class="sh-in"><div class="st-val">&#8377;49,937 <span class="sm">cr</span></div><div class="st-desc">GSDP, 2024-25 &middot; nominal growth masks sectoral collapse</div><div class="dbar"><div class="dbar-tr"><div class="dbar-fill gold" data-w="48"></div></div><span class="dbar-lbl">+9.6%</span></div><div class="st-src">PRS India &middot; Manipur Budget Analysis 2024-25</div></div></div>
       <div class="sh-sm"><div class="sh-in"><div class="st-val">~68<span class="sm">%</span></div><div class="st-desc">Rural, agrarian population &middot; livelihoods outside the Imphal Valley</div><div class="dbar"><div class="dbar-tr"><div class="dbar-fill gold" data-w="68"></div></div><span class="dbar-lbl">Rural</span></div><div class="st-src">NITI Aayog &middot; Manipur Fiscal Profile 2022-23</div></div></div>
       <div class="sh-sm"><div class="sh-in"><div class="st-val">&#8377;1.38L <span class="sm">pc</span></div><div class="st-desc">Per-capita income, 2024-25 &middot; ~31% below national average</div><div class="dbar"><div class="dbar-tr"><div class="dbar-fill gold" data-w="69"></div></div><span class="dbar-lbl">69%</span></div><div class="st-src">Economic Survey Manipur 2024-25 &middot; MoSPI national</div></div></div>
