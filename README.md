@@ -1,7 +1,8 @@
 # The Price of Conflict — Manipur's War Economy
 
-> An interactive, Awwwards-tier data-journalism infographic documenting the
-> economic impact of the **2023–2026 Manipur ethnic conflict**.
+> An interactive, source-verified data-journalism record documenting the
+> economic impact of the **2023–2026 Manipur ethnic conflict**, set in the
+> grammar of an official economic-survey chapter.
 
 [![Live](https://img.shields.io/website?label=live&up_message=online&up_color=1a7f37&down_message=offline&down_color=cf222e&url=https%3A%2F%2Fbaruntayenjam.github.io%2Fmanipur-economy%2F)](https://baruntayenjam.github.io/manipur-economy/)
 [![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)](https://developer.mozilla.org/docs/Glossary/HTML5)
@@ -15,50 +16,62 @@
 
 **🔗 Live site:** https://baruntayenjam.github.io/manipur-economy/
 
-A single self-contained `index.html` — no build step, no framework, no API keys.
-Just open it and it works.
+Static site — semantic markup, one stylesheet, one script. No build step, no
+framework, no API keys. Just serve the directory.
 
 ---
 
 ## ✨ Features
 
+- **Survey-chapter layout** — nine numbered chapters with a sticky contents
+  rail (desktop) / contents strip (mobile), scroll-spy wayfinding.
+- **Statement of Key Indicators** — the report's opening booktabs table with
+  count-up readings and numbered footnote markers linking to sources.
+- **Booktabs statement tables** throughout — every key figure is a document
+  row with a source line, never a dashboard widget.
 - **Interactive Leaflet map** with 9 OSM-verified locations, real NH-2 / NH-37
-  highway routes, categorized pulsing markers (capital · hotspots · border · nodes),
+  highway routes, categorized markers (capital · hotspots · border · nodes),
   a layer toggle, scale bar, and rich popups.
-- **Six analytical panels** + a horizontal timeline spanning May 2023 → September 2026.
-- **Double-Bezel ("Doppelrand") card architecture** — every container is a machined
-  nested shell, not a flat box.
-- **Cinematic motion** — staggered scroll reveals, magnetic hover physics,
-  fluid-island navigation, GPU-safe (transform/opacity only).
-- **Side dot-navigation** with scroll-spy wayfinding across all panels.
-- **Custom ultra-light SVG icon system** (14 icons, 1.3px stroke) — no emoji, no icon font.
-- **WCAG AA compliant** — every text element passes 4.5:1 contrast.
-- **Fully responsive** — 390 px mobile → 1440 px+ desktop, with `prefers-reduced-motion` support.
+- **Horizontal chronology** — 20 dated events, May 2023 → September 2026.
+- **Final ledger** — an 11-row consolidated balance sheet of losers and gainers.
+- **12-question FAQ** — source-linked answers, mirrored in FAQPage JSON-LD.
+- **Self-hosted fonts** (woff2, latin-subset, two preloads) — no font CDN.
+- **WCAG AA compliant** — every text surface passes 4.5:1 contrast.
+- **Fully responsive** — 320 px → 1920 px with zero horizontal overflow;
+  `prefers-reduced-motion` honored.
 
 ## 🧱 Tech stack
 
 | Layer | Choice |
 |---|---|
-| Markup | Semantic HTML5 |
-| Styles | Hand-written CSS3 — custom properties, Grid, Flexbox, keyframes. **No preprocessor, no Tailwind.** |
-| Logic | Vanilla JavaScript (ES6+, IIFE). **No framework, no bundler, no dependencies** beyond the map library. |
-| Maps | [Leaflet 1.9.4](https://leafletjs.com/) + [CARTO Dark Matter](https://carto.com/basemaps/) tiles |
-| Fonts | [Plus Jakarta Sans](https://fonts.google.com/specimen/Plus+Jakarta+Sans) (UI) · [Playfair Display](https://fonts.google.com/specimen/Playfair+Display) (display serif) |
-| Icons | Inline SVG (custom set, hand-drawn paths) |
-| APIs | `IntersectionObserver` (reveals) · `requestAnimationFrame` (scroll progress) · [OSM Nominatim](https://nominatim.org/) (geocoding, verification only) |
+| Markup | Semantic HTML5 (`index.html` — content + meta + JSON-LD only) |
+| Styles | `assets/css/site.css` — hand-written CSS, custom properties, Grid/Flexbox. **No preprocessor, no Tailwind.** |
+| Logic | `assets/js/site.js` — vanilla ES6 (IIFE). **No framework, no bundler, no dependencies** beyond the map library. |
+| Maps | [Leaflet 1.9.4](https://leafletjs.com/) (CDN, lazy-loaded) + [OpenStreetMap](https://www.openstreetmap.org/copyright) tiles, grayscale-filtered |
+| Fonts | [Spectral](https://fonts.google.com/specimen/Spectral) (document serif, display + body) · [Archivo](https://fonts.google.com/specimen/Archivo) (labels + tables, tnum) · [Spline Sans Mono](https://fonts.google.com/specimen/Spline+Sans+Mono) (figures, dates, source refs) |
+| Icons | Inline SVG (custom paths, crimson strokes) |
+| APIs | `IntersectionObserver` (map lazy-load, reveals, scroll-spy) · `requestAnimationFrame` (scroll progress) |
 
-**Zero npm install. Zero build. Zero API keys.** The entire experience ships in one file.
+**Zero npm install. Zero build. Zero API keys.**
 
 ## 🎨 Design system
 
-- **Aesthetic:** Ethereal-Glass dark editorial — deepest warm-black (`#0A0806`),
-  radial mesh-gradient orbs, 3% film-grain overlay.
-- **Typography scale:** display serif (Playfair, italic accents) over a geometric
-  grotesk (Plus Jakarta), with `tnum` tabular figures for all statistics.
-- **Motion:** custom cubic-bézier curves (`0.32,0.72,0,1`) — never `linear`/`ease-in-out`.
-- **Color tokens:** warm gold (`#D4AC7D`) primary, with loss (`#DD6244`) and
-  gain (`#82B36E`) semantic accents.
-- **Accessibility:** AA contrast throughout, keyboard-reachable, reduced-motion honored.
+The full system is recorded in [`DESIGN.md`](./DESIGN.md); the product record
+in [`PRODUCT.md`](./PRODUCT.md). In brief:
+
+- **Aesthetic:** Economic-survey / budget-brief document grammar — cool-white
+  paper (`#FAFAF8`), near-black ink (`#1E232A`), hairline rules, booktabs
+  tables, zero shadows, zero border-radius. Flat by conviction.
+- **Typography:** Spectral (display + body) under Archivo tracked small-caps
+  labels; Spline Sans Mono carries every figure, date, and footnote marker
+  (`tnum` throughout).
+- **Color as data:** survey crimson (`#A31621`) = loss / links / chapter
+  numbers; green (`#1A5C30`) = gain; amber (`#7A4F00`) = structural estimates.
+  Never decoration.
+- **Motion:** document behavior — instant state changes, gentle opacity/transform
+  reveals, no layout-property animation.
+- **Accessibility:** AA contrast throughout (audited programmatically),
+  keyboard-reachable, 44 px touch targets, reduced-motion honored.
 
 ## 📊 Data verification
 
@@ -75,21 +88,30 @@ labeled as a structural estimate**. Nothing is fabricated.
 | Agriculture loss | The Hindu (LOUSAL farmers'-body survey, ₹226 cr) |
 | Drug-trade route | UNODC; IDSA; ORF |
 | Geography & coordinates | OpenStreetMap (Nominatim) |
-| Video statistics | confirmed live via [yt-dlp](https://github.com/yt-dlp/yt-dlp), June 19 2026 |
+| Video statistics | confirmed live via [yt-dlp](https://github.com/yt-dlp/yt-dlp), Aug 2 2026 |
 | 2026 blockade escalation (Sep 9), 140% commodity surge | The Hindu; Economic Times; Northeast Now |
+| Blockade day-count (523 days since May 2023) | The Assam Tribune, Sep 18 2026 |
+| Per-day blockade cost (research) | CLAWS, *Dynamics of Bandhs and Blockades*; ET 2011; Serto 2017 via ResearchGate |
+| Internet shutdown / online-delivery timeline | SFLC internetshutdowns.in; KeepUsOnline |
 | IDP resettlement (36,000 / 24,000) | CM statement via India Today NE, Sep 3 2026 |
 | Bus resumption, JTCM NH-37 shutdown, US Ambassador visit | manipur.org; Imphal Times; E-Pao |
 
-The full verified-source list (with deep links) is in the page footer.
+The full verified-source list (with deep links) is in the page colophon.
 
 ## 📁 Project structure
 
 ```
 manipur-economy/
-├── index.html      ← the entire infographic (HTML + CSS + JS inline)
-├── README.md       ← this file
-├── LICENSE         ← Apache 2.0
-├── .nojekyll       ← tells GitHub Pages to serve raw (skip Jekyll)
+├── index.html            ← content, meta, JSON-LD
+├── assets/
+│   ├── css/site.css      ← the entire design system
+│   ├── js/site.js        ← map, reveals, count-up, scroll-spy
+│   └── fonts/            ← self-hosted woff2 (Spectral, Archivo, Spline Sans Mono)
+├── PRODUCT.md            ← durable product record (audience, purpose, constraints)
+├── DESIGN.md             ← design-system spec (tokens, rules, components)
+├── README.md             ← this file
+├── LICENSE               ← Apache 2.0
+├── .nojekyll             ← tells GitHub Pages to serve raw (skip Jekyll)
 └── .gitignore
 ```
 
@@ -118,23 +140,26 @@ git add -A && git commit -m "update" && git push
 
 ## ♿ Performance & accessibility
 
-- **Lighthouse-friendly:** no render-blocking JS, system-font fallbacks,
-  `will-change` used sparingly, `backdrop-filter` only on fixed/sticky elements.
-- **Contrast:** audited programmatically — 36/36 text groups pass WCAG AA
-  (worst case 6.6:1; floor is 4.5:1).
-- **Motion:** `prefers-reduced-motion` disables all animations.
-- **Layout:** 0 px horizontal overflow at every breakpoint; no layout-thrash
-  scroll handlers (rAF-throttled, passive).
+- **Lighthouse-friendly:** no render-blocking JS, self-hosted subset fonts
+  with `font-display: swap` and two critical preloads, Leaflet loaded only
+  when the map plate approaches the viewport.
+- **Contrast:** audited programmatically — every text surface passes WCAG AA
+  (worst case 4.6:1; floor is 4.5:1).
+- **Motion:** `prefers-reduced-motion` disables reveals, count-ups and map pulses.
+- **Layout:** 0 px horizontal overflow at 320 / 390 / 768 / 1024 / 1440 / 1920 px;
+  statement tables collapse to stacked document rows below 520 px.
+- **No-JS:** all content visible without JavaScript; the map simply stays a plate.
 
 ## 🔄 Updating the data
 
 The conflict is ongoing. To refresh figures:
 
 1. Verify the new number against a primary source (PRS, NITI, major outlets).
-2. Edit the relevant card in `index.html`.
-3. Update the source attribution + the footer's verified-source list.
-4. Re-run the contrast/overflow audit (Playwright script in the project history)
-   if layout changes.
+2. Edit the relevant statement row / exhibit in `index.html`.
+3. If it's an FAQ answer, update **both** the FAQ block and the `FAQPage`
+   JSON-LD (they must stay in sync).
+4. Add any new source to the colophon's verified-source list.
+5. Re-run the contrast/overflow audit if layout changes.
 
 ## 📄 License
 
@@ -147,4 +172,4 @@ Aayog, MoSPI, et al.) — cite them when reusing the numbers.
 
 Researched with [`last30days`](https://github.com/last30days) for social-source
 discovery, cross-verified against government and major-outlet reporting, and
-live-checked with `yt-dlp`. Full methodology note is in the page footer.
+live-checked with `yt-dlp`. Full methodology note is in the page colophon.
