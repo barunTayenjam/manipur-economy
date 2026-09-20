@@ -11,7 +11,7 @@
 [![No deps](https://img.shields.io/badge/dependencies-0-1a7f37)](#)
 [![WCAG AA](https://img.shields.io/badge/WCAG-AA-passed-1a7f37)](#-performance--accessibility)
 [![License](https://img.shields.io/github/license/barunTayenjam/manipur-economy?color=blue)](./LICENSE)
-[![Last verified](https://img.shields.io/badge/data%20verified-02%20Aug%202026-blue)](#-data-verification)
+[![Last verified](https://img.shields.io/badge/data%20verified-20%20Sep%202026-blue)](#-data-verification)
 
 **🔗 Live site:** https://baruntayenjam.github.io/manipur-economy/
 
@@ -25,7 +25,7 @@ Just open it and it works.
 - **Interactive Leaflet map** with 9 OSM-verified locations, real NH-2 / NH-37
   highway routes, categorized pulsing markers (capital · hotspots · border · nodes),
   a layer toggle, scale bar, and rich popups.
-- **Six analytical panels** + a horizontal timeline spanning May 2023 → June 2026.
+- **Six analytical panels** + a horizontal timeline spanning May 2023 → September 2026.
 - **Double-Bezel ("Doppelrand") card architecture** — every container is a machined
   nested shell, not a flat box.
 - **Cinematic motion** — staggered scroll reveals, magnetic hover physics,
@@ -76,6 +76,9 @@ labeled as a structural estimate**. Nothing is fabricated.
 | Drug-trade route | UNODC; IDSA; ORF |
 | Geography & coordinates | OpenStreetMap (Nominatim) |
 | Video statistics | confirmed live via [yt-dlp](https://github.com/yt-dlp/yt-dlp), June 19 2026 |
+| 2026 blockade escalation (Sep 9), 140% commodity surge | The Hindu; Economic Times; Northeast Now |
+| IDP resettlement (36,000 / 24,000) | CM statement via India Today NE, Sep 3 2026 |
+| Bus resumption, JTCM NH-37 shutdown, US Ambassador visit | manipur.org; Imphal Times; E-Pao |
 
 The full verified-source list (with deep links) is in the page footer.
 
