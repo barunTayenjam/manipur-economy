@@ -10,7 +10,7 @@
 <meta name="author" content="Manipur Economy Report">
 <meta name="theme-color" content="#F4EEE1">
 <meta name="color-scheme" content="light">
-<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
 <link rel="canonical" href="https://baruntayenjam.github.io/manipur-economy/">
 
 <!-- Icons / PWA -->
@@ -758,6 +758,17 @@ section:last-of-type::after{display:none}
   .eb{font-size:12px;letter-spacing:0.22em}
 }
 
+/* ===== FAQ (AEO) ===== */
+.faq-list{display:grid;gap:12px;max-width:780px}
+.faq-item{border:1px solid var(--border);border-radius:14px;background:var(--card);overflow:hidden}
+.faq-item[open]{background:var(--card-alt)}
+.faq-item summary{cursor:pointer;padding:16px 20px;font-weight:700;font-size:15.5px;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px;color:var(--text)}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:'+';font-size:20px;color:var(--gold-l);flex-shrink:0;font-weight:600}
+.faq-item[open] summary::after{content:'\2013'}
+.faq-a{padding:0 20px 18px}
+.faq-a p{font-size:14.5px;line-height:1.75;color:var(--text-soft);margin:0}
+
 /* =============================================================
     16.  ACCESSIBILITY  —  focus states + skip link
     ============================================================= */
@@ -1386,6 +1397,89 @@ section:last-of-type::after{display:none}
     </div>
   </div>
 </section>
+
+<!-- ============================================================
+     FAQ — AEO (Answer Engine Optimization)
+     ============================================================ -->
+<section id="faq">
+  <div class="r">
+    <div class="s-eb info">
+      <span class="bar"></span>
+      <span class="lbl">Frequently Asked Questions</span>
+    </div>
+    <h2 class="s-h2">Quick Answers — <span class="i">Manipur's Economy in 2026</span></h2>
+    <p class="s-sub">Concise, source-verified answers to the most-asked questions about Manipur's conflict economy, displacement and the September 2026 blockade.</p>
+  </div>
+
+  <div class="faq-list r d1">
+    <details class="faq-item" open>
+      <summary>What is happening in Manipur right now?</summary>
+      <div class="faq-a">
+        <p>As of September 2026, the United Naga Council's indefinite economic blockade—intensified on September 9—continues across NH-2, NH-202, NH-37 and NH-102A. Essential-commodity prices have surged roughly 140%, 36,000 of ~60,000 displaced people have been resettled with 24,000 still in relief camps, and the Imphal–Dimapur–Guwahati bus service resumed August 21 after a three-year halt.</p>
+      </div>
+    </details>
+    <details class="faq-item">
+      <summary>Why is the UNC blockading Manipur's highways?</summary>
+      <div class="faq-a">
+        <p>The United Naga Council escalated its blockade in protest against the killing of six Naga civilians at Leilon Vaiphei village (Senapati district) in May 2026. Its demands include the removal of Deputy Chief Minister Nemcha Kipgen. The blockade has lasted 125+ days with a brief lift on NH-37 in mid-September.</p>
+      </div>
+    </details>
+    <details class="faq-item">
+      <summary>How much have commodity prices risen in Manipur?</summary>
+      <div class="faq-a">
+        <p>Roughly 140% since the blockade intensified, per Economic Times reporting from September 2026. Trucks carrying rice, cooking oil, onions and fuel remain stuck on the blocked national highways for days on end, driving acute shortages across Imphal Valley markets.</p>
+      </div>
+    </details>
+    <details class="faq-item">
+      <summary>How many people are displaced in Manipur?</summary>
+      <div class="faq-a">
+        <p>Displacement peaked at approximately 60,000 in 2023. As of September 3, 2026, the Chief Minister announced 36,000 have been resettled and 24,000 remain in relief camps. At least 731 IDPs have died in camps since the conflict began (Times of India).</p>
+      </div>
+    </details>
+    <details class="faq-item">
+      <summary>What is Manipur's GSDP?</summary>
+      <div class="faq-a">
+        <p>Manipur's Gross State Domestic Product for 2024-25 is ₹49,937 crore (nominal), growing 9.6% year-over-year per PRS India's budget analysis. Nominal growth masks sectoral collapse: agriculture, tourism and trade have contracted sharply since May 2023.</p>
+      </div>
+    </details>
+    <details class="faq-item">
+      <summary>Is transport to Manipur recovering?</summary>
+      <div class="faq-a">
+        <p>Partially. The Imphal–Dimapur–Guwahati bus service resumed August 21, 2026, ending a three-year suspension. However, the UNC blockade and periodic shutdowns (like the JTCM's NH-37 closure, Sep 10–11) continue to disrupt freight movement on national highways.</p>
+      </div>
+    </details>
+    <details class="faq-item">
+      <summary>How many people have died in the Manipur conflict?</summary>
+      <div class="faq-a">
+        <p>The last official government figure was 258 killed as of November 2024. Compiled estimates including 2025-26 violence (the Kuki–Naga phase, the April 2026 bombing, soldier killings) put the total at 280+—an aggregated tally, not a new audited count.</p>
+      </div>
+    </details>
+    <details class="faq-item">
+      <summary>How is the drug economy connected to the conflict?</summary>
+      <div class="faq-a">
+        <p>Poppy cultivation in Manipur's hills and cross-border narcotics routes fund armed networks on multiple sides, creating a self-funding war economy. The state launched an anti-narcotics push in August 2026, seizing assets worth ₹12.5 crore.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": "https://baruntayenjam.github.io/manipur-economy/#faq",
+  "mainEntity": [
+    { "@type": "Question", "name": "What is happening in Manipur right now?", "acceptedAnswer": { "@type": "Answer", "text": "As of September 2026, the United Naga Council's indefinite economic blockade—intensified on September 9—continues across NH-2, NH-202, NH-37 and NH-102A. Essential-commodity prices have surged roughly 140%, 36,000 of ~60,000 displaced people have been resettled with 24,000 still in relief camps, and the Imphal–Dimapur–Guwahati bus service resumed August 21 after a three-year halt." } },
+    { "@type": "Question", "name": "Why is the UNC blockading Manipur's highways?", "acceptedAnswer": { "@type": "Answer", "text": "The United Naga Council escalated its blockade in protest against the killing of six Naga civilians at Leilon Vaiphei village (Senapati district) in May 2026. Its demands include the removal of Deputy Chief Minister Nemcha Kipgen. The blockade has lasted 125+ days with a brief lift on NH-37 in mid-September." } },
+    { "@type": "Question", "name": "How much have commodity prices risen in Manipur?", "acceptedAnswer": { "@type": "Answer", "text": "Roughly 140% since the blockade intensified, per Economic Times reporting from September 2026. Trucks carrying rice, cooking oil, onions and fuel remain stuck on the blocked national highways for days on end, driving acute shortages across Imphal Valley markets." } },
+    { "@type": "Question", "name": "How many people are displaced in Manipur?", "acceptedAnswer": { "@type": "Answer", "text": "Displacement peaked at approximately 60,000 in 2023. As of September 3, 2026, the Chief Minister announced 36,000 have been resettled and 24,000 remain in relief camps. At least 731 IDPs have died in camps since the conflict began (Times of India)." } },
+    { "@type": "Question", "name": "What is Manipur's GSDP?", "acceptedAnswer": { "@type": "Answer", "text": "Manipur's Gross State Domestic Product for 2024-25 is ₹49,937 crore (nominal), growing 9.6% year-over-year per PRS India's budget analysis. Nominal growth masks sectoral collapse: agriculture, tourism and trade have contracted sharply since May 2023." } },
+    { "@type": "Question", "name": "Is transport to Manipur recovering?", "acceptedAnswer": { "@type": "Answer", "text": "Partially. The Imphal–Dimapur–Guwahati bus service resumed August 21, 2026, ending a three-year suspension. However, the UNC blockade and periodic shutdowns (like the JTCM's NH-37 closure, Sep 10–11) continue to disrupt freight movement on national highways." } },
+    { "@type": "Question", "name": "How many people have died in the Manipur conflict?", "acceptedAnswer": { "@type": "Answer", "text": "The last official government figure was 258 killed as of November 2024. Compiled estimates including 2025-26 violence (the Kuki–Naga phase, the April 2026 bombing, soldier killings) put the total at 280+—an aggregated tally, not a new audited count." } },
+    { "@type": "Question", "name": "How is the drug economy connected to the conflict?", "acceptedAnswer": { "@type": "Answer", "text": "Poppy cultivation in Manipur's hills and cross-border narcotics routes fund armed networks on multiple sides, creating a self-funding war economy. The state launched an anti-narcotics push in August 2026, seizing assets worth ₹12.5 crore." } }
+  ]
+}
+</script>
 
 <!-- ============================================================
      FOOTER
