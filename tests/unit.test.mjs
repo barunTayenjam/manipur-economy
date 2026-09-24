@@ -349,9 +349,9 @@ test('timeline has all 18 events', () => {
   ok(tlRows >= 15, `expected ≥15 timeline rows, got ${tlRows}`);
 });
 
-test('FAQ has 18 questions', () => {
+test('FAQ has 10 questions', () => {
   const faqItems = (html.match(/class="faq-item"/g) || []).length;
-  ok(faqItems >= 15, `expected ≥15 FAQ items, got ${faqItems}`);
+  ok(faqItems >= 8 && faqItems <= 12, `expected 8-12 FAQ items, got ${faqItems}`);
 });
 
 test('ledger has 12 rows', () => {

@@ -329,7 +329,15 @@ section:first-of-type{border-top:none}
 .sec-h2 em{font-weight:400;font-style:italic}
 .sec-lead{
   font-family:var(--ff-sans);font-size:0.9375rem;color:var(--ink-3);
-  line-height:1.65;margin-bottom:2.25rem;
+  line-height:1.65;margin-bottom:0.65rem;
+}
+.sec-takeaway{
+  font-family:var(--ff-serif);font-size:1.0625rem;font-weight:600;
+  color:var(--ink);line-height:1.55;
+  border-left:3px solid var(--crimson);
+  padding:0.65rem 0 0.65rem 1rem;
+  margin:0 0 2.25rem;
+  max-width:62ch;
 }
 
 /* --- MAP PLATE ---------------------------------------------- */
@@ -707,6 +715,10 @@ section:first-of-type{border-top:none}
   font-family:var(--ff-mono);font-weight:600;letter-spacing:0.1em;
   color:var(--crimson);margin-right:0.75rem;font-size:0.85rem;
 }
+/* phase color coding on timeline year rows */
+.chrono tr[data-phase="1"] th{border-left:3px solid var(--crimson);padding-left:calc(1rem - 3px)}
+.chrono tr[data-phase="2"] th{border-left:3px solid var(--ink-3);padding-left:calc(1rem - 3px)}
+.chrono tr[data-phase="3"] th{border-left:3px solid var(--amber);padding-left:calc(1rem - 3px)}
 
 /* --- LEDGER TABLE ------------------------------------------- */
 .ledger-wrap{
