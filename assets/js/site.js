@@ -82,9 +82,7 @@
     L.control.scale({ position: 'bottomleft', imperial: false, maxWidth: 120 }).addTo(map);
 
     map.fitBounds(L.latLngBounds(allBounds), { padding: [30, 30] });
-    map.invalidateSize();
-    setTimeout(function () { map.invalidateSize(); }, 500);
-    setTimeout(function () { map.invalidateSize(); }, 1300);
+    requestAnimationFrame(function () { map.invalidateSize(); });
   }
 
   /* lazy-load Leaflet only when the map plate approaches the viewport */
@@ -127,17 +125,18 @@
   /* ---- 3. SCROLL REVEAL -------------------------------------- */
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var revealEls = document.querySelectorAll('.r');
+  var revealObs = null;
   if (reduceMotion || !('IntersectionObserver' in window)) {
     revealEls.forEach(function (el) { el.classList.add('v'); });
   } else {
-    var revealObs = new IntersectionObserver(function (entries) {
+    revealObs = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
         if (e.isIntersecting) {
           e.target.classList.add('v');
           revealObs.unobserve(e.target);
           /* animate data bars when their card reveals */
           e.target.querySelectorAll('.dbar-fill[data-w]').forEach(function (f) {
-            requestAnimationFrame(function () { f.style.width = f.getAttribute('data-w') + '%'; });
+            requestAnimationFrame(function () { f.style.transform = 'scaleX(' + (parseFloat(f.getAttribute('data-w')) / 100) + ')'; });
           });
         }
       });
@@ -150,7 +149,7 @@
     });
   }
 
-  /* ---- 4. COUNT-UP ------------------------------------------- */
+  /* ---- 4. COUNT-UP (viewport-triggered) ---------------------- */
   function runCount(el) {
     var to = parseFloat(el.getAttribute('data-count-to'));
     var prefix = el.getAttribute('data-prefix') || '';
@@ -161,7 +160,7 @@
     if (isNaN(to)) return;
     render(0);
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { render(to); return; }
-    var dur = 1400, start = performance.now();
+    var dur = 1200, start = performance.now();
     function step(now) {
       var t = Math.min(1, Math.max(0, (now - start) / dur));
       render(to * (1 - Math.pow(1 - t, 3)));
@@ -169,9 +168,20 @@
     }
     requestAnimationFrame(step);
   }
-  setTimeout(function () {
-    document.querySelectorAll('[data-count-to]').forEach(runCount);
-  }, 300);
+  var countEls = document.querySelectorAll('[data-count-to]');
+  if (countEls.length && 'IntersectionObserver' in window) {
+    var countObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          runCount(e.target);
+          countObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.4 });
+    countEls.forEach(function (el) { countObs.observe(el); });
+  } else {
+    countEls.forEach(runCount);
+  }
 
   /* ---- 5. CONTENTS SCROLL SPY -------------------------------- */
   var tocLinks = document.querySelectorAll('.toc-list a');
@@ -188,5 +198,25 @@
       });
     }, { threshold: 0.15, rootMargin: '-15% 0px -55% 0px' });
     sections.forEach(function (s) { spy.observe(s); });
+  }
+
+  /* ---- 6. FAQ: wrap inner content for grid-row height animation ---- */
+  document.querySelectorAll('.faq-item .faq-a').forEach(function (a) {
+    var inner = document.createElement('div');
+    while (a.firstChild) inner.appendChild(a.firstChild);
+    a.appendChild(inner);
+  });
+
+  /* ---- 7. SCROLL-REVEAL STAGGER (grids/tables) --------------- */
+  var staggerGroups = document.querySelectorAll('.phases, .stat-grid, .ex-grid, .ledger tbody');
+  if (!reduceMotion && 'IntersectionObserver' in window && typeof revealObs !== 'undefined') {
+    staggerGroups.forEach(function (grp) {
+      var children = Array.prototype.slice.call(grp.children);
+      children.forEach(function (c, i) {
+        c.classList.add('r');
+        c.style.transitionDelay = (Math.min(i, 8) * 40) + 'ms';
+        revealObs.observe(c);
+      });
+    });
   }
 })();
