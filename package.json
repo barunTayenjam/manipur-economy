@@ -18,12 +18,11 @@
     "check:seo": "node scripts/check-seo.mjs",
     "check:content": "node scripts/check-content.mjs",
     "audit:deps": "npm audit --audit-level=high",
-    "lhci": "lhci autorun"
+    "lhci": "npx -y @lhci/cli@0.14.0 autorun"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.11.2",
     "@eslint/js": "^9.39.0",
-    "@lhci/cli": "^0.14.0",
     "@playwright/test": "^1.57.0",
     "eslint": "^9.39.0",
     "prettier": "^3.6.2"
