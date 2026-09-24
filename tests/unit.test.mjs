@@ -709,7 +709,10 @@ test('CI runs e2e + a11y before deploy', () => {
   const yml = readFileSync('.github/workflows/ci.yml', 'utf8');
   includes(yml, 'test:e2e');
   includes(yml, 'test:a11y');
-  includes(yml, 'needs: [check, e2e]');
+  ok(
+    yml.includes('needs: [check, e2e]') || yml.includes('needs: [check, security, e2e'),
+    'deploy must gate on check+e2e (plus security/lighthouse)'
+  );
   includes(yml, 'playwright install');
 });
 

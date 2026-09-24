@@ -1,0 +1,52 @@
+name: Uptime Monitor
+
+on:
+  schedule:
+    - cron: '*/30 * * * *'
+  workflow_dispatch:
+
+jobs:
+  uptime:
+    name: Check Site Health
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check homepage
+        run: |
+          URL="https://baruntayenjam.github.io/manipur-economy/"
+          CODE=$(curl -s -o /dev/null -w '%{http_code}' -L --max-time 15 "$URL")
+          if [ "$CODE" != "200" ]; then
+            echo "::error::Homepage returned HTTP $CODE"
+            exit 1
+          fi
+          echo "Homepage OK ($CODE)"
+      - name: Check critical assets
+        run: |
+          for asset in assets/js/main.js assets/css/site.css data/charts.json data/map.geo.json; do
+            CODE=$(curl -s -o /dev/null -w '%{http_code}' -L --max-time 15 "https://baruntayenjam.github.io/manipur-economy/$asset")
+            if [ "$CODE" != "200" ]; then
+              echo "::error::$asset returned HTTP $CODE"
+              exit 1
+            fi
+            echo "$asset OK"
+          done
+      - name: Create issue on failure
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data: existing } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'uptime'
+            });
+            if (existing.length === 0) {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: 'Site Down: manipur-economy',
+                body: `Uptime check failed at ${new Date().toISOString()}. Check workflow run for details.`,
+                labels: ['uptime', 'critical', 'automated']
+              });
+            }

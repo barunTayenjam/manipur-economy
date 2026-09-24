@@ -30,6 +30,28 @@ jobs:
       - name: Unit tests
         run: npm test
 
+      - name: Structured data check
+        run: npm run check:seo
+
+      - name: Content check
+        run: npm run check:content
+
+  security:
+    name: Security Audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: npm audit (high+)
+        run: npm run audit:deps
+      - name: Verify CSP meta tag
+        run: grep -q 'http-equiv="Content-Security-Policy"' index.html
+
   e2e:
     name: E2E smoke + axe a11y
     runs-on: ubuntu-latest
@@ -61,9 +83,23 @@ jobs:
           path: playwright-report/
           retention-days: 7
 
+  lighthouse:
+    name: Lighthouse CI
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Run Lighthouse CI
+        run: npm run lhci
+
   deploy:
     name: Deploy to GitHub Pages
-    needs: [check, e2e]
+    needs: [check, security, e2e, lighthouse]
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     runs-on: ubuntu-latest
     permissions:
@@ -81,3 +117,17 @@ jobs:
           path: .
       - id: deployment
         uses: actions/deploy-pages@v4
+      - name: Verify deployment health
+        run: |
+          URL="https://baruntayenjam.github.io/manipur-economy/"
+          for i in 1 2 3 4 5; do
+            CODE=$(curl -s -o /dev/null -w '%{http_code}' -L --max-time 15 "$URL" || echo "000")
+            if [ "$CODE" = "200" ]; then
+              echo "Deployment healthy (HTTP 200)"
+              exit 0
+            fi
+            echo "Waiting for deployment... ($i/5, HTTP $CODE)"
+            sleep 10
+          done
+          echo "::error::Deployment health check failed"
+          exit 1

@@ -3,6 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <!-- Security: CSP via meta (GitHub Pages has no header support). unsafe-inline allowed for reveal failsafe + Chart.js tooltips; objects/frames blocked. See docs/adr + plan 007. -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://unpkg.com 'unsafe-inline'; style-src 'self' https: 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: https:; connect-src 'self' https://cdn.jsdelivr.net https://unpkg.com https://tile.openstreetmap.org; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests;"
+    />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta
+      http-equiv="Permissions-Policy"
+      content="accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()"
+    />
+    <!-- Analytics (opt-in, off by default): uncomment + set data-domain, then add plausible.io to CSP. See docs/analytics.md (plan 014).
+    <script defer data-domain="baruntayenjam.github.io" src="https://plausible.io/js/script.js"></script>
+    -->
     <title>The Price of Conflict — Manipur's War Economy</title>
 
     <!-- Primary meta -->
