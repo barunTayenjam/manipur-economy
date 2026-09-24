@@ -2,7 +2,14 @@ import js from '@eslint/js';
 
 export default [
   {
-    ignores: ['node_modules/**', 'assets/vendor/**', '.planning/**', 'package-lock.json'],
+    ignores: [
+      'node_modules/**',
+      'assets/vendor/**',
+      '.planning/**',
+      'package-lock.json',
+      'playwright-report/**',
+      'test-results/**',
+    ],
   },
   js.configs.recommended,
   {
@@ -20,6 +27,7 @@ export default [
         console: 'readonly',
         Chart: 'readonly',
         L: 'readonly',
+        fetch: 'readonly',
       },
     },
     rules: {
@@ -38,6 +46,15 @@ export default [
       globals: {
         console: 'readonly',
         process: 'readonly',
+        document: 'readonly',
+        window: 'readonly',
+        getComputedStyle: 'readonly',
+        performance: 'readonly',
+        requestAnimationFrame: 'readonly',
+        IntersectionObserver: 'readonly',
+        Chart: 'readonly',
+        L: 'readonly',
+        fetch: 'readonly',
       },
     },
     rules: {
@@ -45,12 +62,29 @@ export default [
     },
   },
   {
-    files: ['eslint.config.js'],
+    files: ['tests/e2e/**/*.spec.mjs'],
     languageOptions: {
       ecmaVersion: 2022,
       sourceType: 'module',
       globals: {
         console: 'readonly',
+        process: 'readonly',
+        document: 'readonly',
+        window: 'readonly',
+        setTimeout: 'readonly',
+        Promise: 'readonly',
+      },
+    },
+  },
+  {
+    files: ['eslint.config.js', 'playwright.config.mjs'],
+    languageOptions: {
+      ecmaVersion: 2022,
+      sourceType: 'module',
+      globals: {
+        console: 'readonly',
+        process: 'readonly',
+        import: 'readonly',
       },
     },
   },

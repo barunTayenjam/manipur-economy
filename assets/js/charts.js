@@ -1,5 +1,6 @@
 /**
- * Chart.js figures — lazy-loaded with SRI; theme derived from CSS custom properties.
+ * Chart.js figures — lazy-loaded with SRI; theme from CSS tokens;
+ * editorial series loaded from data/charts.json.
  */
 import { onVisible, loadScript, cssVar, prefersReducedMotion } from './utils.js';
 
@@ -11,11 +12,20 @@ const CHART_JS_SRI = 'sha384-9nhczxUqK87bcKHh20fSQcTGD4qq5GhayNYSYWqwBkINBhOfQLg
 let loadPromise = null;
 const initialized = new Set();
 
+const COLOR_TOKENS = {
+  ink: '--ink',
+  'ink-2': '--ink-3',
+  crimson: '--crimson',
+  amber: '--amber',
+  green: '--green',
+};
+
 function theme() {
   return {
     ink: cssVar('--ink', '#1E232A'),
     crimson: cssVar('--crimson', '#A31621'),
     amber: cssVar('--amber', '#7A4F00'),
+    green: cssVar('--green', '#1A5C30'),
     grid: cssVar('--rule', 'rgba(30,35,42,0.14)'),
     muted: cssVar('--ink-3', '#5C636B'),
     sans: cssVar('--ff-sans', 'system-ui, sans-serif'),
@@ -23,8 +33,27 @@ function theme() {
   };
 }
 
-/** Shared axis styling — single source of truth for ticks + grid. */
-function axis(t, { max, beginAtZero = true, showGrid = true, yCallback } = {}) {
+/**
+ * Resolve a logical color key ("crimson") or CSS var name to a hex/string.
+ * Pure given a resolver — used so JSON never hardcodes theme hex.
+ * @param {string} key
+ * @param {(token: string) => string} resolve
+ * @returns {string}
+ */
+export function resolveColor(key, resolve) {
+  const token = COLOR_TOKENS[key];
+  if (!token) return key;
+  return resolve(token);
+}
+
+/**
+ * Shared axis styling — single source of truth for ticks + grid.
+ * Pure given theme object.
+ * @param {ReturnType<typeof theme>} t
+ * @param {{max?: number, beginAtZero?: boolean, showGrid?: boolean, yCallback?: (v: number) => string|number}} [opts]
+ * @returns {{y: object, x: object}}
+ */
+export function axis(t, { max, beginAtZero = true, showGrid = true, yCallback } = {}) {
   const y = {
     beginAtZero,
     ticks: {
@@ -66,83 +95,75 @@ function baseOptions(t, tooltipLabel) {
   };
 }
 
-/**
- * Per-figure configs keyed by canvas id.
- * Data is editorial; styling is token-driven.
- */
-function buildConfigs() {
-  const t = theme();
-
-  return {
-    'chart-death': {
-      type: 'line',
-      data: {
-        labels: ['May 2023', 'Oct 2023', 'Nov 2024', 'Sep 2026'],
-        datasets: [
-          {
-            data: [60, 141, 258, 306],
-            borderColor: t.crimson,
-            backgroundColor: t.crimson,
-            borderWidth: 2.5,
-            stepped: 'after',
-            pointRadius: 5,
-            pointHoverRadius: 7,
-            pointBackgroundColor: t.crimson,
-            fill: false,
-          },
-        ],
-      },
-      options: {
-        ...baseOptions(t, (v) => `${v} killed`),
-        scales: axis(t, { max: 340 }),
-      },
-    },
-
-    'chart-tourism': {
-      type: 'bar',
-      data: {
-        labels: ['2019-20', '2022-23', '2023-24', '2024-25'],
-        datasets: [
-          {
-            data: [179436, 161420, 36768, 17078],
-            backgroundColor: [t.ink, '#3C4248', t.crimson, t.crimson],
-            borderRadius: 2,
-            maxBarThickness: 56,
-          },
-        ],
-      },
-      options: {
-        ...baseOptions(t, (v) => `${v.toLocaleString('en-IN')} arrivals`),
-        scales: axis(t, {
-          yCallback: (v) => (v >= 1000 ? `${v / 1000}K` : v),
-        }),
-      },
-    },
-
-    'chart-disruption': {
-      type: 'bar',
-      data: {
-        labels: ['2023*', '2024', '2025', '2026*'],
-        datasets: [
-          {
-            data: [107, 113, 78, 225],
-            backgroundColor: ['#3C4248', '#3C4248', t.amber, t.crimson],
-            borderRadius: 2,
-            maxBarThickness: 56,
-          },
-        ],
-      },
-      options: {
-        ...baseOptions(t, (v) => `${v} disruption days`),
-        scales: axis(t, { max: 260 }),
-      },
-    },
+function tooltipFormatter(unit) {
+  return (v) => {
+    if (unit === 'arrivals') return `${v.toLocaleString('en-IN')} arrivals`;
+    if (unit === 'killed') return `${v} killed`;
+    if (unit === 'days') return `${v} disruption days`;
+    return String(v);
   };
 }
 
-function initCharts() {
+function thousandsCallback(v) {
+  return v >= 1000 ? `${v / 1000}K` : v;
+}
+
+/**
+ * Build Chart.js configs from editorial JSON + live theme.
+ * Pure given (figures, theme).
+ * @param {{figures: Array<object>}} data
+ * @param {ReturnType<typeof theme>} t
+ * @returns {Record<string, object>}
+ */
+export function buildConfigs(data, t) {
+  const resolve = (token) => {
+    const cssName = COLOR_TOKENS[token] || token;
+    return cssVar(cssName, t[cssName.replace('--', '')] || token);
+  };
+
+  const configs = {};
+  for (const fig of data.figures) {
+    const colors = fig.colors?.map((c) => resolve(c)) || Array(fig.series.length).fill(t.crimson);
+
+    configs[fig.id] = {
+      type: fig.type,
+      data: {
+        labels: fig.labels,
+        datasets: [
+          fig.type === 'line'
+            ? {
+                data: fig.series,
+                borderColor: colors[0],
+                backgroundColor: colors[0],
+                borderWidth: 2.5,
+                stepped: 'after',
+                pointRadius: 5,
+                pointHoverRadius: 7,
+                pointBackgroundColor: colors[0],
+                fill: false,
+              }
+            : {
+                data: fig.series,
+                backgroundColor: colors,
+                borderRadius: 2,
+                maxBarThickness: 56,
+              },
+        ],
+      },
+      options: {
+        ...baseOptions(t, tooltipFormatter(fig.tooltip)),
+        scales: axis(t, {
+          max: fig.yMax,
+          yCallback: fig.yCallback === 'thousands' ? thousandsCallback : undefined,
+        }),
+      },
+    };
+  }
+  return configs;
+}
+
+function initCharts(configs) {
   if (typeof Chart === 'undefined') return;
-  const configs = buildConfigs();
   Object.keys(configs).forEach((id) => {
     if (initialized.has(id)) return;
     const el = document.getElementById(id);
@@ -166,6 +187,12 @@ function ensureChartJs() {
   return loadPromise;
 }
 
+async function fetchFigureData() {
+  const res = await fetch('data/charts.json', { cache: 'force-cache' });
+  if (!res.ok) throw new Error(`charts.json HTTP ${res.status}`);
+  return res.json();
+}
+
 function markFrameFailed(frame) {
   frame.classList.add('chart-failed');
   const note = frame.closest('.chart')?.querySelector('.chart-note');
@@ -179,17 +206,17 @@ function markFrameFailed(frame) {
 
 /**
  * Observe every chart frame independently; load Chart.js once when any nears view.
- * No timers — deep links initialise when their own frame intersects.
+ * Editorial data comes from data/charts.json; no timers.
  */
 export function mountCharts() {
   const frames = Array.from(document.querySelectorAll('.chart-frame'));
   if (!frames.length) return;
 
   const boot = () => {
-    ensureChartJs()
-      .then(initCharts)
+    Promise.all([ensureChartJs(), fetchFigureData()])
+      .then(([, data]) => initCharts(buildConfigs(data, theme())))
       .catch((err) => {
-        console.warn('[charts] Chart.js failed to load', err);
+        console.warn('[charts] failed to load', err);
         frames.forEach(markFrameFailed);
       });
   };

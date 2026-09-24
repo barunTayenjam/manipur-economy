@@ -2,7 +2,14 @@
  * Entry — wires page behaviours and lazy subsystems.
  * Modules: utils | map | charts
  */
-import { prefersReducedMotion, hasIO, onScrollThrottled } from './utils.js';
+import {
+  prefersReducedMotion,
+  hasIO,
+  onScrollThrottled,
+  formatCount,
+  easeOutCubic,
+  clamp,
+} from './utils.js';
 import { mountMap } from './map.js';
 import { mountCharts } from './charts.js';
 
@@ -64,12 +71,14 @@ function runCount(el) {
   const to = parseFloat(el.getAttribute('data-count-to'));
   if (Number.isNaN(to)) return;
 
-  const prefix = el.getAttribute('data-prefix') || '';
-  const suffix = el.getAttribute('data-suffix') || '';
-  const comma = el.getAttribute('data-comma') === '1';
-  const fmt = (v) => (comma ? Math.round(v).toLocaleString('en-IN') : String(Math.round(v)));
+  const opts = {
+    prefix: el.getAttribute('data-prefix') || '',
+    suffix: el.getAttribute('data-suffix') || '',
+    comma: el.getAttribute('data-comma') === '1',
+  };
+
   const render = (v) => {
-    el.textContent = `${prefix}${fmt(v)}${suffix}`;
+    el.textContent = formatCount(v, opts);
   };
 
   render(0);
@@ -81,8 +90,8 @@ function runCount(el) {
   const dur = 1200;
   const start = performance.now();
   const step = (now) => {
-    const t = Math.min(1, Math.max(0, (now - start) / dur));
-    render(to * (1 - Math.pow(1 - t, 3)));
+    const t = clamp((now - start) / dur, 0, 1);
+    render(to * easeOutCubic(t));
     if (t < 1) requestAnimationFrame(step);
   };
   requestAnimationFrame(step);

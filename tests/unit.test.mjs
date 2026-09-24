@@ -6,12 +6,25 @@ import { readFileSync, readdirSync } from 'fs';
 import { join } from 'path';
 import { execFileSync } from 'child_process';
 
+import { axis, buildConfigs, resolveColor } from '../assets/js/charts.js';
+import {
+  formatCount,
+  easeOutCubic,
+  clamp,
+  loadScript,
+  prefersReducedMotion,
+} from '../assets/js/utils.js';
+
 const CSS_PATH = 'assets/css/site.css';
 const JS_DIR = 'assets/js';
 const HTML_PATH = 'index.html';
+const CHARTS_JSON = 'data/charts.json';
+const MAP_JSON = 'data/map.geo.json';
 
 const css = readFileSync(CSS_PATH, 'utf8');
 const html = readFileSync(HTML_PATH, 'utf8');
+const chartsData = JSON.parse(readFileSync(CHARTS_JSON, 'utf8'));
+const mapGeo = JSON.parse(readFileSync(MAP_JSON, 'utf8'));
 
 /* Prettier multi-line formatting must not break structural asserts.
    Collapse layout whitespace but preserve spaces inside property values
@@ -38,17 +51,29 @@ let pass = 0,
 const failures = [];
 
 function test(name, fn) {
-  try {
-    fn();
+  const done = () => {
     pass++;
     console.log(`  \x1b[32m✓\x1b[0m ${name}`);
-  } catch (e) {
+  };
+  const failTest = (e) => {
     fail++;
     failures.push({ name, msg: e.message });
     console.log(`  \x1b[31m✗\x1b[0m ${name}`);
     console.log(`    ${e.message}`);
+  };
+  try {
+    const r = fn();
+    if (r && typeof r.then === 'function') {
+      asyncTests.push(r.then(done, failTest));
+    } else {
+      done();
+    }
+  } catch (e) {
+    failTest(e);
   }
 }
+
+const asyncTests = [];
 
 function ok(condition, msg) {
   if (!condition) throw new Error(msg || 'assertion failed');
@@ -356,14 +381,188 @@ test('chart theme derives from CSS custom properties', () => {
 });
 
 test('chart axis/scale config is factored (not copy-pasted)', () => {
-  includes(js, 'function axis(');
-  const axisCalls = (js.match(/scales:\s*axis\(/g) || []).length;
-  ok(axisCalls >= 3, `expected ≥3 charts to call axis(), got ${axisCalls}`);
+  includes(js, 'export function axis(');
+  // buildConfigs loops over figures and calls axis() once per figure at runtime;
+  // source must contain exactly one axis() factory and exactly one call site.
   ok(
-    (js.match(/function axis\(/g) || []).length === 1,
+    (js.match(/scales:\s*axis\(/g) || []).length === 1,
+    'axis() should be called once inside buildConfigs, not per-chart'
+  );
+  ok(
+    (js.match(/export function axis\(/g) || []).length === 1,
     'axis() factory should be defined exactly once'
   );
+  ok((js.match(/buildConfigs\(/g) || []).length >= 1, 'buildConfigs used by charts module');
 });
+
+test('axis() produces y with beginAtZero and shared tick styling', () => {
+  const t = { muted: '#5C636B', grid: 'rgba(0,0,0,0.1)', sans: 'sans-serif' };
+  const scales = axis(t, { max: 100 });
+  ok(scales.y.beginAtZero === true, 'y should beginAtZero by default');
+  ok(scales.y.max === 100, 'max should be forwarded');
+  ok(scales.y.ticks.color === t.muted, 'ticks color from theme');
+  ok(scales.x.grid.display === false, 'x grid off');
+  const noMax = axis(t, {});
+  ok(noMax.y.max === undefined, 'max omitted when not provided');
+  const withCb = axis(t, { yCallback: (v) => `${v}k` });
+  ok(typeof withCb.y.ticks.callback === 'function', 'yCallback wired');
+});
+
+test('buildConfigs maps editorial JSON to 3 Chart.js configs', () => {
+  const t = {
+    ink: '#1E232A',
+    crimson: '#A31621',
+    amber: '#7A4F00',
+    green: '#1A5C30',
+    muted: '#5C636B',
+    grid: 'rgba(0,0,0,0.1)',
+    sans: 'sans-serif',
+    mono: 'monospace',
+  };
+  const configs = buildConfigs(chartsData, t);
+  ok(Object.keys(configs).length === 3, '3 configs');
+  ok(configs['chart-death'].type === 'line', 'death is line');
+  ok(configs['chart-death'].data.datasets[0].data.length === 4, 'death 4 points');
+  ok(configs['chart-tourism'].type === 'bar', 'tourism is bar');
+  ok(configs['chart-disruption'].options.scales.y.max === 260, 'disruption yMax from JSON');
+});
+
+test('resolveColor maps logical tokens to CSS var resolutions', () => {
+  const resolve = (name) => (name === '--crimson' ? '#A31621' : name);
+  ok(resolveColor('crimson', resolve) === '#A31621', 'crimson token');
+  ok(resolveColor('--ink', resolve) === '--ink', 'unknown keys pass through');
+});
+
+test('formatCount formats prefix/suffix/comma correctly', () => {
+  ok(formatCount(306) === '306', 'plain');
+  ok(
+    formatCount(1200, { prefix: '₹', suffix: ' cr', comma: true }) === '₹1,200 cr',
+    'comma+affixes'
+  );
+  ok(formatCount(17078, { comma: true }) === '17,078', 'en-IN grouping');
+  ok(formatCount(305.4) === '305', 'rounds down');
+  ok(formatCount(305.6) === '306', 'rounds up');
+});
+
+test('easeOutCubic is monotonically increasing on [0,1]', () => {
+  ok(easeOutCubic(0) === 0, 'start 0');
+  ok(easeOutCubic(1) === 1, 'end 1');
+  ok(easeOutCubic(-1) === 0, 'clamps below');
+  ok(easeOutCubic(2) === 1, 'clamps above');
+  let prev = -1;
+  for (let t = 0; t <= 1.001; t += 0.1) {
+    const v = easeOutCubic(t);
+    ok(v >= prev, `monotonic at t=${t}`);
+    prev = v;
+  }
+});
+
+test('clamp bounds values', () => {
+  ok(clamp(5, 0, 10) === 5, 'inside');
+  ok(clamp(-1, 0, 10) === 0, 'below');
+  ok(clamp(99, 0, 10) === 10, 'above');
+});
+
+test('loadScript injects script with SRI and resolves on load', async () => {
+  const created = [];
+  const fakeDoc = {
+    createElement: () => {
+      const el = {
+        src: '',
+        integrity: '',
+        crossOrigin: '',
+        async: false,
+        onload: null,
+        onerror: null,
+        remove() {},
+      };
+      created.push(el);
+      return el;
+    },
+    head: {
+      appendChild(el) {
+        Promise.resolve().then(() => el.onload && el.onload());
+      },
+    },
+  };
+  await loadScript({ src: 'https://example.com/x.js', integrity: 'sha384-abc' }, fakeDoc);
+  ok(created.length === 1, 'one script tag');
+  ok(created[0].src === 'https://example.com/x.js', 'src set');
+  ok(created[0].integrity === 'sha384-abc', 'integrity set');
+  ok(created[0].async === true, 'async');
+});
+
+test('loadScript rejects when script errors', async () => {
+  const fakeDoc = {
+    createElement: () => ({
+      src: '',
+      onload: null,
+      onerror: null,
+      remove() {},
+    }),
+    head: {
+      appendChild(el) {
+        Promise.resolve().then(() => el.onerror && el.onerror());
+      },
+    },
+  };
+  let rejected = false;
+  try {
+    await loadScript({ src: 'https://example.com/bad.js' }, fakeDoc);
+  } catch (e) {
+    rejected = true;
+    ok(String(e.message).includes('Failed to load'), 'error message');
+  }
+  ok(rejected, 'should reject');
+});
+
+test('prefersReducedMotion safe when matchMedia missing', () => {
+  const v = prefersReducedMotion();
+  ok(v === false, 'defaults false without window matchMedia');
+});
+
+console.log('\n\x1b[1m─── DATA FILES ───\x1b[0m');
+
+test('data/charts.json has 3 figures with aligned labels/series', () => {
+  ok(chartsData.figures.length === 3, '3 figures');
+  for (const f of chartsData.figures) {
+    ok(typeof f.id === 'string' && f.id.startsWith('chart-'), `id ${f.id}`);
+    ok(Array.isArray(f.labels) && f.labels.length > 0, `${f.id} labels`);
+    ok(Array.isArray(f.series) && f.series.length === f.labels.length, `${f.id} series length`);
+    ok(f.type === 'line' || f.type === 'bar', `${f.id} type`);
+    ok(typeof f.tooltip === 'string', `${f.id} tooltip`);
+  }
+  const ids = chartsData.figures.map((f) => f.id).sort();
+  ok(
+    JSON.stringify(ids) === JSON.stringify(['chart-death', 'chart-disruption', 'chart-tourism']),
+    'expected canvas ids'
+  );
+});
+
+test('data/map.geo.json has places + highways with valid coords', () => {
+  ok(mapGeo.places.length >= 8, '≥8 places');
+  ok(mapGeo.highways.length === 2, '2 highways');
+  ok(Array.isArray(mapGeo.view.center) && mapGeo.view.center.length === 2, 'view center');
+  for (const p of mapGeo.places) {
+    ok(Array.isArray(p.c) && p.c.length === 2, `${p.name} coords`);
+    ok(p.c[0] > 23 && p.c[0] < 27, `${p.name} lat in Manipur range`);
+    ok(p.c[1] > 92 && p.c[1] < 95.5, `${p.name} lon in Manipur range`);
+    ok(typeof p.cat === 'string', `${p.name} cat`);
+    ok(typeof p.name === 'string' && p.name.length > 0, `${p.name} name`);
+  }
+  for (const h of mapGeo.highways) {
+    ok(h.points.length >= 2, `${h.code} points`);
+    ok(h.token.startsWith('--'), `${h.code} CSS token`);
+  }
+});
+
+test('HTML chart frames match data/charts.json ids', () => {
+  for (const f of chartsData.figures) {
+    matches(html, new RegExp(`id="${f.id}"`));
+  }
+});
+
+console.log('\n\x1b[1m─── CHART DATA ───\x1b[0m');
 
 test('chart animation respects prefers-reduced-motion', () => {
   includes(js, 'prefersReducedMotion');
@@ -490,13 +689,28 @@ test('entry is ES module (type=module), not legacy defer script', () => {
   ok(!html.includes('assets/js/site.js'), 'legacy site.js reference should be gone');
 });
 
-test('tooling present: package.json, ESLint, Prettier, CI', () => {
+test('tooling present: package.json, ESLint, Prettier, CI, Playwright, data', () => {
   const pkg = readFileSync('package.json', 'utf8');
   includes(pkg, '"test"');
   includes(pkg, '"lint"');
+  includes(pkg, '"test:e2e"');
+  includes(pkg, '"test:a11y"');
+  includes(pkg, '@playwright/test');
+  includes(pkg, '@axe-core/playwright');
   readFileSync('eslint.config.js', 'utf8');
   readFileSync('.prettierrc', 'utf8');
   readFileSync('.github/workflows/ci.yml', 'utf8');
+  readFileSync('playwright.config.mjs', 'utf8');
+  readFileSync(CHARTS_JSON, 'utf8');
+  readFileSync(MAP_JSON, 'utf8');
+});
+
+test('CI runs e2e + a11y before deploy', () => {
+  const yml = readFileSync('.github/workflows/ci.yml', 'utf8');
+  includes(yml, 'test:e2e');
+  includes(yml, 'test:a11y');
+  includes(yml, 'needs: [check, e2e]');
+  includes(yml, 'playwright install');
 });
 
 test('no inline styles on takeaway (token-driven only)', () => {
@@ -506,17 +720,23 @@ test('no inline styles on takeaway (token-driven only)', () => {
   );
 });
 
-/* ---- SUMMARY ---- */
-console.log(`\n\x1b[1m─── RESULTS ───\x1b[0m`);
-console.log(`  \x1b[32m${pass} passed\x1b[0m`);
-if (fail) console.log(`  \x1b[31m${fail} failed\x1b[0m`);
-if (skip) console.log(`  \x1b[33m${skip} skipped\x1b[0m`);
-console.log('');
+/* ---- SUMMARY (after async tests settle) ---- */
+const summarize = async () => {
+  await Promise.all(asyncTests);
 
-if (fail) {
-  console.log('\x1b[31mFailed tests:\x1b[0m');
-  failures.forEach((f) => console.log(`  - ${f.name}: ${f.msg}`));
-  process.exit(1);
-} else {
-  console.log('\x1b[32m✓ All tests passed.\x1b[0m\n');
-}
+  console.log(`\n\x1b[1m─── RESULTS ───\x1b[0m`);
+  console.log(`  \x1b[32m${pass} passed\x1b[0m`);
+  if (fail) console.log(`  \x1b[31m${fail} failed\x1b[0m`);
+  if (skip) console.log(`  \x1b[33m${skip} skipped\x1b[0m`);
+  console.log('');
+
+  if (fail) {
+    console.log('\x1b[31mFailed tests:\x1b[0m');
+    failures.forEach((f) => console.log(`  - ${f.name}: ${f.msg}`));
+    process.exit(1);
+  } else {
+    console.log('\x1b[32m✓ All tests passed.\x1b[0m\n');
+  }
+};
+
+await summarize();

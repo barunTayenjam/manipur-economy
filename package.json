@@ -6,13 +6,19 @@
   "description": "The Price of Conflict — source-of-truth report on Manipur's conflict economy",
   "scripts": {
     "test": "node tests/unit.test.mjs",
-    "lint": "eslint assets/js tests",
-    "lint:fix": "eslint assets/js tests --fix",
-    "format": "prettier --write \"assets/**/*.{js,css}\" \"tests/**/*.mjs\" \"index.html\"",
-    "format:check": "prettier --check \"assets/**/*.{js,css}\" \"tests/**/*.mjs\" \"index.html\"",
-    "check": "npm run lint && npm run format:check && npm test"
+    "lint": "eslint assets/js tests eslint.config.js playwright.config.mjs",
+    "lint:fix": "eslint assets/js tests eslint.config.js playwright.config.mjs --fix",
+    "format": "prettier --write \"assets/**/*.{js,css}\" \"tests/**/*.{mjs,spec.mjs}\" \"data/**/*.json\" \"index.html\" \"*.mjs\" \"*.js\"",
+    "format:check": "prettier --check \"assets/**/*.{js,css}\" \"tests/**/*.{mjs,spec.mjs}\" \"data/**/*.json\" \"index.html\" \"*.mjs\" \"*.js\"",
+    "test:e2e": "playwright test tests/e2e/smoke.spec.mjs",
+    "test:a11y": "playwright test tests/e2e/a11y.spec.mjs",
+    "test:all": "npm run test:e2e && npm run test:a11y",
+    "check": "npm run lint && npm run format:check && npm test && npm run test:all"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.11.2",
+    "@eslint/js": "^9.39.0",
+    "@playwright/test": "^1.57.0",
     "eslint": "^9.39.0",
     "prettier": "^3.6.2"
   },

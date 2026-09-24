@@ -1,0 +1,33 @@
+{
+  "figures": [
+    {
+      "id": "chart-death",
+      "type": "line",
+      "labels": ["May 2023", "Oct 2023", "Nov 2024", "Sep 2026"],
+      "series": [60, 141, 258, 306],
+      "yMax": 340,
+      "tooltip": "killed",
+      "unit": "deaths"
+    },
+    {
+      "id": "chart-tourism",
+      "type": "bar",
+      "labels": ["2019-20", "2022-23", "2023-24", "2024-25"],
+      "series": [179436, 161420, 36768, 17078],
+      "colors": ["ink", "ink-2", "crimson", "crimson"],
+      "yCallback": "thousands",
+      "tooltip": "arrivals",
+      "unit": "arrivals"
+    },
+    {
+      "id": "chart-disruption",
+      "type": "bar",
+      "labels": ["2023*", "2024", "2025", "2026*"],
+      "series": [107, 113, 78, 225],
+      "colors": ["ink-2", "ink-2", "amber", "crimson"],
+      "yMax": 260,
+      "tooltip": "disruption days",
+      "unit": "days"
+    }
+  ]
+}
