@@ -137,7 +137,8 @@
       <li><a href="#timeline"><span class="toc-num">08</span> Timeline</a></li>
       <li><a href="#ledger"><span class="toc-num">09</span> Final ledger</a></li>
       <li><a href="#officials"><span class="toc-num">10</span> Officials</a></li>
-      <li><a href="#faq"><span class="toc-num">11</span> FAQ</a></li>
+      <li><a href="#outlook"><span class="toc-num">11</span> Outlook</a></li>
+      <li><a href="#faq"><span class="toc-num">12</span> FAQ</a></li>
     </ol>
   </nav>
 
@@ -157,7 +158,7 @@
       </div>
 
       <!-- Key indicators statement -->
-      <p class="sec-takeaway r d3" style="margin-bottom:1rem">Three years of conflict have not just destroyed lives — they have rewritten the economics of an entire state. The numbers below are the official record.</p>
+      <p class="sec-takeaway r d3" style="margin-bottom:1rem">Three years of conflict have rewritten the economics of an entire state. The numbers below are the official record.</p>
       <table class="ki-table r d3">
         <caption>Statement of Key Indicators</caption>
         <thead>
@@ -211,7 +212,7 @@
     <section id="phases">
       <h2 class="sec-h2 r d1"><span class="sec-no">1</span>Three Phases <em>of a Fractured State</em></h2>
       <p class="sec-lead r d1">The conflict did not stay still. Over three years it moved through distinct phases — each reshaping who bore the cost and who captured the gains.</p>
-      <p class="sec-takeaway r d1">The conflict has metastasized. What began as a two-community war is now a three-front crisis — and 2026 is its most violent year yet.</p>
+      <p class="sec-takeaway r d1">What began as a two-community war is now a three-front crisis — and 2026 is its most violent year yet.</p>
 
       <div class="phases r d2">
         <article class="phase">
@@ -249,13 +250,49 @@
           </div>
         </article>
       </div>
+
+      <!-- Death toll progression chart -->
+      <div class="chart r d3">
+        <div class="chart-cap">Figure 1.A &mdash; Official Death Toll, as Reported Over Time</div>
+        <div class="chart-body">
+          <svg class="chart-svg" viewBox="0 0 640 220" role="img" aria-label="Step chart of official death toll rising from 60 in May 2023 to 306 in September 2026">
+            <line class="grid-line" x1="70" y1="30" x2="620" y2="30"/>
+            <line class="grid-line" x1="70" y1="80" x2="620" y2="80"/>
+            <line class="grid-line" x1="70" y1="130" x2="620" y2="130"/>
+            <line class="axis-line" x1="70" y1="170" x2="620" y2="170"/>
+            <text class="y-label" x="65" y="34">320</text>
+            <text class="y-label" x="65" y="84">210</text>
+            <text class="y-label" x="65" y="134">105</text>
+            <text class="y-label" x="65" y="174">0</text>
+            <!-- step line: y = 170 - (val/320)*140 -->
+            <!-- 60 → y=144; 141 → y=108; 258 → y=57; 306 → y=36 -->
+            <polyline points="90,144 230,144 230,108 400,108 400,57 560,57 560,36 610,36" fill="none" stroke="#A31621" stroke-width="2.5"/>
+            <circle cx="90" cy="144" r="5" fill="#A31621"/>
+            <circle cx="230" cy="108" r="5" fill="#A31621"/>
+            <circle cx="400" cy="57" r="5" fill="#A31621"/>
+            <circle cx="610" cy="36" r="6" fill="#A31621"/>
+            <text class="bar-val" x="90" y="132" fill="#1E232A">60+</text>
+            <text class="bar-val" x="230" y="96" fill="#1E232A">141</text>
+            <text class="bar-val" x="400" y="45" fill="#1E232A">258</text>
+            <text class="bar-val" x="595" y="26" fill="#A31621" style="font-size:13px">306</text>
+            <text class="x-label" x="90" y="195">May 2023</text>
+            <text class="x-label" x="230" y="195">Oct 2023</text>
+            <text class="x-label" x="400" y="195">Nov 2024</text>
+            <text class="x-label" x="575" y="195">Sep 2026</text>
+            <text class="axis-label" x="400" y="212" style="font-size:9px">first official toll</text>
+            <text class="axis-label" x="575" y="212" style="font-size:9px">HM to Assembly</text>
+          </svg>
+        </div>
+        <div class="chart-note">Figures are government statements at the time of reporting, not audited counts. The 19-month gap between Nov 2024 and Sep 2026 saw no official update. 49 remain missing (Aug 31, 2026).</div>
+        <div class="chart-footer">Sources: <a href="https://www.thehindu.com/news/national/manipur/306-killed-49-missing-in-ethnic-violence-since-may-2023-manipur-home-minister-tells-assembly/article71423134.ece" target="_blank" rel="noopener">The Hindu, Sep 3 2026</a> &middot; consolidated press reporting</div>
+      </div>
     </section>
 
     <!-- CHAPTER 2 — BASELINE -->
     <section id="baseline">
       <h2 class="sec-h2 r d1"><span class="sec-no">2</span>Manipur Before &amp; During the Conflict</h2>
       <p class="sec-lead r d1">Strategic geography and key economic indicators at a glance.</p>
-      <p class="sec-takeaway r d1">Manipur was already India's poorest major economy before the conflict. The war didn't create the vulnerability — it detonated it.</p>
+      <p class="sec-takeaway r d1">The war didn't create Manipur's vulnerability — it detonated a poverty that was already there.</p>
 
       <!-- Map exhibit -->
       <div class="map-plate r d2">
@@ -316,8 +353,8 @@
     <!-- CHAPTER 3 — LOSERS -->
     <section id="losers">
       <h2 class="sec-h2 r d1"><span class="sec-no">3</span>Who Loses: A Livelihood <em>in Lockdown</em></h2>
-      <p class="sec-lead r d1">Ordinary Manipuris bear the weight of the conflict. These are the groups hit hardest.</p>
-      <p class="sec-takeaway r d1">The conflict has not created equal suffering. It has destroyed the livelihoods of the poorest while leaving the mechanisms of profit fully intact.</p>
+      <p class="sec-lead r d1">Who actually pays? These are the livelihoods — and the communities — the war has dismantled, sector by sector.</p>
+      <p class="sec-takeaway r d1">Suffering is not equally distributed: the poorest lose their livelihoods while the mechanisms of profit stay fully intact.</p>
 
       <div class="ex-grid r d2">
         <article class="ex-card">
@@ -360,9 +397,13 @@
           <div class="badge c">New Front &middot; 2026</div>
           <div class="ex-card-val c">125+ day blockade</div>
           <h3 class="ex-card-title">2026: A New Front</h3>
-          <p class="ex-card-desc">The conflict opens a <strong>third axis</strong> &mdash; Naga vs Kuki. Since May 17 the United Naga Council has run an inter-district economic blockade over six captive Naga civilians (incl. two pastors). Talks stalled end-July; from <strong>Sep 9</strong> the UNC intensified the blockade indefinitely across NH-2, NH-202, NH-37 and NH-102A, demanding Dy-CM Nemcha Kipgen&rsquo;s removal. Essential-commodity prices surged <strong>~140%</strong> (ET, Aug 2026); goods trucks remain stuck on the highways for days on end. Supreme Court intervened Aug 14 urging blockade removal. A parallel JTCM NH-37 shutdown (Sep 10&ndash;11) over the arrest of five Naga women was lifted after their release.</p>
-          <div class="ex-card-q">&ldquo;Honestly we are beyond cooked&rdquo; &mdash; r/manipur, Aug 2026. Protest fatigue sets in as the blockade enters its fifth month.</div>
-          <div class="ex-card-src">Sources: <a href="https://www.indiatodayne.in/manipur/story/six-killings-a-46-day-blockade-and-a-state-on-edge-inside-manipurs-new-crisis-1417668-2026-07-02" target="_blank" rel="noopener">India Today NE, Jul 2026</a> &middot; <a href="https://www.thehindu.com/news/national/manipur/manipur-naga-body-announces-intensified-highway-blockade/article71443741.ece" target="_blank" rel="noopener">The Hindu, Sep 8</a> &middot; <a href="https://economictimes.indiatimes.com/news/india/manipur-blockade-essential-commodity-prices-surge-140-as-trucks-remain-stuck/articleshow/133164726.cms" target="_blank" rel="noopener">ET, Aug 2026</a> &middot; <a href="https://nenow.in/north-east-news/manipur/manipur-unc-intensifies-indefinite-economic-blockade-demands-removal-of-deputy-cm-nemcha-kipgen.html" target="_blank" rel="noopener">Northeast Now</a> &middot; <a href="https://www.imphaltimes.com/news/jtcm-lifts-nh-37-shutdown-after-release-of-five-naga-women/" target="_blank" rel="noopener">Imphal Times, Sep 10</a></div>
+          <p class="ex-card-desc">A <strong>third axis</strong> opens — Naga vs Kuki. Since May 17 the UNC has run an inter-district economic blockade over six captive Naga civilians; from <strong>Sep 9</strong> it intensified indefinitely across four national highways, demanding Dy-CM Nemcha Kipgen&rsquo;s removal.</p>
+          <ul class="ex-card-list">
+            <li>Essential-commodity prices surged <strong>~140%</strong> (ET, Aug 2026)</li>
+            <li>Supreme Court intervened Aug 14, urging blockade removal</li>
+            <li>A parallel JTCM NH-37 shutdown (Sep 10&ndash;11) lifted after five Naga women were released</li>
+          </ul>
+          <div class="ex-card-src">Sources: <a href="https://www.indiatodayne.in/manipur/story/six-killings-a-46-day-blockade-and-a-state-on-edge-inside-manipurs-new-crisis-1417668-2026-07-02" target="_blank" rel="noopener">India Today NE, Jul 2026</a> &middot; <a href="https://www.thehindu.com/news/national/manipur/manipur-naga-body-announces-intensified-highway-blockade/article71443741.ece" target="_blank" rel="noopener">The Hindu, Sep 8</a> &middot; <a href="https://economictimes.indiatimes.com/news/india/manipur-blockade-essential-commodity-prices-surge-140-as-trucks-remain-stuck/articleshow/133164726.cms" target="_blank" rel="noopener">ET, Aug 2026</a></div>
         </article>
 
         <article class="ex-card">
@@ -380,7 +421,7 @@
     <section id="gainers">
       <h2 class="sec-h2 r d1"><span class="sec-no">4</span>Who Gains: Thriving <em>in the Vacuum</em></h2>
       <p class="sec-lead r d1">A parallel war economy has emerged. These networks profit from instability.</p>
-      <p class="sec-takeaway r d1">Every day the conflict continues, someone is paid. The war economy is not a side effect — it is a self-sustaining industry.</p>
+      <p class="sec-takeaway r d1">Every day the conflict continues, someone is paid — the war economy is a self-sustaining industry, not a side effect.</p>
 
       <div class="ex-grid r d2">
         <article class="ex-card">
@@ -425,7 +466,7 @@
     <section id="shadow">
       <h2 class="sec-h2 r d1"><span class="sec-no">5</span>How the Drug Trade Fuels <em>the Conflict Loop</em></h2>
       <p class="sec-lead r d1">Myanmar's Golden Triangle connects directly to Manipur's conflict economy through porous borders and weakened governance.</p>
-      <p class="sec-takeaway r d1">The conflict is not just funded by ideology — it is underwritten by narcotics. The drug trade is the engine that keeps the war running.</p>
+      <p class="sec-takeaway r d1">Underwritten by narcotics: the drug trade is the engine that keeps the war funded when ideology alone cannot.</p>
 
       <div class="exhibit r d2">
         <div class="exhibit-cap">Exhibit 2 &mdash; The Conflict Funding Loop</div>
@@ -452,8 +493,56 @@
     <!-- CHAPTER 6 — ECONOMIC TOLL -->
     <section id="economy">
       <h2 class="sec-h2 r d1"><span class="sec-no">6</span>Three Years of Loss &mdash; <em>Estimated Damage</em></h2>
-      <p class="sec-lead r d1">Structural estimates based on GSDP baselines, conflict trajectory, and available news reports.</p>
-      <p class="sec-takeaway r d1">The government's own figure — ₹1,200 crore in lost GST — is the floor, not the ceiling. The real economic damage runs five to seven times higher.</p>
+      <p class="sec-lead r d1">Sector by sector: tourism, excise, horticulture, handloom, MSMEs and the fiscal bottom line — each with its own verified figure.</p>
+      <p class="sec-takeaway r d1">₹1,200 crore in lost GST is the government's own floor — the real damage, measured sector by sector below, runs five to seven times higher.</p>
+
+      <!-- Tourism collapse chart -->
+      <div class="chart r d2">
+        <div class="chart-cap">Figure 6.A &mdash; Tourist Arrivals Collapse (2019&ndash;2025)</div>
+        <div class="chart-body">
+          <svg class="chart-svg" viewBox="0 0 640 280" role="img" aria-label="Bar chart showing tourist arrivals falling from 179,436 in 2019-20 to 17,078 in 2024-25">
+            <!-- grid lines -->
+            <line class="grid-line" x1="60" y1="40" x2="620" y2="40"/>
+            <line class="grid-line" x1="60" y1="90" x2="620" y2="90"/>
+            <line class="grid-line" x1="60" y1="140" x2="620" y2="140"/>
+            <line class="grid-line" x1="60" y1="190" x2="620" y2="190"/>
+            <line class="axis-line" x1="60" y1="240" x2="620" y2="240"/>
+            <!-- y labels -->
+            <text class="y-label" x="55" y="44">180K</text>
+            <text class="y-label" x="55" y="94">135K</text>
+            <text class="y-label" x="55" y="144">90K</text>
+            <text class="y-label" x="55" y="194">45K</text>
+            <text class="y-label" x="55" y="244">0</text>
+            <!-- bars: max 179436 → 200px height -->
+            <!-- 2019-20: 179436 → h=179 -->
+            <rect class="bar" x="90" y="61" width="70" height="179" fill="#1E232A"/>
+            <text class="bar-val" x="125" y="55" fill="#1E232A">1,79,436</text>
+            <text class="x-label" x="125" y="260">2019-20</text>
+            <text class="axis-label" x="125" y="275" style="font-size:9px">peak</text>
+            <!-- 2022-23: 161420 → h=161 -->
+            <rect class="bar" x="220" y="79" width="70" height="161" fill="#3C4248"/>
+            <text class="bar-val" x="255" y="73" fill="#3C4248">1,61,420</text>
+            <text class="x-label" x="255" y="260">2022-23</text>
+            <text class="axis-label" x="255" y="275" style="font-size:9px">recovery</text>
+            <!-- 2023-24: 36768 → h=37 -->
+            <rect class="bar" x="350" y="203" width="70" height="37" fill="#A31621"/>
+            <text class="bar-val" x="385" y="197" fill="#A31621">36,768</text>
+            <text class="x-label" x="385" y="260">2023-24</text>
+            <text class="axis-label" x="385" y="275" style="font-size:9px">year 1</text>
+            <!-- 2024-25: 17078 → h=17 -->
+            <rect class="bar" x="480" y="223" width="70" height="17" fill="#A31621"/>
+            <text class="bar-val" x="515" y="217" fill="#A31621">17,078</text>
+            <text class="x-label" x="515" y="260">2024-25</text>
+            <text class="axis-label" x="515" y="275" style="font-size:9px">till Oct</text>
+            <!-- annotation -->
+            <text class="bar-val" x="575" y="140" fill="#A31621" style="font-size:13px;font-weight:700">&minus;90.5%</text>
+            <line x1="555" y1="148" x2="555" y2="223" stroke="#A31621" stroke-width="1.5" stroke-dasharray="4,3"/>
+            <line x1="555" y1="223" x2="550" y2="223" stroke="#A31621" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <div class="chart-note">Total arrivals (domestic + foreign). 2024-25 figure covers only through October. All flagship festivals cancelled in 2024-25.</div>
+        <div class="chart-footer">Source: <a href="https://manipurtourism.gov.in/wp-content/uploads/2025/04/Annual-Report-2024-25.pdf" target="_blank" rel="noopener">Manipur Tourism Dept Annual Report 2024-25</a></div>
+      </div>
 
       <div class="ex-grid r d2">
         <article class="ex-card">
@@ -527,6 +616,45 @@
       <p class="sec-lead r d1">Official State Home Department data shows Manipur spent 43% of its post-May 2023 existence under shutdown, blockade, curfew or internet suspension.</p>
       <p class="sec-takeaway r d1">Nearly half of all days since May 2023 have been disrupted. This is not a series of isolated events — it is a sustained siege of the state's economy.</p>
 
+      <!-- Disruption days chart -->
+      <div class="chart r d2">
+        <div class="chart-cap">Figure 7.A &mdash; Disruption Days by Year (Bandh + Blockade)</div>
+        <div class="chart-body">
+          <svg class="chart-svg" viewBox="0 0 640 280" role="img" aria-label="Bar chart showing disruption days rising from 107 in 2023 to 225 in 2026">
+            <line class="grid-line" x1="60" y1="40" x2="620" y2="40"/>
+            <line class="grid-line" x1="60" y1="90" x2="620" y2="90"/>
+            <line class="grid-line" x1="60" y1="140" x2="620" y2="140"/>
+            <line class="grid-line" x1="60" y1="190" x2="620" y2="190"/>
+            <line class="axis-line" x1="60" y1="240" x2="620" y2="240"/>
+            <text class="y-label" x="55" y="44">240</text>
+            <text class="y-label" x="55" y="94">180</text>
+            <text class="y-label" x="55" y="144">120</text>
+            <text class="y-label" x="55" y="194">60</text>
+            <text class="y-label" x="55" y="244">0</text>
+            <!-- 107 → h=95 -->
+            <rect class="bar" x="100" y="145" width="80" height="95" fill="#3C4248"/>
+            <text class="bar-val" x="140" y="139" fill="#3C4248">107</text>
+            <text class="x-label" x="140" y="260">2023*</text>
+            <!-- 113 → h=101 -->
+            <rect class="bar" x="230" y="139" width="80" height="101" fill="#3C4248"/>
+            <text class="bar-val" x="270" y="133" fill="#3C4248">113</text>
+            <text class="x-label" x="270" y="260">2024</text>
+            <!-- 78 → h=69 -->
+            <rect class="bar" x="360" y="171" width="80" height="69" fill="#7A4F00"/>
+            <text class="bar-val" x="400" y="165" fill="#7A4F00">78</text>
+            <text class="x-label" x="400" y="260">2025</text>
+            <text class="axis-label" x="400" y="275" style="font-size:9px">President's Rule</text>
+            <!-- 225 → h=199 -->
+            <rect class="bar" x="490" y="41" width="80" height="199" fill="#A31621"/>
+            <text class="bar-val" x="530" y="35" fill="#A31621">225</text>
+            <text class="x-label" x="530" y="260">2026*</text>
+            <text class="axis-label" x="530" y="275" style="font-size:9px">through Sep 8</text>
+          </svg>
+        </div>
+        <div class="chart-note">* 2023 covers May 3&ndash;Dec only; 2026 covers Jan 1&ndash;Sep 8. 2026 alone accounts for 43% of all disruption days — the highest annual figure on record.</div>
+        <div class="chart-footer">Source: <a href="https://assamtribune.com/north-east/manipur-witnesses-523-days-of-bandhs-blockades-since-may-2023-1617789" target="_blank" rel="noopener">State Home Dept via The Assam Tribune, Sep 18 2026</a></div>
+      </div>
+
       <div class="exhibit r d2">
         <div class="exhibit-cap">Exhibit 3 &mdash; Official Disruption Ledger (State Home Dept, Sep 18, 2026)</div>
         <div class="exhibit-body">
@@ -573,7 +701,7 @@
     <section id="timeline">
       <h2 class="sec-h2 r d1"><span class="sec-no">8</span>Three Years <em>of Conflict</em></h2>
       <p class="sec-lead r d1">Key milestones in Manipur&rsquo;s ethnic violence and economic disruption from May 3, 2023 to September 2026.</p>
-      <p class="sec-takeaway r d1">The timeline shows a clear pattern: periods of relative calm are not peace — they are the state catching its breath before the next escalation.</p>
+      <p class="sec-takeaway r d1">Periods of relative calm are not peace — they are the state catching its breath before the next escalation.</p>
 
       <div class="ledger-wrap r d2"><table class="ki-table chrono">
         <caption>Statement 8.A &mdash; Chronology of Events</caption>
@@ -624,8 +752,8 @@
     <!-- CHAPTER 9 — FINAL LEDGER -->
     <section id="ledger">
       <h2 class="sec-h2 r d1"><span class="sec-no">9</span>The Economic Ledger &mdash; <em>Who Loses, Who Gains</em></h2>
-      <p class="sec-lead r d1">A consolidated balance sheet of Manipur&rsquo;s war economy across three years.</p>
-      <p class="sec-takeaway r d1">The ledger is not balanced. The losses are quantifiable and public; the gains are opaque and self-reinforcing. That asymmetry is the conflict's core economic feature.</p>
+      <p class="sec-lead r d1">One table. Every loser and every gainer from §3 and §4, netted out across three years.</p>
+      <p class="sec-takeaway r d1">Losses are quantifiable and public; gains are opaque and self-reinforcing — that asymmetry is the conflict's core economic feature.</p>
 
       <div class="ledger-wrap r d2">
         <table class="ledger">
@@ -660,7 +788,7 @@
     <section id="officials">
       <h2 class="sec-h2 r d1"><span class="sec-no">10</span>Lawmakers, Bureaucrats &amp; <em>Command Responsibility</em></h2>
       <p class="sec-lead r d1">A source-linked index of the officials, institutions and civic actors whose decisions shaped the conflict economy from May 2023 to September 2026.</p>
-      <p class="sec-takeaway r d1">Accountability requires a record. This index maps every major decision — and every failure to act — to a named office and a dated source.</p>
+      <p class="sec-takeaway r d1">Every major decision — and every failure to act — mapped to a named office and a dated source.</p>
 
       <div class="ledger-wrap r d2">
         <table class="ledger">
@@ -690,11 +818,46 @@
       </div>
     </section>
 
-    <!-- CHAPTER 11 — FAQ -->
+    <!-- CHAPTER 11 — OUTLOOK -->
+    <section id="outlook">
+      <h2 class="sec-h2 r d1"><span class="sec-no">11</span>What This Adds Up To &mdash; <em>Outlook</em></h2>
+      <p class="sec-lead r d1">The evidence in this report points in one direction. Four conclusions, and the signals that would change them.</p>
+      <p class="sec-takeaway r d1">The conflict is no longer an emergency to be waited out — it is a structural condition with its own economy, and the data says it is still worsening.</p>
+
+      <div class="outlook-grid r d2">
+        <article class="outlook-card">
+          <div class="outlook-num">01</div>
+          <h3 class="outlook-h">2026 is the inflection point</h3>
+          <p class="outlook-p">225 disruption days in eight months, a third ethnic axis open, and the first official death toll in 19 months. Every trend line on this site steepens after March 2026.</p>
+        </article>
+        <article class="outlook-card">
+          <div class="outlook-num">02</div>
+          <h3 class="outlook-h">The war economy is stickier than the war</h3>
+          <p class="outlook-p">Ceasefires end fighting faster than they end rents. Narcotics flows, blockade tolls and security contracts have fixed constituencies that survive any political settlement.</p>
+        </article>
+        <article class="outlook-card">
+          <div class="outlook-num">03</div>
+          <h3 class="outlook-h">Reconstruction cost is compounding</h3>
+          <p class="outlook-p">₹1,200 cr GST forgone is recurring, not one-off. Each year of blockade adds a fresh layer of lost output on top of unrepaired houses, closed firms and out-migrated workers.</p>
+        </article>
+        <article class="outlook-card">
+          <div class="outlook-num">04</div>
+          <h3 class="outlook-h">The missing-data problem is the story</h3>
+          <p class="outlook-p">No death toll for 19 months. No audited conflict-cost estimate. Accountability gaps are not an oversight — they are how the status quo holds.</p>
+        </article>
+      </div>
+
+      <div class="meth-note r d3">
+        <svg viewBox="0 0 24 24"><path d="M12 3 2 20h20L12 3z"/><path d="M12 9v5M12 17.5v.5"/></svg>
+        <span><strong>Signals to watch:</strong> (1) whether the UNC blockade is lifted or normalized; (2) the next official death-toll update; (3) whether the ₹1,200 cr GST loss figure is revised upward; (4) any resumption of Kuki-Zo government dialogue; (5) harvest-season price spikes under continued NH restrictions.</span>
+      </div>
+    </section>
+
+    <!-- CHAPTER 12 — FAQ -->
     <section id="faq">
-      <h2 class="sec-h2 r d1"><span class="sec-no">11</span>Quick Answers &mdash; <em>Manipur's Economy in 2026</em></h2>
+      <h2 class="sec-h2 r d1"><span class="sec-no">12</span>Quick Answers &mdash; <em>Manipur's Economy in 2026</em></h2>
       <p class="sec-lead r d1">Concise, source-verified answers to the most-asked questions about Manipur's conflict economy, displacement and the September 2026 blockade.</p>
-      <p class="sec-takeaway r d1">These are the questions the data answers most clearly. Each response is anchored to an official figure or a named source — no speculation.</p>
+      <p class="sec-takeaway r d1">Each answer is anchored to an official figure or a named source — no speculation.</p>
 
       <div class="faq-list r d2">
         <details class="faq-item" open>

@@ -309,7 +309,7 @@ test('OG meta tags present', () => {
   includes(html, 'og:description');
 });
 
-test('all 11 TOC items present', () => {
+test('all 12 TOC items present', () => {
   matches(html, /href="#phases"/);
   matches(html, /href="#baseline"/);
   matches(html, /href="#losers"/);
@@ -320,10 +320,11 @@ test('all 11 TOC items present', () => {
   matches(html, /href="#timeline"/);
   matches(html, /href="#ledger"/);
   matches(html, /href="#officials"/);
+  matches(html, /href="#outlook"/);
   matches(html, /href="#faq"/);
 });
 
-test('all 11 sections present', () => {
+test('all 12 sections present', () => {
   matches(html, /id="phases"/);
   matches(html, /id="baseline"/);
   matches(html, /id="losers"/);
@@ -334,7 +335,21 @@ test('all 11 sections present', () => {
   matches(html, /id="timeline"/);
   matches(html, /id="ledger"/);
   matches(html, /id="officials"/);
+  matches(html, /id="outlook"/);
   matches(html, /id="faq"/);
+});
+
+test('at least 3 inline SVG charts present', () => {
+  const charts = (html.match(/class="chart /g) || []).length;
+  ok(charts >= 3, `expected ≥3 charts, got ${charts}`);
+  matches(css, /\.chart\{[^}]*border:1px solid var\(--rule\)/);
+  matches(css, /\.chart-svg \.bar\{/);
+});
+
+test('outlook section has 4 numbered cards', () => {
+  matches(html, /id="outlook"/);
+  const cards = (html.match(/class="outlook-card"/g) || []).length;
+  ok(cards === 4, `expected 4 outlook cards, got ${cards}`);
 });
 
 test('key indicators table present with 6 rows', () => {
