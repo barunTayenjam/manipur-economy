@@ -82,7 +82,11 @@ export function loadScript({ src, integrity, crossOrigin = 'anonymous' }, doc = 
   });
 }
 
-/** rAF-throttled scroll listener. Side effect: window scroll listener. */
+/**
+ * rAF-throttled scroll listener. Side effect: window scroll listener.
+ * @param {() => void} handler
+ * @returns {() => void}
+ */
 export function onScrollThrottled(handler) {
   let ticking = false;
   const wrapped = () => {

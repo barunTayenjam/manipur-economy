@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "allowJs": true,
+    "checkJs": true,
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "useUnknownInCatchVariables": false,
+    "allowUmdGlobalAccess": true
+  },
+  "include": ["assets/js/**/*.js", "types/**/*.d.ts"],
+  "exclude": ["node_modules", "test-results", "playwright-report"]
+}

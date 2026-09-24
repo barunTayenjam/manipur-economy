@@ -15,7 +15,7 @@ import { mountCharts } from './charts.js';
 
 /* ---- 1. Scroll progress ------------------------------------- */
 function initProgress() {
-  const prog = document.getElementById('progress');
+  const prog = /** @type {HTMLElement | null} */ (document.getElementById('progress'));
   if (!prog) return;
   const update = () => {
     const s = document.documentElement.scrollTop;
@@ -30,6 +30,7 @@ function initProgress() {
 function initReveal() {
   const reduce = prefersReducedMotion();
   const revealEls = document.querySelectorAll('.r');
+  /** @type {IntersectionObserver | null} */
   let revealObs = null;
 
   if (reduce || !hasIO()) {
@@ -42,11 +43,12 @@ function initReveal() {
       entries.forEach((e) => {
         if (!e.isIntersecting) return;
         e.target.classList.add('v');
-        revealObs.unobserve(e.target);
+        revealObs?.unobserve(e.target);
         e.target.querySelectorAll('.dbar-fill[data-w]').forEach((f) => {
-          const w = parseFloat(f.getAttribute('data-w')) / 100;
+          const bar = /** @type {HTMLElement} */ (f);
+          const w = parseFloat(bar.getAttribute('data-w') || '0') / 100;
           requestAnimationFrame(() => {
-            f.style.transform = `scaleX(${w})`;
+            bar.style.transform = `scaleX(${w})`;
           });
         });
       });
@@ -67,8 +69,9 @@ function initReveal() {
 }
 
 /* ---- 3. Count-up -------------------------------------------- */
+/** @param {Element} el */
 function runCount(el) {
-  const to = parseFloat(el.getAttribute('data-count-to'));
+  const to = parseFloat(el.getAttribute('data-count-to') || '');
   if (Number.isNaN(to)) return;
 
   const opts = {
@@ -77,6 +80,7 @@ function runCount(el) {
     comma: el.getAttribute('data-comma') === '1',
   };
 
+  /** @param {number} v */
   const render = (v) => {
     el.textContent = formatCount(v, opts);
   };
@@ -89,6 +93,7 @@ function runCount(el) {
 
   const dur = 1200;
   const start = performance.now();
+  /** @param {number} now */
   const step = (now) => {
     const t = clamp((now - start) / dur, 0, 1);
     render(to * easeOutCubic(t));
@@ -148,14 +153,19 @@ function initFaq() {
 }
 
 /* ---- 6. Scroll-reveal stagger ------------------------------- */
+/**
+ * @param {IntersectionObserver | null} revealObs
+ * @param {boolean} reduce
+ */
 function initStagger(revealObs, reduce) {
   if (reduce || !revealObs) return;
   const staggerGroups = document.querySelectorAll('.phases, .stat-grid, .ex-grid, .ledger tbody');
   staggerGroups.forEach((grp) => {
     Array.from(grp.children).forEach((c, i) => {
-      c.classList.add('r');
-      c.style.transitionDelay = `${Math.min(i, 8) * 40}ms`;
-      revealObs.observe(c);
+      const item = /** @type {HTMLElement} */ (c);
+      item.classList.add('r');
+      item.style.transitionDelay = `${Math.min(i, 8) * 40}ms`;
+      revealObs.observe(item);
     });
   });
 }

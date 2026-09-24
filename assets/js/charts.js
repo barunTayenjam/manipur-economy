@@ -1,6 +1,28 @@
 /**
  * Chart.js figures — lazy-loaded with SRI; theme from CSS tokens;
  * editorial series loaded from data/charts.json.
+ * @typedef {object} Theme
+ * @property {string} ink
+ * @property {string} crimson
+ * @property {string} amber
+ * @property {string} green
+ * @property {string} grid
+ * @property {string} muted
+ * @property {string} sans
+ * @property {string} mono
+ * @typedef {object} ChartFigure
+ * @property {string} id
+ * @property {'line'|'bar'} type
+ * @property {string[]} labels
+ * @property {number[]} series
+ * @property {number} [yMax]
+ * @property {'thousands'} [yCallback]
+ * @property {string} tooltip
+ * @property {string} unit
+ * @property {string[]} [colors]
+ * @typedef {{figures: ChartFigure[]}} ChartsData
+ *
+ * CDN globals (loaded at runtime with SRI):
  */
 import { onVisible, loadScript, cssVar, prefersReducedMotion } from './utils.js';
 
@@ -12,6 +34,7 @@ const CHART_JS_SRI = 'sha384-9nhczxUqK87bcKHh20fSQcTGD4qq5GhayNYSYWqwBkINBhOfQLg
 let loadPromise = null;
 const initialized = new Set();
 
+/** @type {Record<string, string>} */
 const COLOR_TOKENS = {
   ink: '--ink',
   'ink-2': '--ink-3',
@@ -54,6 +77,7 @@ export function resolveColor(key, resolve) {
  * @returns {{y: object, x: object}}
  */
 export function axis(t, { max, beginAtZero = true, showGrid = true, yCallback } = {}) {
+  /** @type {any} */
   const y = {
     beginAtZero,
     ticks: {
@@ -73,6 +97,10 @@ export function axis(t, { max, beginAtZero = true, showGrid = true, yCallback } 
   };
 }
 
+/**
+ * @param {Theme} t
+ * @param {(v: number) => string} tooltipLabel
+ */
 function baseOptions(t, tooltipLabel) {
   return {
     responsive: true,
@@ -88,15 +116,16 @@ function baseOptions(t, tooltipLabel) {
         cornerRadius: 2,
         displayColors: false,
         callbacks: {
-          label: (c) => tooltipLabel(c.parsed.y),
+          label: (/** @type {any} */ c) => tooltipLabel(c.parsed.y),
         },
       },
     },
   };
 }
 
+/** @param {string} unit */
 function tooltipFormatter(unit) {
-  return (v) => {
+  return (/** @type {number} */ v) => {
     if (unit === 'arrivals') return `${v.toLocaleString('en-IN')} arrivals`;
     if (unit === 'killed') return `${v} killed`;
     if (unit === 'days') return `${v} disruption days`;
@@ -104,6 +133,7 @@ function tooltipFormatter(unit) {
   };
 }
 
+/** @param {number} v */
 function thousandsCallback(v) {
   return v >= 1000 ? `${v / 1000}K` : v;
 }
@@ -111,16 +141,19 @@ function thousandsCallback(v) {
 /**
  * Build Chart.js configs from editorial JSON + live theme.
  * Pure given (figures, theme).
- * @param {{figures: Array<object>}} data
- * @param {ReturnType<typeof theme>} t
- * @returns {Record<string, object>}
+ * @param {ChartsData} data
+ * @param {Theme} t
+ * @returns {Record<string, any>}
  */
 export function buildConfigs(data, t) {
+  /** @param {string} token */
   const resolve = (token) => {
     const cssName = COLOR_TOKENS[token] || token;
-    return cssVar(cssName, t[cssName.replace('--', '')] || token);
+    const key = /** @type {keyof Theme} */ (cssName.replace('--', ''));
+    return cssVar(cssName, t[key] || token);
   };
 
+  /** @type {Record<string, any>} */
   const configs = {};
   for (const fig of data.figures) {
     const colors = fig.colors?.map((c) => resolve(c)) || Array(fig.series.length).fill(t.crimson);
@@ -162,11 +195,12 @@ export function buildConfigs(data, t) {
   return configs;
 }
 
+/** @param {Record<string, any>} configs */
 function initCharts(configs) {
   if (typeof Chart === 'undefined') return;
   Object.keys(configs).forEach((id) => {
     if (initialized.has(id)) return;
-    const el = document.getElementById(id);
+    const el = /** @type {HTMLCanvasElement | null} */ (document.getElementById(id));
     if (!el) return;
     initialized.add(id);
     new Chart(el.getContext('2d'), configs[id]);
@@ -174,7 +208,7 @@ function initCharts(configs) {
 }
 
 function ensureChartJs() {
-  if (window.Chart) return Promise.resolve();
+  if (/** @type {any} */ (window).Chart) return Promise.resolve();
   if (!loadPromise) {
     loadPromise = loadScript({
       src: CHART_JS_SRC,
@@ -193,6 +227,7 @@ async function fetchFigureData() {
   return res.json();
 }
 
+/** @param {Element} frame */
 function markFrameFailed(frame) {
   frame.classList.add('chart-failed');
   const note = frame.closest('.chart')?.querySelector('.chart-note');

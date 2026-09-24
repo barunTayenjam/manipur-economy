@@ -7,10 +7,12 @@ import { onVisible, loadScript, cssVar } from './utils.js';
 const LEAFLET_JS = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
 const LEAFLET_SRI = 'sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=';
 
-/** @type {import('leaflet').Map|null} */
+/** @type {any} */
 let mapInstance = null;
+/** @type {Promise<void>|null} */
 let loadPromise = null;
 
+/** @param {string} cat */
 function pinIcon(cat) {
   const pulse = cat === 'hotspot' || cat === 'border';
   return L.divIcon({
@@ -21,6 +23,7 @@ function pinIcon(cat) {
   });
 }
 
+/** @param {{cat: string, role: string, name: string, note: string, stat: string}} p */
 function popupHTML(p) {
   return (
     `<div class="mpop"><span class="mpop-cat ${p.cat}">${p.role}</span>` +
@@ -30,6 +33,7 @@ function popupHTML(p) {
   );
 }
 
+/** @param {Array<[number,number]>} pts @param {string} color @param {string} code */
 function drawHighway(pts, color, code) {
   const g = L.layerGroup();
   g.addLayer(
@@ -63,8 +67,9 @@ async function fetchGeo() {
   return res.json();
 }
 
+/** @param {HTMLElement} mapEl @param {any} geo */
 function initMap(mapEl, geo) {
-  if (mapInstance || !window.L) return;
+  if (mapInstance || !L) return;
 
   const map = L.map(mapEl, {
     scrollWheelZoom: false,
@@ -84,9 +89,10 @@ function initMap(mapEl, geo) {
 
   const hotspotLayer = L.layerGroup();
   const nodeLayer = L.layerGroup();
+  /** @type {Array<[number,number]>} */
   const allBounds = [];
 
-  geo.places.forEach((p) => {
+  geo.places.forEach((/** @type {any} */ p) => {
     const m = L.marker(p.c, {
       icon: pinIcon(p.cat),
       title: p.name,
@@ -107,7 +113,7 @@ function initMap(mapEl, geo) {
   nodeLayer.addTo(map);
 
   const highwayLayer = L.layerGroup().addTo(map);
-  geo.highways.forEach((h) => {
+  geo.highways.forEach((/** @type {any} */ h) => {
     const color = cssVar(h.token, h.token === '--ink' ? '#1E232A' : '#A31621');
     highwayLayer.addLayer(drawHighway(h.points, color, h.code));
     allBounds.push(...h.points);
@@ -119,7 +125,7 @@ function initMap(mapEl, geo) {
 }
 
 function ensureLeaflet() {
-  if (window.L) return Promise.resolve();
+  if (L) return Promise.resolve();
   if (!loadPromise) {
     loadPromise = loadScript({ src: LEAFLET_JS, integrity: LEAFLET_SRI }).catch((err) => {
       loadPromise = null;
