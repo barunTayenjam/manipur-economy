@@ -5,6 +5,9 @@
    3. Scroll reveal (JS-gated; no-JS shows all)
    4. Count-up hero indicators
    5. Contents-rail scroll spy
+   6. FAQ wrapper
+   7. Scroll-reveal stagger
+   8. Chart.js charts (lazy-loaded)
    ============================================================= */
 (function () {
   'use strict';
@@ -219,4 +222,113 @@
       });
     });
   }
+
+  /* ---- 8. CHART.JS (lazy-loaded, IntersectionObserver) ------- */
+  var chartConfigs = {
+    'chart-death': {
+      type: 'line',
+      data: {
+        labels: ['May 2023', 'Oct 2023', 'Nov 2024', 'Sep 2026'],
+        datasets: [{
+          data: [60, 141, 258, 306],
+          borderColor: '#A31621',
+          backgroundColor: '#A31621',
+          borderWidth: 2.5,
+          stepped: 'after',
+          pointRadius: 5,
+          pointHoverRadius: 7,
+          pointBackgroundColor: '#A31621',
+          fill: false
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false },
+          tooltip: { callbacks: { label: function (c) { return c.parsed.y + ' killed'; } } }
+        },
+        scales: {
+          y: { beginAtZero: true, max: 340, ticks: { color: '#5C636B', font: { size: 11 } }, grid: { color: 'rgba(30,35,42,0.08)' } },
+          x: { ticks: { color: '#5C636B', font: { size: 11 } }, grid: { display: false } }
+        }
+      }
+    },
+    'chart-tourism': {
+      type: 'bar',
+      data: {
+        labels: ['2019-20', '2022-23', '2023-24', '2024-25'],
+        datasets: [{
+          data: [179436, 161420, 36768, 17078],
+          backgroundColor: ['#1E232A', '#3C4248', '#A31621', '#A31621'],
+          borderRadius: 2,
+          maxBarThickness: 56
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false },
+          tooltip: { callbacks: { label: function (c) { return c.parsed.y.toLocaleString('en-IN') + ' arrivals'; } } }
+        },
+        scales: {
+          y: { beginAtZero: true, ticks: { color: '#5C636B', font: { size: 11 }, callback: function (v) { return v >= 1000 ? (v / 1000) + 'K' : v; } }, grid: { color: 'rgba(30,35,42,0.08)' } },
+          x: { ticks: { color: '#5C636B', font: { size: 11 } }, grid: { display: false } }
+        }
+      }
+    },
+    'chart-disruption': {
+      type: 'bar',
+      data: {
+        labels: ['2023*', '2024', '2025', '2026*'],
+        datasets: [{
+          data: [107, 113, 78, 225],
+          backgroundColor: ['#3C4248', '#3C4248', '#7A4F00', '#A31621'],
+          borderRadius: 2,
+          maxBarThickness: 56
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false },
+          tooltip: { callbacks: { label: function (c) { return c.parsed.y + ' disruption days'; } } }
+        },
+        scales: {
+          y: { beginAtZero: true, max: 260, ticks: { color: '#5C636B', font: { size: 11 } }, grid: { color: 'rgba(30,35,42,0.08)' } },
+          x: { ticks: { color: '#5C636B', font: { size: 11 } }, grid: { display: false } }
+        }
+      }
+    }
+  };
+
+  function initCharts() {
+    if (typeof Chart === 'undefined') return;
+    Object.keys(chartConfigs).forEach(function (id) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      new Chart(el.getContext('2d'), chartConfigs[id]);
+    });
+  }
+
+  (function () {
+    var frames = document.querySelectorAll('.chart-frame');
+    if (!frames.length) return;
+    var started = false;
+    var start = function () {
+      if (started) return;
+      started = true;
+      if (window.Chart) { initCharts(); return; }
+      var s = document.createElement('script');
+      s.src = 'https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js';
+      s.onload = function () { initCharts(); };
+      document.body.appendChild(s);
+    };
+    if ('IntersectionObserver' in window) {
+      var co = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (e.isIntersecting) { start(); co.disconnect(); }
+        });
+      }, { rootMargin: '300px', threshold: 0 });
+      Array.prototype.forEach.call(frames, function (f) { co.observe(f); });
+      /* deep-link safety: if no frame is within 3 viewports, still load */
+      setTimeout(start, 2500);
+    } else { start(); }
+  })();
 })();

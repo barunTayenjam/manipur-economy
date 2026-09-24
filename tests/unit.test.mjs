@@ -339,11 +339,15 @@ test('all 12 sections present', () => {
   matches(html, /id="faq"/);
 });
 
-test('at least 3 inline SVG charts present', () => {
+test('at least 3 Chart.js charts present', () => {
   const charts = (html.match(/class="chart /g) || []).length;
   ok(charts >= 3, `expected ≥3 charts, got ${charts}`);
   matches(css, /\.chart\{[^}]*border:1px solid var\(--rule\)/);
-  matches(css, /\.chart-svg \.bar\{/);
+  matches(css, /\.chart-frame\{/);
+  matches(html, /id="chart-death"/);
+  matches(html, /id="chart-tourism"/);
+  matches(html, /id="chart-disruption"/);
+  ok(/chart\.umd|Chart\.js|charts\.cdn/.test(js), 'site.js should load Chart.js');
 });
 
 test('outlook section has 4 numbered cards', () => {

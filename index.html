@@ -255,33 +255,9 @@
       <div class="chart r d3">
         <div class="chart-cap">Figure 1.A &mdash; Official Death Toll, as Reported Over Time</div>
         <div class="chart-body">
-          <svg class="chart-svg" viewBox="0 0 640 220" role="img" aria-label="Step chart of official death toll rising from 60 in May 2023 to 306 in September 2026">
-            <line class="grid-line" x1="70" y1="30" x2="620" y2="30"/>
-            <line class="grid-line" x1="70" y1="80" x2="620" y2="80"/>
-            <line class="grid-line" x1="70" y1="130" x2="620" y2="130"/>
-            <line class="axis-line" x1="70" y1="170" x2="620" y2="170"/>
-            <text class="y-label" x="65" y="34">320</text>
-            <text class="y-label" x="65" y="84">210</text>
-            <text class="y-label" x="65" y="134">105</text>
-            <text class="y-label" x="65" y="174">0</text>
-            <!-- step line: y = 170 - (val/320)*140 -->
-            <!-- 60 → y=144; 141 → y=108; 258 → y=57; 306 → y=36 -->
-            <polyline points="90,144 230,144 230,108 400,108 400,57 560,57 560,36 610,36" fill="none" stroke="#A31621" stroke-width="2.5"/>
-            <circle cx="90" cy="144" r="5" fill="#A31621"/>
-            <circle cx="230" cy="108" r="5" fill="#A31621"/>
-            <circle cx="400" cy="57" r="5" fill="#A31621"/>
-            <circle cx="610" cy="36" r="6" fill="#A31621"/>
-            <text class="bar-val" x="90" y="132" fill="#1E232A">60+</text>
-            <text class="bar-val" x="230" y="96" fill="#1E232A">141</text>
-            <text class="bar-val" x="400" y="45" fill="#1E232A">258</text>
-            <text class="bar-val" x="595" y="26" fill="#A31621" style="font-size:13px">306</text>
-            <text class="x-label" x="90" y="195">May 2023</text>
-            <text class="x-label" x="230" y="195">Oct 2023</text>
-            <text class="x-label" x="400" y="195">Nov 2024</text>
-            <text class="x-label" x="575" y="195">Sep 2026</text>
-            <text class="axis-label" x="400" y="212" style="font-size:9px">first official toll</text>
-            <text class="axis-label" x="575" y="212" style="font-size:9px">HM to Assembly</text>
-          </svg>
+          <div class="chart-frame">
+            <canvas id="chart-death" role="img" aria-label="Step chart of official death toll rising from 60 in May 2023 to 306 in September 2026"></canvas>
+          </div>
         </div>
         <div class="chart-note">Figures are government statements at the time of reporting, not audited counts. The 19-month gap between Nov 2024 and Sep 2026 saw no official update. 49 remain missing (Aug 31, 2026).</div>
         <div class="chart-footer">Sources: <a href="https://www.thehindu.com/news/national/manipur/306-killed-49-missing-in-ethnic-violence-since-may-2023-manipur-home-minister-tells-assembly/article71423134.ece" target="_blank" rel="noopener">The Hindu, Sep 3 2026</a> &middot; consolidated press reporting</div>
@@ -500,47 +476,11 @@
       <div class="chart r d2">
         <div class="chart-cap">Figure 6.A &mdash; Tourist Arrivals Collapse (2019&ndash;2025)</div>
         <div class="chart-body">
-          <svg class="chart-svg" viewBox="0 0 640 280" role="img" aria-label="Bar chart showing tourist arrivals falling from 179,436 in 2019-20 to 17,078 in 2024-25">
-            <!-- grid lines -->
-            <line class="grid-line" x1="60" y1="40" x2="620" y2="40"/>
-            <line class="grid-line" x1="60" y1="90" x2="620" y2="90"/>
-            <line class="grid-line" x1="60" y1="140" x2="620" y2="140"/>
-            <line class="grid-line" x1="60" y1="190" x2="620" y2="190"/>
-            <line class="axis-line" x1="60" y1="240" x2="620" y2="240"/>
-            <!-- y labels -->
-            <text class="y-label" x="55" y="44">180K</text>
-            <text class="y-label" x="55" y="94">135K</text>
-            <text class="y-label" x="55" y="144">90K</text>
-            <text class="y-label" x="55" y="194">45K</text>
-            <text class="y-label" x="55" y="244">0</text>
-            <!-- bars: max 179436 → 200px height -->
-            <!-- 2019-20: 179436 → h=179 -->
-            <rect class="bar" x="90" y="61" width="70" height="179" fill="#1E232A"/>
-            <text class="bar-val" x="125" y="55" fill="#1E232A">1,79,436</text>
-            <text class="x-label" x="125" y="260">2019-20</text>
-            <text class="axis-label" x="125" y="275" style="font-size:9px">peak</text>
-            <!-- 2022-23: 161420 → h=161 -->
-            <rect class="bar" x="220" y="79" width="70" height="161" fill="#3C4248"/>
-            <text class="bar-val" x="255" y="73" fill="#3C4248">1,61,420</text>
-            <text class="x-label" x="255" y="260">2022-23</text>
-            <text class="axis-label" x="255" y="275" style="font-size:9px">recovery</text>
-            <!-- 2023-24: 36768 → h=37 -->
-            <rect class="bar" x="350" y="203" width="70" height="37" fill="#A31621"/>
-            <text class="bar-val" x="385" y="197" fill="#A31621">36,768</text>
-            <text class="x-label" x="385" y="260">2023-24</text>
-            <text class="axis-label" x="385" y="275" style="font-size:9px">year 1</text>
-            <!-- 2024-25: 17078 → h=17 -->
-            <rect class="bar" x="480" y="223" width="70" height="17" fill="#A31621"/>
-            <text class="bar-val" x="515" y="217" fill="#A31621">17,078</text>
-            <text class="x-label" x="515" y="260">2024-25</text>
-            <text class="axis-label" x="515" y="275" style="font-size:9px">till Oct</text>
-            <!-- annotation -->
-            <text class="bar-val" x="575" y="140" fill="#A31621" style="font-size:13px;font-weight:700">&minus;90.5%</text>
-            <line x1="555" y1="148" x2="555" y2="223" stroke="#A31621" stroke-width="1.5" stroke-dasharray="4,3"/>
-            <line x1="555" y1="223" x2="550" y2="223" stroke="#A31621" stroke-width="1.5"/>
-          </svg>
+          <div class="chart-frame">
+            <canvas id="chart-tourism" role="img" aria-label="Bar chart showing tourist arrivals falling from 179,436 in 2019-20 to 17,078 in 2024-25"></canvas>
+          </div>
         </div>
-        <div class="chart-note">Total arrivals (domestic + foreign). 2024-25 figure covers only through October. All flagship festivals cancelled in 2024-25.</div>
+        <div class="chart-note">Total arrivals (domestic + foreign). 2024-25 figure covers only through October. All flagship festivals cancelled in 2024-25. Annotations: peak · recovery · year 1 · till Oct; collapse of −90.5%.</div>
         <div class="chart-footer">Source: <a href="https://manipurtourism.gov.in/wp-content/uploads/2025/04/Annual-Report-2024-25.pdf" target="_blank" rel="noopener">Manipur Tourism Dept Annual Report 2024-25</a></div>
       </div>
 
@@ -620,38 +560,11 @@
       <div class="chart r d2">
         <div class="chart-cap">Figure 7.A &mdash; Disruption Days by Year (Bandh + Blockade)</div>
         <div class="chart-body">
-          <svg class="chart-svg" viewBox="0 0 640 280" role="img" aria-label="Bar chart showing disruption days rising from 107 in 2023 to 225 in 2026">
-            <line class="grid-line" x1="60" y1="40" x2="620" y2="40"/>
-            <line class="grid-line" x1="60" y1="90" x2="620" y2="90"/>
-            <line class="grid-line" x1="60" y1="140" x2="620" y2="140"/>
-            <line class="grid-line" x1="60" y1="190" x2="620" y2="190"/>
-            <line class="axis-line" x1="60" y1="240" x2="620" y2="240"/>
-            <text class="y-label" x="55" y="44">240</text>
-            <text class="y-label" x="55" y="94">180</text>
-            <text class="y-label" x="55" y="144">120</text>
-            <text class="y-label" x="55" y="194">60</text>
-            <text class="y-label" x="55" y="244">0</text>
-            <!-- 107 → h=95 -->
-            <rect class="bar" x="100" y="145" width="80" height="95" fill="#3C4248"/>
-            <text class="bar-val" x="140" y="139" fill="#3C4248">107</text>
-            <text class="x-label" x="140" y="260">2023*</text>
-            <!-- 113 → h=101 -->
-            <rect class="bar" x="230" y="139" width="80" height="101" fill="#3C4248"/>
-            <text class="bar-val" x="270" y="133" fill="#3C4248">113</text>
-            <text class="x-label" x="270" y="260">2024</text>
-            <!-- 78 → h=69 -->
-            <rect class="bar" x="360" y="171" width="80" height="69" fill="#7A4F00"/>
-            <text class="bar-val" x="400" y="165" fill="#7A4F00">78</text>
-            <text class="x-label" x="400" y="260">2025</text>
-            <text class="axis-label" x="400" y="275" style="font-size:9px">President's Rule</text>
-            <!-- 225 → h=199 -->
-            <rect class="bar" x="490" y="41" width="80" height="199" fill="#A31621"/>
-            <text class="bar-val" x="530" y="35" fill="#A31621">225</text>
-            <text class="x-label" x="530" y="260">2026*</text>
-            <text class="axis-label" x="530" y="275" style="font-size:9px">through Sep 8</text>
-          </svg>
+          <div class="chart-frame">
+            <canvas id="chart-disruption" role="img" aria-label="Bar chart showing disruption days rising from 107 in 2023 to 225 in 2026"></canvas>
+          </div>
         </div>
-        <div class="chart-note">* 2023 covers May 3&ndash;Dec only; 2026 covers Jan 1&ndash;Sep 8. 2026 alone accounts for 43% of all disruption days — the highest annual figure on record.</div>
+        <div class="chart-note">* 2023 covers May 3&ndash;Dec only; 2026 covers Jan 1&ndash;Sep 8. 2025 was under President&rsquo;s Rule. 2026 alone accounts for 43% of all disruption days — the highest annual figure on record.</div>
         <div class="chart-footer">Source: <a href="https://assamtribune.com/north-east/manipur-witnesses-523-days-of-bandhs-blockades-since-may-2023-1617789" target="_blank" rel="noopener">State Home Dept via The Assam Tribune, Sep 18 2026</a></div>
       </div>
 

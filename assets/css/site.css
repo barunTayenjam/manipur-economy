@@ -830,7 +830,7 @@ section:first-of-type{border-top:none}
 }
 @media(max-width:640px){.outlook-grid{grid-template-columns:1fr}}
 
-/* --- CHARTS (inline SVG) ------------------------------------- */
+/* --- CHARTS (Chart.js canvas) -------------------------------- */
 .chart{
   border:1px solid var(--rule);margin:1.25rem 0 2rem;background:var(--bg);
 }
@@ -841,31 +841,8 @@ section:first-of-type{border-top:none}
   letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-3);
 }
 .chart-body{padding:1.25rem 1.25rem 1rem}
-.chart-svg{width:100%;height:auto;display:block}
-.chart-svg .bar{transition:opacity var(--dur-fast) var(--ease)}
-.chart-svg .bar:hover{opacity:0.8}
-.chart-svg .bar-label{
-  font-family:var(--ff-mono);font-size:11px;font-weight:600;
-  fill:var(--ink);text-anchor:middle;
-}
-.chart-svg .bar-val{
-  font-family:var(--ff-mono);font-size:11px;font-weight:700;
-  text-anchor:middle;
-}
-.chart-svg .axis-label{
-  font-family:var(--ff-sans);font-size:11px;fill:var(--ink-3);
-  text-anchor:middle;
-}
-.chart-svg .axis-line{stroke:var(--rule);stroke-width:1}
-.chart-svg .grid-line{stroke:var(--rule);stroke-width:1;stroke-dasharray:3,3}
-.chart-svg .x-label{
-  font-family:var(--ff-sans);font-size:11px;fill:var(--ink-3);
-  text-anchor:middle;
-}
-.chart-svg .y-label{
-  font-family:var(--ff-sans);font-size:10px;fill:var(--ink-4);
-  text-anchor:end;
-}
+.chart-frame{position:relative;height:280px}
+.chart-frame canvas{position:absolute;inset:0;width:100%!important;height:100%!important}
 .chart-footer{
   border-top:1px solid var(--rule);padding:0.55rem 1.25rem;
   font-family:var(--ff-mono);font-size:0.75rem;color:var(--ink-4);
