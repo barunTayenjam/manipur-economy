@@ -62,7 +62,7 @@ export default [
     },
   },
   {
-    files: ['tests/e2e/**/*.spec.mjs'],
+    files: ['tests/e2e/**/*.spec.mjs', 'tests/visual/**/*.spec.mjs'],
     languageOptions: {
       ecmaVersion: 2022,
       sourceType: 'module',

@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>Component Catalog — Manipur Economy</title>
+    <link rel="stylesheet" href="../assets/css/site.css" />
+    <style>
+      .cat-wrap {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 2rem 1.5rem 4rem;
+      }
+      .cat-sec {
+        margin: 2.5rem 0;
+        padding-top: 1rem;
+        border-top: 2px solid var(--ink);
+      }
+      .cat-sec h2 {
+        font-family: var(--ff-sans);
+        font-size: 0.8rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+      }
+      .swatches {
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        margin: 1rem 0;
+      }
+      .sw {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: var(--ff-mono);
+        font-size: 0.75rem;
+      }
+      .sw i {
+        width: 22px;
+        height: 22px;
+        border: 1px solid var(--rule);
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cat-wrap">
+      <h1>Component Catalog</h1>
+      <p>
+        Live catalog — reuses <code>assets/css/site.css</code> directly. Update in the same PR as
+        visual changes.
+      </p>
+
+      <section class="cat-sec">
+        <h2>Tokens</h2>
+        <div class="swatches">
+          <span class="sw"><i style="background: var(--crimson)"></i>--crimson</span>
+          <span class="sw"><i style="background: var(--green)"></i>--green</span>
+          <span class="sw"><i style="background: var(--amber)"></i>--amber</span>
+          <span class="sw"><i style="background: var(--ink)"></i>--ink</span>
+          <span class="sw"><i style="background: var(--bg)"></i>--bg</span>
+        </div>
+      </section>
+
+      <section class="cat-sec">
+        <h2>Badge (.badge .c/.g/.a/.n)</h2>
+        <span class="badge c">Conflict</span>
+        <span class="badge g">Recovery</span>
+        <span class="badge a">Warning</span>
+        <span class="badge n">Neutral</span>
+      </section>
+
+      <section class="cat-sec">
+        <h2>Phase (.phase p1/p2/p3)</h2>
+        <div class="phases">
+          <div class="phase">
+            <div class="phase-num">01</div>
+            <div class="phase-label p1">Phase label</div>
+            <div class="phase-title">Phase title</div>
+            <p class="phase-desc">Phase description.</p>
+          </div>
+          <div class="phase">
+            <div class="phase-num">02</div>
+            <div class="phase-label p2">Phase label</div>
+            <div class="phase-title">Phase title</div>
+            <p class="phase-desc">Phase description.</p>
+          </div>
+          <div class="phase">
+            <div class="phase-num">03</div>
+            <div class="phase-label p3">Phase label</div>
+            <div class="phase-title">Phase title</div>
+            <p class="phase-desc">Phase description.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="cat-sec">
+        <h2>Exhibit card (.ex-card)</h2>
+        <div class="ex-grid">
+          <article class="ex-card">
+            <h3 class="ex-card-h">Card heading</h3>
+            <ul class="ex-card-list">
+              <li>List item one</li>
+              <li>List item two</li>
+            </ul>
+            <p class="ex-card-q">Pull quote.</p>
+            <p class="ex-card-src">Source note</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="cat-sec">
+        <h2>Flow (.flow .flow-n)</h2>
+        <div class="flow">
+          <div class="flow-n">
+            <span class="flow-fl">Node A</span><span class="flow-fs">sub</span>
+          </div>
+          <div class="flow-n active">
+            <span class="flow-fl">Node B</span><span class="flow-fs">sub</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="cat-sec">
+        <h2>Ledger (.ledger)</h2>
+        <div class="ledger-wrap">
+          <table class="ledger">
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Detail</th>
+                <th>Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Row one</td>
+                <td>Detail</td>
+                <td>100</td>
+              </tr>
+              <tr>
+                <td>Row two</td>
+                <td>Detail</td>
+                <td>200</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="cat-sec">
+        <h2>Chart frame (.chart .chart-frame)</h2>
+        <div class="chart">
+          <div class="chart-cap">Figure cap</div>
+          <div class="chart-body"><div class="chart-frame"></div></div>
+          <div class="chart-footer">Source footer</div>
+        </div>
+      </section>
+
+      <section class="cat-sec">
+        <h2>FAQ (.faq-item)</h2>
+        <div class="faq-list">
+          <details class="faq-item" open>
+            <summary>Open question</summary>
+            <div class="faq-a"><p>Answer text.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Closed question</summary>
+            <div class="faq-a"><p>Answer text.</p></div>
+          </details>
+        </div>
+      </section>
+
+      <section class="cat-sec">
+        <h2>Methodology note (.meth-note)</h2>
+        <p class="meth-note"><strong>Note:</strong> methodology text.</p>
+      </section>
+    </div>
+  </body>
+</html>

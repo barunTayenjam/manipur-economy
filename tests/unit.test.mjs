@@ -723,6 +723,60 @@ test('no inline styles on takeaway (token-driven only)', () => {
   );
 });
 
+console.log('\n\x1b[1m─── DOCS ───\x1b[0m');
+
+test('ADRs present with Decision + Consequences', () => {
+  const idx = readFileSync('docs/adr/README.md', 'utf8');
+  includes(idx, '0001');
+  includes(idx, '0005');
+  const files = readdirSync('docs/adr').filter((f) => /^\d{4}-.*\.md$/.test(f));
+  ok(files.length >= 5, `expected >=5 ADRs, got ${files.length}`);
+  for (const f of files) {
+    const c = readFileSync(join('docs/adr', f), 'utf8');
+    includes(c, '## Decision', `${f} Decision`);
+    includes(c, '## Consequences', `${f} Consequences`);
+  }
+});
+
+test('runbook covers rollback + triage', () => {
+  const rb = readFileSync('docs/RUNBOOK.md', 'utf8');
+  includes(rb, 'git revert');
+  includes(rb, 'manipur-economy');
+  includes(rb, 'Triage');
+});
+
+test('analytics off by default (privacy)', () => {
+  const stripped = html.replace(/<!--[\s\S]*?-->/g, '');
+  ok(!/<script[^>]*plausible[^>]*>/.test(stripped), 'no active analytics script');
+  readFileSync('docs/analytics.md', 'utf8');
+});
+
+test('components catalog covers tokens + 8 components', () => {
+  const cat = readFileSync('docs/components.html', 'utf8');
+  for (const t of ['--crimson', '--green', '--amber', '--ink']) includes(cat, t);
+  for (const c of [
+    'badge c',
+    'phase-label p1',
+    'ex-card',
+    'flow-n',
+    'class="ledger"',
+    'chart-frame',
+    'faq-item',
+    'meth-note',
+  ])
+    includes(cat, c, `catalog ${c}`);
+  includes(cat, 'assets/css/site.css');
+});
+
+test('contributing + templates present', () => {
+  const c = readFileSync('CONTRIBUTING.md', 'utf8');
+  includes(c, 'npm run check');
+  includes(c, '--no-verify');
+  readFileSync('.github/ISSUE_TEMPLATE/bug_report.md', 'utf8');
+  readFileSync('.github/ISSUE_TEMPLATE/content_update.md', 'utf8');
+  readFileSync('.github/PULL_REQUEST_TEMPLATE.md', 'utf8');
+});
+
 /* ---- SUMMARY (after async tests settle) ---- */
 const summarize = async () => {
   await Promise.all(asyncTests);
