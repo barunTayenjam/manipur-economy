@@ -23,8 +23,9 @@ framework, no API keys. Just serve the directory.
 
 ## ✨ Features
 
-- **Survey-chapter layout** — nine numbered chapters with a sticky contents
+- **Survey-chapter layout** — eleven numbered chapters with a sticky contents
   rail (desktop) / contents strip (mobile), scroll-spy wayfinding.
+- **Officials ledger** — source-linked index of Manipur's Chief Minister, Home Minister, Deputy CM, Governor, Supreme Court bench and key civic actors (UNC, Kuki Inpi/KSO, JTCM) with tenure windows and conflict-economy actions.
 - **Statement of Key Indicators** — the report's opening booktabs table with
   count-up readings and numbered footnote markers linking to sources.
 - **Booktabs statement tables** throughout — every key figure is a document

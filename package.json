@@ -1,0 +1,22 @@
+{
+  "name": "manipur-economy",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "The Price of Conflict — source-of-truth report on Manipur's conflict economy",
+  "scripts": {
+    "test": "node tests/unit.test.mjs",
+    "lint": "eslint assets/js tests",
+    "lint:fix": "eslint assets/js tests --fix",
+    "format": "prettier --write \"assets/**/*.{js,css}\" \"tests/**/*.mjs\" \"index.html\"",
+    "format:check": "prettier --check \"assets/**/*.{js,css}\" \"tests/**/*.mjs\" \"index.html\"",
+    "check": "npm run lint && npm run format:check && npm test"
+  },
+  "devDependencies": {
+    "eslint": "^9.39.0",
+    "prettier": "^3.6.2"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
