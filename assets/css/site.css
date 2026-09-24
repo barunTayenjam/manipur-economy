@@ -84,7 +84,8 @@ body{
   -moz-osx-font-smoothing:grayscale;
   font-feature-settings:'onum','kern';
 }
-img,svg{display:block;max-width:100%}
+img{display:block;max-width:100%}
+svg{display:block}
 a{color:var(--crimson);text-underline-offset:0.2em;transition:color var(--dur-fast) var(--ease),text-decoration-color var(--dur-fast) var(--ease)}
 a:hover{text-decoration:none}
 
