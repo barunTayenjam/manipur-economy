@@ -12,7 +12,7 @@
 [![No deps](https://img.shields.io/badge/dependencies-0-1a7f37)](#)
 [![WCAG AA](https://img.shields.io/badge/WCAG-AA-passed-1a7f37)](#-performance--accessibility)
 [![License](https://img.shields.io/github/license/barunTayenjam/manipur-economy?color=blue)](./LICENSE)
-[![Last verified](https://img.shields.io/badge/data%20verified-20%20Sep%202026-blue)](#-data-verification)
+[![Last verified](https://img.shields.io/badge/data%20verified-5%20Oct%202026-blue)](#-data-verification)
 
 **🔗 Live site:** https://baruntayenjam.github.io/manipur-economy/
 
@@ -23,7 +23,7 @@ framework, no API keys. Just serve the directory.
 
 ## ✨ Features
 
-- **Survey-chapter layout** — eleven numbered chapters with a sticky contents
+- **Survey-chapter layout** — twelve numbered chapters with a sticky contents
   rail (desktop) / contents strip (mobile), scroll-spy wayfinding.
 - **Officials ledger** — source-linked index of Manipur's Chief Minister, Home Minister, Deputy CM, Governor, Supreme Court bench and key civic actors (UNC, Kuki Inpi/KSO, JTCM) with tenure windows and conflict-economy actions.
 - **Statement of Key Indicators** — the report's opening booktabs table with
@@ -33,7 +33,7 @@ framework, no API keys. Just serve the directory.
 - **Interactive Leaflet map** with 9 OSM-verified locations, real NH-2 / NH-37
   highway routes, categorized markers (capital · hotspots · border · nodes),
   a layer toggle, scale bar, and rich popups.
-- **Horizontal chronology** — 20 dated events, May 2023 → September 2026.
+- **Horizontal chronology** — 38 dated events, May 2023 → October 2026.
 - **Final ledger** — an 11-row consolidated balance sheet of losers and gainers.
 - **12-question FAQ** — source-linked answers, mirrored in FAQPage JSON-LD.
 - **Self-hosted fonts** (woff2, latin-subset, two preloads) — no font CDN.
@@ -96,6 +96,12 @@ labeled as a structural estimate**. Nothing is fabricated.
 | Internet shutdown / online-delivery timeline | SFLC internetshutdowns.in; KeepUsOnline |
 | IDP resettlement (36,000 / 24,000) | CM statement via India Today NE, Sep 3 2026 |
 | Bus resumption, JTCM NH-37 shutdown, US Ambassador visit | manipur.org; Imphal Times; E-Pao |
+| UNC blockade suspension after Guwahati tripartite talks (Sep 26) | Tangkhul Express; Assam Tribune |
+| Kalenjang killings, IT Road ambush, Teikhang attack (Aug–Sep 2026) | The Hindu; The Hills Journal; NDTV |
+| 60+ killed in 2026 (Biren Singh, Sep 26) | Economic Times |
+| Kangpokpi farmer killing & CoTU shutdown (Oct 3–5) | Northeast Now; India Today NE |
+| CM on IDP return, ₹2.19 cr welfare, bus ridership (Oct 5) | India Today NE |
+| SC direction on victim-witnesses (Oct 5) | New Indian Express |
 
 The full verified-source list (with deep links) is in the page colophon.
 

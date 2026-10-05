@@ -27,7 +27,7 @@ Single-page static site (GitHub Pages). Readers arrive cold via search, social, 
 - Static site, no framework, no build step. Markup in `index.html`; world CSS in `assets/css/site.css`; behavior in `assets/js/site.js`. Self-hosted woff2 fonts in `assets/fonts/`.
 - Leaflet 1.9.4 from unpkg; OpenStreetMap tiles. Self-hosted woff2 fonts only.
 - All verified content, source attributions, JSON-LD schema (Article/Dataset/Event/FAQ), OG/Twitter meta, sitemap, and PWA files must be preserved verbatim across redesigns.
-- Data through September 2026; temporal window May 2023 – Sep 2026.
+- Data through October 5, 2026; temporal window May 2023 – Oct 2026.
 
 ## Brand Commitments
 

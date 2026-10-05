@@ -69,7 +69,7 @@ async function fetchGeo() {
 
 /** @param {HTMLElement} mapEl @param {any} geo */
 function initMap(mapEl, geo) {
-  if (mapInstance || !L) return;
+  if (mapInstance || typeof L === 'undefined') return;
 
   const map = L.map(mapEl, {
     scrollWheelZoom: false,
@@ -125,7 +125,7 @@ function initMap(mapEl, geo) {
 }
 
 function ensureLeaflet() {
-  if (L) return Promise.resolve();
+  if (typeof L !== 'undefined') return Promise.resolve();
   if (!loadPromise) {
     loadPromise = loadScript({ src: LEAFLET_JS, integrity: LEAFLET_SRI }).catch((err) => {
       loadPromise = null;

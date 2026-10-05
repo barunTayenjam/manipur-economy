@@ -26,9 +26,9 @@
  */
 import { onVisible, loadScript, cssVar, prefersReducedMotion } from './utils.js';
 
-const CHART_JS_SRC = 'https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js';
-/** sha384 of chart.umd.min.js @4.4.1 (205399 bytes). */
-const CHART_JS_SRI = 'sha384-9nhczxUqK87bcKHh20fSQcTGD4qq5GhayNYSYWqwBkINBhOfQLg/P5HG5lF1urn4';
+const CHART_JS_SRC = 'https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js';
+/** sha384 of chart.umd.js @4.4.1 (205125 bytes, canonical npm file). */
+const CHART_JS_SRI = 'sha384-dug+JxfBvklEQdJ4AYuBBAIScUz0bVN73xpy273gcAwHjb3qI0fXmuYNaNfdyYJG';
 
 /** @type {Promise<void>|null} */
 let loadPromise = null;

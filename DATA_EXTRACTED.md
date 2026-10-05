@@ -3,9 +3,9 @@
 > Source of truth for redesign. Every value, card, quote, link, event and row on the page.
 
 ## Header / Hero
-- Eyebrow: Economic Impact Report · May 2023 – September 2026
+- Eyebrow: Economic Impact Report · May 2023 – October 2026
 - H1: The Price of Conflict: Who Loses, Who Gains in Manipur's War Economy
-- Intro: Three years of ethnic violence has fractured Manipur’s economy across three communities — Meitei, Kuki-Zo and Naga — destroying livelihoods for the majority while fueling a parallel war economy that profits select networks. As of September 2026, the UNC economic blockade of NH-2 and NH-37 intensifies, commodity prices surge 140%, and essential services remain strained despite partial transport resumption.
+- Intro: Three years of ethnic violence has fractured Manipur’s economy across three communities — Meitei, Kuki-Zo and Naga — destroying livelihoods for the majority while fueling a parallel war economy that profits select networks. As of October 2026, the UNC economic blockade stands suspended after Sep 26 tripartite talks — yet the Kuki–Naga front keeps killing into October, with 60+ deaths in 2026 alone by a former CM’s count.
 - Hero stats:
   - 3+ → Years of conflict
   - 280+ → Lives lost
@@ -38,7 +38,7 @@
 - Name: The Fracture Spreads
 - Title: Kuki ↔ Naga escalation
 - Desc: A new BJP government under Y. Khemchand Singh takes office and opens the first Kuki-Zo dialogue in three years — even as a fresh Kuki–Naga axis ignites across Kangpokpi, Senapati and Ukhrul.
-- Stat: 24 — killed (Jan–Jul 2026)
+- Stat: 60+ — killed in 2026 (Biren Singh, Sep)
 - Stat: 85 — FIRs · 5 zones
 
 
@@ -239,7 +239,7 @@
 ## Section: timeline
 - Eyebrow label: Timeline
 - H2: Three Years of Conflict
-- Sub: Key milestones in Manipur’s ethnic violence and economic disruption from May 3, 2023 to September 2026.
+- Sub: Key milestones in Manipur’s ethnic violence and economic disruption from May 3, 2023 to October 2026.
 
 ### Timeline
 - **May 3, 2023** — Conflict Ignites: Meitei–Kuki-Zo violence erupts; by May 4, shoot-at-sight orders and Article 355 imposed.
@@ -257,11 +257,21 @@
 - **Jul 31, 2026** — Blockade Talks Stall: After 75+ days, the UNC economic blockade of NH-2 / NH-37 persists. CM Khemchand Singh’s government initiates talks; the UNC postpones the next sitting. Essential-goods trucks still turned back at Taphou, Senapati.
 - **Aug 2, 2026** — Anti-Narcotics Push: CM Khemchand Singh launches a statewide anti-narcotics campaign tied to Viksit Bharat @2047, urging youth to stay drug-free. A day earlier, three Manipuris were held in Assam with Yaba tablets and heroin worth ₹12.5 cr.
 - **Aug 21, 2026** — Bus Service Resumes: Imphal–Dimapur–Guwahati bus service resumes after three-year suspension, signaling partial transport normalization despite ongoing blockades. manipur.org, Aug 22
+- **Aug 27, 2026** — IT Road Ambush: Four Naga civilians — one a school principal — killed in an ambush between Makui Asang and Thanamba Naga village on the Imphal–Tamei (IT) Road; one injured, one missing. Naga areas shut down the next day. The Hindu
+- **Aug 31, 2026** — Teikhang Village Attack: ~50 armed men attack N. Teikhang village on the IT Road fringe (Kangpokpi): 3 Kuki-Zo civilians killed (2 women), 4 critically injured, houses torched; CoTU calls a 24-hr NH-2 shutdown (Sep 1–2). The Hills Journal
 - **Sep 1, 2026** — Unified Trade Licensing: Manipur Cabinet clears unified trade-licensing bill to streamline business registration across districts—an economic recovery signal amid blockade chaos. India Today NE
 - **Sep 3, 2026** — 36,000 IDPs Resettled: CM announces 36,000 of ~60,000 IDPs resettled; 24,000 remain in relief camps. Resettlement conditional on stability assurances—progress stalled by ongoing violence in Kuki–Naga zones. India Today NE
 - **Sep 8–9, 2026** — UNC Intensifies Blockade: United Naga Council escalates indefinite economic blockade across NH-202, NH-37, NH-102A over Naga civilians killed in Leilon Vaiphei. Essential-goods prices soar 140%; goods trucks remain stuck on the highways for days. The Hindu
 - **Sep 10–11, 2026** — JTCM NH-37 Shutdown & Release: Joint Tribal Council shuts NH-37 over arrest of five Naga women; CRPF releases them hours later. Blockade lifted but UNC blockade continues on other routes. Imphal Times
 - **Sep 11, 2026** — US Ambassador Visit: US Ambassador Sergio Gor visits Manipur to meet CM Khemchand Singh; CM invites him to Sangai Festival 2026 (Nov 21–30). NDTV
+- **Sep 13–17, 2026** — Six Kuki-Zo Killed: Four killed Sep 13 (Tollen, Lampee); two Kuki-Zo women shot dead Sep 15/16 at Leisangphai, Tamenglong. Kuki Inpi + KSO announce 24-hr NH-37 shutdown. Power Corridors
+- **Sep 16, 2026** — GST Loss ₹1,200 cr+: CM Khemchand Singh reveals conflict-attributed GST revenue loss of ₹1,200+ crore since 2023. India Today NE
+- **Sep 17, 2026** — 31,823 IDPs Returned: Government data: 31,823 of ~60,000 displaced have returned; 28,899 still displaced. 7,034 houses built, 4,159 repaired. Northeast Now
+- **Sep 22, 2026** — CM Appeals Against Blockades: CM Khemchand Singh calls for dialogue over bandhs and blockades. UNI
+- **Sep 26, 2026** — UNC Suspends Blockade: Tripartite talks in Guwahati (Centre–state–UNC) end the four-month inter-district blockade of NH-2, NH-202, NH-37, NH-102A; suspended from 6 pm by UNC notification (president Ng. Lorho). Tangkhul Express / EastMojo
+- **Sep 26, 2026** — Kalenjang Killings: Gunmen kill two Mao Naga civilians (Rocky of Chowainu, Kumar of Laii Shirafii) in their sleep at Kalenjang village (Senapati); injured Sani (49) dies later — the second such attack in 3 days (NDTV). Biren Singh: “60+ deaths since early this year.” Assam Tribune / ET
+- **Oct 3–6, 2026** — Farmer Killed; CoTU Shutdown: Hemkhojang Haokip (71), Kuki farmer of Khunkho (Leimakhong), abducted from his paddy field Oct 3, found dead Oct 4. CoTU 24-hr shutdown paralyses Kangpokpi Oct 5; Dy-CM Kipgen condemns. Northeast Now
+- **Oct 5, 2026** — IDP Push & Bus Recovery: CM Khemchand: govt working to facilitate IDP returns with CSO talks; ₹2.19 cr welfare benefits to labour-card holders (incl. IDPs); ₹1.42 cr education aid to 2,531 IDP children; Imphal–Guwahati bus now 450–500 passengers/day. Same day SC directs CBI to ensure victim-witnesses depose on fixed dates. India Today NE / New Indian Express
 
 
 ## Section: ledger
@@ -288,7 +298,7 @@
 ## Section: faq
 - Eyebrow label: Frequently Asked Questions
 - H2: Quick Answers — Manipur's Economy in 2026
-- Sub: Concise, source-verified answers to the most-asked questions about Manipur's conflict economy, displacement and the September 2026 blockade.
+- Sub: Concise, source-verified answers to the most-asked questions about Manipur's conflict economy, displacement and the 2026 blockade cycle.
 
 ### FAQ
 **Q: What is happening in Manipur right now?**
@@ -598,3 +608,97 @@ Key facts:
 - Drug card: add UNODC ₹2,500 cr/yr + ₹1,600 cr single-year seizure + 354 acres destroyed 2024. Keep ₹5K–10K cr as labeled corridor estimate.
 - Shadow-economy section: add internet-shutdown cost (385 days, ~$1.9M/hr India methodology) + Moreh ghost-town note.
 - New FAQ: "What happened to tourism in Manipur?" → official numbers.
+
+## Verification & Update Run — 2026-10-05 (web, primary outlets)
+
+> Window covered: Sep 23 → Oct 5, 2026 (plus two earlier missed events, Aug 27 & Aug 31).
+> All items below are now integrated into index.html (timeline, blockade chapter, officials,
+> outlook, FAQ + FAQPage JSON-LD, colophon, meta/JSON-LD dates).
+
+### UPDATED DATA (supersedes page values as of Oct 5, 2026)
+
+- **UNC blockade: SUSPENDED.** From 6 pm Sep 26, 2026, after tripartite talks (GoI + GoM + UNC)
+  in Guwahati. UNC notification signed by president Ng. Lorho; terms not detailed in the
+  notification. Blockade had run ~4 months (May 17 – Sep 26) across NH-2/NH-202/NH-37/NH-102A.
+  Sources: Tangkhul Express (Sep 26), Assam Tribune, Punjab Kesari, EastMojo.
+- **2026 death toll (political claim):** Former CM N. Biren Singh on X, Sep 26 — "MORE THAN 60
+  DEATHS SINCE EARLY THIS YEAR". Supersedes "24 killed Jan–Jul" as the headline 2026 figure on
+  the phase card (24 kept in archives/FAQ as the Jan–Jul official window). ET, Sep 28.
+- **Official cumulative toll unchanged:** 306 killed / 49 missing (Home Minister, Sep 3).
+  Kalenjang (Sep 26) and Kangpokpi (Oct 3) deaths post-date it.
+- **Blockade duration on losers card:** "125+ day blockade" → "4-month blockade (May 17 – Sep 26,
+  suspended)".
+- **Period labels:** May 2023 – October 2026 everywhere (hero, meta, JSON-LD temporalCoverage,
+  timeline sub, footnote 1). article:modified_time / dateModified / sitemap lastmod → 2026-10-05.
+
+### NEW EVENTS (added to timeline)
+
+- **Aug 27, 2026 — IT Road Ambush.** Four Naga civilians (incl. a school principal) killed in an
+  ambush between Makui Asang and Thanamba Naga village, IT Road; 1 injured, 1 missing; Naga-area
+  shutdown Aug 28; TNL questions govt silence. The Hindu (article71399174.ece), NDTV, India Today NE.
+- **Aug 31, 2026 — Teikhang Village Attack.** ~50 armed men attack N. Teikhang village (IT Road
+  fringe, ~7 km from Chalwa, Kangpokpi): 3 Kuki-Zo civilians killed (Tingneichin Lhoujum 40,
+  Hoineng Lhoujem 21, Lamthinthang Lhoujem 36 — two women), 4 critically injured, houses burned.
+  Kuki bodies blame NSCN-IM/ZUF; CoTU 24-hr NH-2 shutdown Sep 1–2 (5am–5am). The Hills Journal.
+- **Sep 26, 2026 — UNC Suspends Blockade.** (see above). Tangkhul Express.
+- **Sep 26, 2026 — Kalenjang Killings.** Two Mao Naga civilians — Rocky (Chowainu village) and
+  Kumar (Laii Shirafii village) — shot dead while asleep ~3 pm at/near the village headman's
+  house, Kalenjang near Taphou Kuki (Senapati); 2 injured; injured Sani (49) died later at a
+  private hospital. NDTV: "2nd such incident in 3 days". CM Khemchand condemned. Assam Tribune,
+  NDTV, Indian Express, ET.
+- **Oct 3–6, 2026 — Farmer Killed; CoTU Shutdown.** Hemkhojang Haokip (71), Kuki farmer of
+  Khunkho village (Leimakhong), went missing from his paddy field Oct 3 (Sat), body found Oct 4
+  (Sun) in a forested area, limbs bound. Villagers allege NSCN-IM/ZUF-K involvement (unverified).
+  CoTU 24-hr total shutdown paralyses Kangpokpi Oct 5 (midnight–midnight); Dy-CM Nemcha Kipgen
+  condemns, seeks swift probe. Northeast Now, India Today NE.
+- **Oct 5, 2026 — IDP Push & Bus Recovery.** CM Khemchand (Seva Sankalp Utsav event, Sep 17 –
+  Oct 17): govt working to facilitate IDP return, talks with CSOs to bridge trust deficit;
+  ₹2.19 cr welfare benefits distributed to labour-card holders (incl. IDPs); ₹1.42 cr education
+  assistance via DBT to 2,531 beneficiaries for IDP children; Imphal–Guwahati bus (via Dimapur)
+  now carries 450–500 passengers/day, cutting student/sportsperson travel costs vs airfare.
+  Same day: SC directs CBI + trial court to ensure two victim-witnesses in a Manipur
+  sexual-violence case depose on fixed dates (CBI had flagged witness intimidation; sought bail
+  cancellation of two accused). India Today NE; New Indian Express.
+
+### OFFICIALS LEDGER UPDATES
+
+- CM Khemchand Singh: actions now include "IDP return push with ₹2.19 cr welfare distribution
+  (Oct 5)"; added India Today NE Oct 5 source.
+- Dy-CM Nemcha Kipgen: "blockade demanded her removal; suspended Sep 26; condemned Khunkho
+  farmer killing (Oct 5)"; added NENow Oct 5 source.
+- UNC: tenure now "May 17 – Sep 26, 2026"; action includes suspension after Guwahati talks;
+  Nagaland Post link swapped for Tangkhul Express.
+
+### OUTLOOK SIGNALS REWRITTEN (was: "whether the UNC blockade is lifted or normalized")
+
+1. Whether the Sep 26 suspension holds through Sangai Festival (Nov 21–30).
+2. Whether the ~140% commodity surge unwinds with highways open.
+3. Next official death-toll update vs Biren Singh's 60+ (2026).
+4. Whether the ₹1,200 cr GST loss figure is revised upward.
+5. Whether Kuki-Zo–government dialogue resumes after Kalenjang/Kangpokpi killings.
+
+### CONFIRMED STILL ACCURATE (this run)
+
+- 306 killed / 49 missing (official, Sep 3) — unchanged by Oct 5.
+- 523 disruption days / 385 internet / 261 curfew (Home Dept via Assam Tribune, Sep 18) — the
+  2026 count runs through Sep 8 only; no newer aggregate published.
+- 31,823 returned / 28,899 displaced (Sep 17) — newest displacement split available.
+- GST loss ₹1,200 cr+ (CM, Sep 16); GSDP ₹49,937 cr (2024-25).
+
+### NOT FOUND / NOT CLAIMED
+
+- No post-suspension price-normalization reporting (petrol/LPG/rice levels after Sep 26) as of
+  Oct 5 — page keeps the 140% surge figures as blockade-period peaks, labeled Jun–Jul 2026.
+- Terms of the Guwahati tripartite agreement (beyond the suspension itself) were not detailed in
+  the UNC notification or in reporting reviewed — page does not speculate.
+- The SC's Sep 17 direction to the Manipur Chief Secretary on 25 unnatural relief-camp deaths
+  appeared in search summaries but was not pinned to a fetchable primary article — left off the
+  page this run.
+
+### EDIT STATUS
+
+- All integrated edits live in index.html (uncommitted working tree) as of Oct 5, 2026:
+  head meta + JSON-LD dates, hero standfirst/meta, key-indicator footnotes 1–2, phase-III stat,
+  death-chart note/footer, losers "New Front" card, blockade chapter suspension note, timeline
+  (+6 rows), officials (3 rows), outlook signals, FAQ (5 answers) + FAQPage JSON-LD mirrors,
+  colophon (+9 sources, methodology note), sitemap lastmod.

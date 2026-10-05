@@ -361,7 +361,7 @@ test('no setTimeout-based chart/map bootstrap hack', () => {
 });
 
 test('Chart.js loaded with SRI integrity hash', () => {
-  includes(js, 'chart.umd.min.js');
+  includes(js, 'chart.umd.js');
   matches(js, /sha384-/);
   includes(js, 'integrity');
 });
