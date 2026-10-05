@@ -167,6 +167,10 @@ The conflict is ongoing. To refresh figures:
    JSON-LD (they must stay in sync).
 4. Add any new source to the colophon's verified-source list.
 5. Re-run the contrast/overflow audit if layout changes.
+6. If `assets/css/site.css` or `assets/js/main.js` changed, bump the `?v=`
+   date on their URLs in `index.html` — GitHub Pages caches assets for 10
+   minutes, and a changed URL forces every browser to fetch the new file
+   immediately.
 
 ## 📄 License
 
