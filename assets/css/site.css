@@ -1834,16 +1834,6 @@ section:first-of-type {
   padding-top: 0;
   border: none;
 }
-.fn-list li::before {
-  content: counter(fn);
-  position: absolute;
-  left: 0;
-  top: 0;
-  font-weight: 700;
-  color: var(--crimson);
-  flex-shrink: 0;
-  width: 1.25rem;
-}
 .fn-list li a {
   color: var(--crimson);
 }

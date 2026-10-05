@@ -83,4 +83,37 @@ test.describe('smoke', () => {
       expect(body).toBeTruthy();
     }
   });
+
+  // Footnote numbers are hard-coded .fn-num spans; a CSS ::before counter
+  // once rendered alongside them ("1 1", "2 2" …). Gate on the combination.
+  test('footnote lists are not double-numbered', async ({ page }) => {
+    await page.goto('./', { waitUntil: 'domcontentloaded' });
+    await expect(page.locator('html')).toHaveClass(/js-ready/, { timeout: 15_000 });
+    const doubled = await page.evaluate(
+      () =>
+        [...document.querySelectorAll('li')].filter((li) => {
+          const span = li.querySelector(':scope > .fn-num');
+          if (!span || getComputedStyle(span).display === 'none') return false;
+          const before = getComputedStyle(li, '::before');
+          const c = before.content;
+          return before.display !== 'none' && c && c !== 'none' && c !== 'normal' && c !== '""';
+        }).length
+    );
+    expect(doubled, 'li elements showing both a ::before number and .fn-num').toBe(0);
+  });
+
+  // README promises 0 px horizontal overflow from 320 px up — assert it.
+  test('no horizontal overflow at 320/390/768/1024/1280', async ({ page }) => {
+    await page.goto('./', { waitUntil: 'domcontentloaded' });
+    await expect(page.locator('html')).toHaveClass(/js-ready/, { timeout: 15_000 });
+    for (const width of [320, 390, 768, 1024, 1280]) {
+      await page.setViewportSize({ width, height: 800 });
+      await page.waitForTimeout(150);
+      const overflow = await page.evaluate(() => ({
+        docW: document.documentElement.scrollWidth,
+        winW: window.innerWidth,
+      }));
+      expect(overflow.docW, `${width} px viewport`).toBeLessThanOrEqual(overflow.winW);
+    }
+  });
 });
