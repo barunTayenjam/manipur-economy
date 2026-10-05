@@ -13,7 +13,7 @@ test.describe('smoke', () => {
       if (m.type() === 'error') consoleErrors.push(m.text());
     });
 
-    await page.goto('/', { waitUntil: 'domcontentloaded' });
+    await page.goto('./', { waitUntil: 'domcontentloaded' }); // './' keeps subpath deploys (BASE_URL=…/manipur-economy/) on-origin
     await expect(page.locator('html')).toHaveClass(/js-ready/, { timeout: 15_000 });
     await expect(page.locator('html')).toHaveClass(/js/);
 
@@ -70,14 +70,14 @@ test.describe('smoke', () => {
 
   test('serves modular assets; legacy site.js is gone', async ({ request }) => {
     for (const f of ['main.js', 'utils.js', 'charts.js', 'map.js']) {
-      const r = await request.get(`/assets/js/${f}`);
+      const r = await request.get(`./assets/js/${f}`);
       expect(r.status(), f).toBe(200);
     }
-    const legacy = await request.get('/assets/js/site.js');
+    const legacy = await request.get('./assets/js/site.js');
     expect(legacy.status()).toBe(404);
 
     for (const f of ['data/charts.json', 'data/map.geo.json']) {
-      const r = await request.get(`/${f}`);
+      const r = await request.get(`./${f}`);
       expect(r.status(), f).toBe(200);
       const body = await r.json();
       expect(body).toBeTruthy();

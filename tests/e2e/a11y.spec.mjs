@@ -7,7 +7,7 @@ import AxeBuilder from '@axe-core/playwright';
 
 test.describe('accessibility', () => {
   test('has no serious or critical axe violations', async ({ page }) => {
-    await page.goto('/', { waitUntil: 'domcontentloaded' });
+    await page.goto('./', { waitUntil: 'domcontentloaded' }); // './' keeps subpath deploys (BASE_URL=…/manipur-economy/) on-origin
     // Let reveal settle so hidden-but-present content is in a11y tree after scroll
     await page.evaluate(async () => {
       const h = document.body.scrollHeight;

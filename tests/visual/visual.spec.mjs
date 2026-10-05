@@ -57,7 +57,7 @@ test.describe('Visual regression', () => {
       // below (hero / chart frames / map section).
 
       test('hero', async ({ page }) => {
-        await page.goto('/', { waitUntil: 'domcontentloaded' });
+        await page.goto('./', { waitUntil: 'domcontentloaded' }); // './' keeps subpath deploys (BASE_URL=…/manipur-economy/) on-origin
         await expect(page.locator('html')).toHaveClass(/js-ready/, { timeout: 15_000 });
         // Count-up runs 1200ms after reveal; wait for the longest figure to
         // settle so the screenshot is not mid-animation.
@@ -72,7 +72,7 @@ test.describe('Visual regression', () => {
       });
 
       test('chart frames (structure masked canvas)', async ({ page }) => {
-        await page.goto('/', { waitUntil: 'domcontentloaded' });
+        await page.goto('./', { waitUntil: 'domcontentloaded' }); // './' keeps subpath deploys (BASE_URL=…/manipur-economy/) on-origin
         await settle(page);
         for (const id of ['chart-death', 'chart-tourism', 'chart-disruption']) {
           const frame = page.locator(`#${id}`).locator('..');
@@ -84,7 +84,7 @@ test.describe('Visual regression', () => {
       });
 
       test('map section (structure, tiles masked)', async ({ page }) => {
-        await page.goto('/', { waitUntil: 'domcontentloaded' });
+        await page.goto('./', { waitUntil: 'domcontentloaded' }); // './' keeps subpath deploys (BASE_URL=…/manipur-economy/) on-origin
         await expect(page.locator('html')).toHaveClass(/js-ready/, { timeout: 15_000 });
         await page.locator('#map').scrollIntoViewIfNeeded();
         await expect(page.locator('#map')).toHaveClass(/leaflet-container/, { timeout: 15_000 });
