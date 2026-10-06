@@ -12,6 +12,7 @@ colors:
   green: "#1A5C30"
   amber: "#7A4F00"
   rule: "rgba(30,35,42,0.14)"
+  bg-rule: "#E8E8E4"
 typography:
   display:
     fontFamily: "Spectral, Georgia, serif"

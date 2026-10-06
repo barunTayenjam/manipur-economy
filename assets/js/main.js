@@ -57,14 +57,6 @@ function initReveal() {
   );
   revealEls.forEach((el) => revealObs.observe(el));
 
-  requestAnimationFrame(() => {
-    document
-      .querySelectorAll('.content > .chapter > .r, .chapter:first-of-type .r')
-      .forEach((el) => {
-        if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('v');
-      });
-  });
-
   return { revealObs, reduce };
 }
 

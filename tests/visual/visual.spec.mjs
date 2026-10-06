@@ -78,7 +78,11 @@ test.describe('Visual regression', () => {
         await page.goto('./', { waitUntil: 'domcontentloaded' }); // './' keeps subpath deploys (BASE_URL=…/manipur-economy/) on-origin
         await settle(page);
         for (const id of ['chart-death', 'chart-tourism', 'chart-disruption']) {
-          const frame = page.locator(`#${id}`).locator('..');
+          // Capture the borderless .chart-body wrapper: the frame's 1px
+          // hairline rasterizes a row off whenever any upstream height
+          // changes, flipping baselines on every content edit. The frame
+          // border itself is gated by unit tests + the e2e paint checks.
+          const frame = page.locator('.chart-body').filter({ has: page.locator(`#${id}`) });
           await expect(frame).toHaveScreenshot(`chart-${id}-${vp.name}.png`, {
             mask: [page.locator(`canvas#${id}`)],
             maxDiffPixels: 100,
