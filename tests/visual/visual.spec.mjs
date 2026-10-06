@@ -66,7 +66,10 @@ test.describe('Visual regression', () => {
         });
         const hero = page.locator('main section').first();
         await expect(hero).toHaveScreenshot(`hero-${vp.name}.png`, {
-          mask: [page.locator('#progress')],
+          // Chart canvas is masked: it renders lazily, so an unmasked capture
+          // races IntersectionObserver and flakes (chart has its own masked
+          // test below).
+          mask: [page.locator('#progress'), page.locator('#chart-death')],
           maxDiffPixels: 100,
         });
       });

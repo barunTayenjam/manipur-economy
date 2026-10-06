@@ -445,6 +445,15 @@ test('buildConfigs maps editorial JSON to 3 Chart.js configs', () => {
     'legend on for dual-series chart'
   );
   ok(
+    Array.isArray(configs['chart-death'].plugins) && configs['chart-death'].plugins.length === 1,
+    'bar value-label plugin attached (values printed, zero marked)'
+  );
+  ok(
+    Array.isArray(configs['chart-tourism'].plugins) &&
+      configs['chart-tourism'].plugins.length === 1,
+    'tourism bars also value-labeled'
+  );
+  ok(
     configs['chart-death'].options.scales.x.type === undefined,
     'death x stays categorical (no time projection)'
   );

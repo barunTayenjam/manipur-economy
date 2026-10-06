@@ -224,6 +224,60 @@ function thousandsCallback(v) {
 }
 
 /**
+ * Inline plugin: prints each bar's value at its top — inside the bar in
+ * white when it fits, above the bar otherwise — and an explicit muted
+ * "0" above the baseline for zero bars, so "no new deaths" reads as a
+ * mark, not an empty slot. When a totals line overlay is present, its
+ * final point is anchored with a bold "Total N". Value labels keep bar
+ * charts readable without hover (mobile, print).
+ * @param {string} sans
+ * @param {string} muted
+ * @param {string} ink
+ * @returns {object} Chart.js plugin
+ */
+function barValuePlugin(sans, muted, ink) {
+  return {
+    id: 'barValueLabels',
+    afterDatasetsDraw(/** @type {any} */ chart) {
+      if (chart.config.type !== 'bar') return;
+      const { ctx } = chart;
+      const meta = chart.getDatasetMeta(0);
+      const values = /** @type {number[]} */ (chart.data.datasets[0]?.data ?? []);
+      const baseY = chart.scales.y.getPixelForValue(0);
+      ctx.save();
+      ctx.font = `600 11px ${sans}`;
+      ctx.textAlign = 'center';
+      meta.data.forEach((/** @type {any} */ bar, /** @type {number} */ i) => {
+        const v = values[i] ?? 0;
+        if (v === 0) {
+          ctx.fillStyle = muted;
+          ctx.fillText('0', bar.x, baseY - 6);
+        } else if (baseY - bar.y > 20) {
+          ctx.fillStyle = '#fff';
+          ctx.fillText(v.toLocaleString('en-IN'), bar.x, bar.y + 15);
+        } else {
+          ctx.fillStyle = ink;
+          ctx.fillText(v.toLocaleString('en-IN'), bar.x, bar.y - 6);
+        }
+      });
+      const lineDs = chart.data.datasets[1];
+      if (lineDs && lineDs.type === 'line') {
+        const lineMeta = chart.getDatasetMeta(1);
+        const last = /** @type {any} */ (lineMeta.data[lineMeta.data.length - 1]);
+        const total = /** @type {number[]} */ (lineDs.data)[lineMeta.data.length - 1];
+        if (last && total != null) {
+          ctx.fillStyle = ink;
+          ctx.font = `700 12px ${sans}`;
+          ctx.textAlign = 'right';
+          ctx.fillText(`Total ${total.toLocaleString('en-IN')}`, last.x, last.y - 10);
+        }
+      }
+      ctx.restore();
+    },
+  };
+}
+
+/**
  * Build Chart.js configs from editorial JSON + live theme.
  * Pure given (figures, theme).
  * @param {ChartsData} data
@@ -275,6 +329,7 @@ export function buildConfigs(data, t) {
 
     configs[fig.id] = {
       type: fig.type,
+      ...(fig.type === 'bar' ? { plugins: [barValuePlugin(t.sans, t.muted, t.ink)] } : {}),
       data: {
         labels: fig.labels,
         datasets: [
