@@ -20,11 +20,62 @@
  * @property {string} tooltip
  * @property {string} unit
  * @property {string[]} [colors]
+ * @property {'month'} [xUnit] switches the x-axis to a time-proportional
+ *   linear scale: labels are parsed as "Mon YYYY", so uneven reporting
+ *   gaps keep their true width instead of being drawn as equal categories
  * @typedef {{figures: ChartFigure[]}} ChartsData
  *
  * CDN globals (loaded at runtime with SRI):
  */
 import { onVisible, loadScript, cssVar, prefersReducedMotion } from './utils.js';
+
+/**
+ * Parse a "Mon YYYY" label ("May 2023") to a mid-month Date.
+ * @param {string} label
+ * @returns {Date}
+ */
+function parseMonthYear(label) {
+  /** @type {Record<string, number>} */
+  const MONTHS = {
+    Jan: 0,
+    Feb: 1,
+    Mar: 2,
+    Apr: 3,
+    May: 4,
+    Jun: 5,
+    Jul: 6,
+    Aug: 7,
+    Sep: 8,
+    Oct: 9,
+    Nov: 10,
+    Dec: 11,
+  };
+  const [month = '', year = ''] = label.split(' ');
+  return new Date(Number(year), MONTHS[month] ?? 0, 15);
+}
+
+/**
+ * Whole months between two "Mon YYYY" labels.
+ * @param {string} label
+ * @param {Date} base
+ * @returns {number}
+ */
+function monthOffsetFromLabel(label, base) {
+  const d = parseMonthYear(label);
+  return (d.getFullYear() - base.getFullYear()) * 12 + (d.getMonth() - base.getMonth());
+}
+
+/**
+ * Month offset from a base Date → "Sep 2026"-style tick label.
+ * @param {number} offset
+ * @param {Date} base
+ * @returns {string}
+ */
+function labelFromMonthOffset(offset, base) {
+  const d = new Date(base);
+  d.setMonth(d.getMonth() + offset);
+  return d.toLocaleString('en-US', { month: 'short', year: 'numeric' });
+}
 
 const CHART_JS_SRC = 'https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js';
 /** sha384 of chart.umd.js @4.4.1 (205125 bytes, canonical npm file). */
@@ -72,11 +123,20 @@ export function resolveColor(key, resolve) {
 /**
  * Shared axis styling — single source of truth for ticks + grid.
  * Pure given theme object.
+ *
+ * Charts use a categorical x-axis by default. Passing `xStart` switches
+ * the x-axis to a linear time-proportional scale (xTickFmt renders tick
+ * values), so uneven reporting gaps keep their true width instead of
+ * being drawn as equal-width categories.
+ *
  * @param {ReturnType<typeof theme>} t
- * @param {{max?: number, beginAtZero?: boolean, showGrid?: boolean, yCallback?: (v: number) => string|number}} [opts]
+ * @param {{max?: number, beginAtZero?: boolean, showGrid?: boolean, yCallback?: (v: number) => string|number, xStart?: number, xMax?: number, xTickFmt?: (v: number) => string, xTicks?: number[]}} [opts]
  * @returns {{y: object, x: object}}
  */
-export function axis(t, { max, beginAtZero = true, showGrid = true, yCallback } = {}) {
+export function axis(
+  t,
+  { max, beginAtZero = true, showGrid = true, yCallback, xStart, xMax, xTickFmt, xTicks } = {}
+) {
   /** @type {any} */
   const y = {
     beginAtZero,
@@ -88,12 +148,27 @@ export function axis(t, { max, beginAtZero = true, showGrid = true, yCallback } 
     grid: { color: showGrid ? t.grid : false },
   };
   if (max != null) y.max = max;
+
+  /** @type {any} */
+  const x = {
+    grid: { display: false },
+    ticks: { color: t.muted, font: { size: 11, family: t.sans } },
+  };
+  if (xStart != null) {
+    x.type = 'linear';
+    x.min = xStart;
+    if (xMax != null) x.max = xMax;
+    x.ticks = { ...x.ticks, autoSkip: true, maxTicksLimit: 6 };
+    if (xTickFmt) x.ticks.callback = xTickFmt;
+    if (xTicks) {
+      x.afterBuildTicks = (/** @type {any} */ scale) => {
+        scale.ticks = xTicks.map((v) => ({ value: v }));
+      };
+    }
+  }
   return {
     y,
-    x: {
-      ticks: { color: t.muted, font: { size: 11, family: t.sans } },
-      grid: { display: false },
-    },
+    x,
   };
 }
 
@@ -116,6 +191,13 @@ function baseOptions(t, tooltipLabel) {
         cornerRadius: 2,
         displayColors: false,
         callbacks: {
+          // Explicit title: with {x,y} points on a linear axis, the default
+          // title can show the raw x value (e.g. "40") instead of "Sep 2026".
+          title: (/** @type {any[]} */ items) => {
+            const it = items[0];
+            const labels = it?.chart?.data?.labels;
+            return labels ? String(labels[it.dataIndex]) : '';
+          },
           label: (/** @type {any} */ c) => tooltipLabel(c.parsed.y),
         },
       },
@@ -158,6 +240,36 @@ export function buildConfigs(data, t) {
   for (const fig of data.figures) {
     const colors = fig.colors?.map((c) => resolve(c)) || Array(fig.series.length).fill(t.crimson);
 
+    // xUnit: 'month' → plot on a time-proportional linear axis. Points
+    // become {x, y} at numeric month offsets; labels stay as strings for
+    // the tooltip title.
+    /** @type {number[]|null} */
+    let xOffsets = null;
+    /** @type {{xStart?: number, xMax?: number, xTickFmt?: (v: number) => string, xTicks?: number[]}} */
+    let xOpts = {};
+    if (fig.xUnit === 'month') {
+      const firstLabel = fig.labels[0] ?? '';
+      const firstDate = parseMonthYear(firstLabel);
+      xOffsets = fig.labels.map((l) => monthOffsetFromLabel(l, firstDate));
+      const span = xOffsets[xOffsets.length - 1] ?? 0;
+      // Grace padding so edge point markers are not clipped by the plot
+      // boundary; ticks stay pinned at quarter intervals of the span.
+      const pad = Math.max(1, Math.round(span * 0.05));
+      xOpts = {
+        xStart: -pad,
+        xMax: span + pad,
+        xTickFmt: (/** @type {number} */ v) => labelFromMonthOffset(v, firstDate),
+        xTicks: [0, 0.25, 0.5, 0.75, 1].map((f) => Math.round(span * f)),
+      };
+    }
+    /**
+     * Map a series onto {x, y} points when a time axis is active.
+     * @param {number[]} arr
+     * @returns {Array<{x: number, y: number}>|number[]}
+     */
+    const pointData = (arr) =>
+      xOffsets ? arr.map((v, i) => ({ x: /** @type {number} */ (xOffsets[i]), y: v })) : arr;
+
     configs[fig.id] = {
       type: fig.type,
       data: {
@@ -165,7 +277,7 @@ export function buildConfigs(data, t) {
         datasets: [
           fig.type === 'line'
             ? {
-                data: fig.series,
+                data: pointData(fig.series),
                 borderColor: colors[0],
                 backgroundColor: colors[0],
                 borderWidth: 2.5,
@@ -188,6 +300,7 @@ export function buildConfigs(data, t) {
         scales: axis(t, {
           max: fig.yMax,
           yCallback: fig.yCallback === 'thousands' ? thousandsCallback : undefined,
+          ...xOpts,
         }),
       },
     };
