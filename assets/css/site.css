@@ -600,7 +600,6 @@ section:first-of-type {
   border-left: 3px solid var(--crimson);
   padding: 0.15rem 0 0.15rem 1.1rem;
   margin: 1.25rem 0 1.75rem;
-  max-width: 52ch;
 }
 .takeaway-hero {
   margin-bottom: 1rem;
@@ -1049,7 +1048,6 @@ section:first-of-type {
   font-size: 0.9375rem;
   line-height: 1.75;
   color: var(--ink-2);
-  max-width: 68ch;
   margin-bottom: 0.85rem;
 }
 .exhibit-body p:last-child {
