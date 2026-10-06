@@ -20,6 +20,9 @@
  * @property {string} tooltip
  * @property {string} unit
  * @property {string[]} [colors]
+ * @property {number[]} [totals] cumulative official total at each label;
+ *   when present, `series` must hold per-interval values and a line
+ *   overlay draws the running total (legend + richer tooltips switch on)
  * @property {'month'} [xUnit] switches the x-axis to a time-proportional
  *   linear scale: labels are parsed as "Mon YYYY", so uneven reporting
  *   gaps keep their true width instead of being drawn as equal categories
@@ -288,11 +291,28 @@ export function buildConfigs(data, t) {
                 fill: false,
               }
             : {
+                label: 'Deaths since previous official count',
                 data: fig.series,
                 backgroundColor: colors,
                 borderRadius: 2,
                 maxBarThickness: 56,
               },
+          ...(fig.totals
+            ? [
+                {
+                  type: 'line',
+                  label: 'Official cumulative total',
+                  data: fig.totals,
+                  borderColor: resolve('ink'),
+                  backgroundColor: resolve('ink'),
+                  borderWidth: 2,
+                  pointRadius: 4,
+                  pointHoverRadius: 6,
+                  pointBackgroundColor: resolve('ink'),
+                  fill: false,
+                },
+              ]
+            : []),
         ],
       },
       options: {
@@ -304,6 +324,19 @@ export function buildConfigs(data, t) {
         }),
       },
     };
+
+    if (fig.totals) {
+      const totals = fig.totals;
+      const opts = configs[fig.id].options;
+      opts.plugins.legend = {
+        display: true,
+        labels: { color: t.muted, font: { size: 11, family: t.sans }, boxWidth: 14 },
+      };
+      opts.plugins.tooltip.callbacks.label = (/** @type {any} */ c) =>
+        c.datasetIndex === 0
+          ? `+${c.parsed.y} since previous count — cumulative ${totals[c.dataIndex]}`
+          : `Cumulative total: ${c.parsed.y}`;
+    }
   }
   return configs;
 }
@@ -340,7 +373,7 @@ function ensureChartJs() {
  * charts.json reaches returning visitors is a changed URL. Bump this
  * whenever data/charts.json changes (README → Updating the data).
  */
-const CHARTS_DATA_URL = 'data/charts.json?v=2026-10-06b';
+const CHARTS_DATA_URL = 'data/charts.json?v=2026-10-06c';
 
 async function fetchFigureData() {
   const res = await fetch(CHARTS_DATA_URL, { cache: 'force-cache' });

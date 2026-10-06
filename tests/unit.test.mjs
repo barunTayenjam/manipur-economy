@@ -425,14 +425,28 @@ test('buildConfigs maps editorial JSON to 3 Chart.js configs', () => {
   };
   const configs = buildConfigs(chartsData, t);
   ok(Object.keys(configs).length === 3, '3 configs');
-  // Snapshot bars, not a line: five sparse official statements must not be
-  // drawn as a continuous trajectory (implies counts between statements).
-  ok(configs['chart-death'].type === 'bar', 'death is discrete statement bars');
-  ok(configs['chart-death'].data.datasets[0].data.length === 5, 'death 5 statements');
-  ok(configs['chart-death'].data.datasets[0].data[4] === 306, 'death Oct 2026 holds at 306');
+  // Interval bars + cumulative overlay: bar heights are deaths ADDED between
+  // official counts (cumulative totals live on the line, not the bars).
+  ok(configs['chart-death'].type === 'bar', 'death bars show interval deaths');
+  const deathBars = configs['chart-death'].data.datasets[0];
+  ok(deathBars.data.length === 5, 'death 5 intervals');
+  ok(
+    JSON.stringify(deathBars.data) === JSON.stringify([60, 81, 117, 48, 0]),
+    'death interval values (60/81/117/48/0)'
+  );
+  const deathLine = configs['chart-death'].data.datasets[1];
+  ok(deathLine && deathLine.type === 'line', 'cumulative total drawn as line overlay');
+  ok(
+    JSON.stringify(deathLine.data) === JSON.stringify([60, 141, 258, 306, 306]),
+    'cumulative totals match official statements'
+  );
+  ok(
+    configs['chart-death'].options.plugins.legend.display === true,
+    'legend on for dual-series chart'
+  );
   ok(
     configs['chart-death'].options.scales.x.type === undefined,
-    'death x stays categorical (snapshot semantics, no time projection)'
+    'death x stays categorical (no time projection)'
   );
   ok(configs['chart-tourism'].type === 'bar', 'tourism is bar');
   ok(configs['chart-disruption'].options.scales.y.max === 260, 'disruption yMax from JSON');
@@ -540,6 +554,7 @@ test('data/charts.json has 3 figures with aligned labels/series', () => {
     ok(typeof f.id === 'string' && f.id.startsWith('chart-'), `id ${f.id}`);
     ok(Array.isArray(f.labels) && f.labels.length > 0, `${f.id} labels`);
     ok(Array.isArray(f.series) && f.series.length === f.labels.length, `${f.id} series length`);
+    ok(!f.totals || f.totals.length === f.labels.length, `${f.id} totals length (if present)`);
     ok(f.type === 'line' || f.type === 'bar', `${f.id} type`);
     ok(typeof f.tooltip === 'string', `${f.id} tooltip`);
   }
