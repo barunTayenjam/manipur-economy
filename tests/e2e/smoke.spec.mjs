@@ -55,8 +55,9 @@ test.describe('smoke', () => {
     await page.locator('#map').scrollIntoViewIfNeeded();
     await expect(page.locator('#map')).toHaveClass(/leaflet-container/, { timeout: 15_000 });
 
-    // Structural markers
-    await expect(page.locator('section')).toHaveCount(12);
+    // Structural markers (section[id]: Leaflet's layers control injects its
+    // own <section> inside #map, so a bare 'section' count is 13)
+    await expect(page.locator('section[id]')).toHaveCount(12);
     await expect(page.locator('.takeaway-hero')).toHaveCount(1);
     await expect(page.locator('.sec-takeaway[style]')).toHaveCount(0);
 
@@ -82,6 +83,38 @@ test.describe('smoke', () => {
       const body = await r.json();
       expect(body).toBeTruthy();
     }
+  });
+
+  test('scroll spy highlights the section in view and nothing at the top', async ({ page }) => {
+    await page.goto('./');
+    await expect(page.locator('html')).toHaveClass(/js-ready/);
+    await page.waitForTimeout(400);
+    await expect(page.locator('.toc-list a.active')).toHaveCount(0);
+    await page.locator('#timeline').scrollIntoViewIfNeeded();
+    await page.waitForTimeout(700);
+    await expect(page.locator('.toc-list a[href="#timeline"]')).toHaveClass(/active/);
+  });
+
+  test('human-toll figures render at full value (no count-up)', async ({ page }) => {
+    await page.goto('./');
+    await expect(page.locator('html')).toHaveClass(/js-ready/);
+    await page.waitForTimeout(2500);
+    await expect(page.locator('[data-count-to="306"]')).toHaveText('306');
+    await expect(page.locator('[data-count-to="28899"]')).toHaveText('28,899');
+  });
+
+  test('footnote refs deep-link to the hero footnotes; FAQ anchors open the item', async ({
+    page,
+  }) => {
+    await page.goto('./');
+    const firstRef = page.locator('sup.ref a').first();
+    const href = await firstRef.getAttribute('href');
+    expect(href).toMatch(/^#fn-\d+$/);
+    await expect(page.locator(href)).toHaveCount(1);
+
+    await page.goto('./#faq-2');
+    await page.waitForTimeout(300);
+    await expect(page.locator('#faq-2')).toHaveAttribute('open', '');
   });
 
   // Footnote numbers are hard-coded .fn-num spans; a CSS ::before counter

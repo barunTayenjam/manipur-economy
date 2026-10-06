@@ -103,7 +103,12 @@ function runCount(el) {
 }
 
 function initCountUp() {
-  const countEls = document.querySelectorAll('[data-count-to]');
+  // data-static="1" marks human-toll figures (lives lost, displaced): they
+  // render at full value immediately — a mortality count must not animate,
+  // and mid-animation screenshots would publish wrong numbers.
+  const countEls = Array.from(document.querySelectorAll('[data-count-to]')).filter(
+    (el) => el.getAttribute('data-static') !== '1'
+  );
   if (!countEls.length) return;
   if (!hasIO()) {
     countEls.forEach(runCount);
@@ -124,23 +129,34 @@ function initCountUp() {
 
 /* ---- 4. Contents scroll spy --------------------------------- */
 function initSpy() {
-  const tocLinks = document.querySelectorAll('.toc-list a');
-  if (!tocLinks.length || !hasIO()) return;
+  const tocLinks = Array.from(document.querySelectorAll('.toc-list a'));
+  const sections = Array.from(document.querySelectorAll('section[id]'));
+  if (!tocLinks.length || !sections.length) return;
 
-  const sections = document.querySelectorAll('section[id]');
-  const spy = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((e) => {
-        if (!e.isIntersecting) return;
-        const id = e.target.id;
-        tocLinks.forEach((a) => {
-          a.classList.toggle('active', a.getAttribute('href') === `#${id}`);
-        });
-      });
-    },
-    { threshold: 0.15, rootMargin: '-15% 0px -55% 0px' }
-  );
-  sections.forEach((s) => spy.observe(s));
+  /** @param {string} id */
+  const setActive = (id) => {
+    tocLinks.forEach((a) => {
+      a.classList.toggle('active', a.getAttribute('href') === `#${id}`);
+    });
+  };
+
+  // Scroll-position banding: the active item is the last section whose top
+  // has crossed the reading line (a third of the way down the viewport).
+  // Threshold-based IntersectionObserver mis-highlighted tall sections and
+  // never cleared — the TOC must not lie about where the reader is.
+  const update = () => {
+    const line = window.scrollY + window.innerHeight * 0.33;
+    let current = '';
+    for (const s of sections) {
+      const top = s.getBoundingClientRect().top + window.scrollY;
+      if (top <= line) current = s.id;
+    }
+    setActive(current);
+  };
+
+  onScrollThrottled(update);
+  window.addEventListener('resize', update, { passive: true });
+  update();
 }
 
 /* ---- 5. FAQ height animation wrapper ------------------------ */
@@ -150,6 +166,16 @@ function initFaq() {
     while (a.firstChild) inner.appendChild(a.firstChild);
     a.appendChild(inner);
   });
+
+  // Deep links (#faq-N) must show the answer, not a closed accordion.
+  const openFromHash = () => {
+    const el = /** @type {HTMLDetailsElement | null} */ (
+      document.getElementById(window.location.hash.slice(1))
+    );
+    if (el && el.classList.contains('faq-item')) el.open = true;
+  };
+  window.addEventListener('hashchange', openFromHash);
+  openFromHash();
 }
 
 /* ---- 6. Scroll-reveal stagger ------------------------------- */

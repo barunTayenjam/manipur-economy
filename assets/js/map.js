@@ -94,10 +94,13 @@ function initMap(mapEl, geo) {
   map.on('click', () => map.scrollWheelZoom.enable());
   map.on('mouseout', () => map.scrollWheelZoom.disable());
 
-  const hotspotLayer = L.layerGroup();
-  const nodeLayer = L.layerGroup();
-  /** @type {Array<[number,number]>} */
-  const allBounds = [];
+  /** @type {Record<string, any>} */
+  const groups = {
+    capital: L.layerGroup(),
+    hotspot: L.layerGroup(),
+    border: L.layerGroup(),
+    node: L.layerGroup(),
+  };
 
   geo.places.forEach((/** @type {any} */ p) => {
     const m = L.marker(p.c, {
@@ -113,21 +116,37 @@ function initMap(mapEl, geo) {
         opacity: 1,
       })
       .bindPopup(popupHTML(p), { className: 'm-popup', maxWidth: 250 });
-    allBounds.push(p.c);
-    (p.cat === 'hotspot' ? hotspotLayer : nodeLayer).addLayer(m);
+    (groups[p.cat] || groups.node).addLayer(m);
   });
-  hotspotLayer.addTo(map);
-  nodeLayer.addTo(map);
+  Object.values(groups).forEach((g) => g.addTo(map));
 
   const highwayLayer = L.layerGroup().addTo(map);
   geo.highways.forEach((/** @type {any} */ h) => {
     const color = cssVar(h.token, h.token === '--ink' ? '#1E232A' : '#A31621');
     highwayLayer.addLayer(drawHighway(h.points, color, h.code));
-    allBounds.push(...h.points);
   });
 
+  // The map-hint promises layer toggles — deliver them.
+  L.control
+    .layers(
+      null,
+      {
+        'State capital': groups.capital,
+        'Conflict hotspots': groups.hotspot,
+        'Border post': groups.border,
+        'District / node': groups.node,
+        Highways: highwayLayer,
+      },
+      { collapsed: true }
+    )
+    .addTo(map);
+
   L.control.scale({ position: 'bottomleft', imperial: false, maxWidth: 120 }).addTo(map);
-  map.fitBounds(L.latLngBounds(allBounds), { padding: [30, 30] });
+  // Frame Manipur, not the highways' out-of-state endpoints (NH-37 reaches
+  // toward Silchar, which dragged the default view west to Bangladesh).
+  map.fitBounds(L.latLngBounds(geo.places.map((/** @type {any} */ p) => p.c)), {
+    padding: [30, 30],
+  });
   requestAnimationFrame(() => map.invalidateSize());
 }
 

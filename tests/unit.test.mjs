@@ -694,6 +694,39 @@ test('FAQ has 10 questions', () => {
   ok(faqItems >= 8 && faqItems <= 12, `expected 8-12 FAQ items, got ${faqItems}`);
 });
 
+test('human-toll figures render static (no count-up on 306 / 28,899)', () => {
+  matches(html, /data-static="1"[^>]*data-count-to="306"/, 'lives lost static');
+  matches(html, /data-static="1"[^>]*data-count-to="28899"/, 'displaced static');
+  matches(html, /data-count-to="523"/, 'non-toll figures still animate');
+});
+
+test('footnote refs link to the footnote list (keyboard/touch reachable)', () => {
+  for (let n = 1; n <= 6; n++) {
+    matches(html, new RegExp(`href="#fn-${n}"`), `ref link fn-${n}`);
+    matches(html, new RegExp(`id="fn-${n}"`), `footnote target fn-${n}`);
+  }
+});
+
+test('figures, exhibits and statements carry citable anchors', () => {
+  for (const id of [
+    'fig-1a',
+    'fig-6a',
+    'fig-7a',
+    'ex-1',
+    'ex-2',
+    'ex-3',
+    'ex-4',
+    'stmt-key',
+    'stmt-2a',
+    'stmt-6a',
+    'stmt-7a',
+    'stmt-7b',
+    'stmt-8a',
+  ]) {
+    matches(html, new RegExp(`id="${id}"`), id);
+  }
+});
+
 test('ledger has 12 rows', () => {
   const ledgerBlock = htmlFlat.match(/class="ledger".*?<\/table>/);
   const ledgerRows = ledgerBlock ? (ledgerBlock[0].match(/<tr>\s*<td>/g) || []).length : 0;
