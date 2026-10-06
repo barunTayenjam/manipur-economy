@@ -605,6 +605,12 @@ section:first-of-type {
 .takeaway-hero {
   margin-bottom: 1rem;
 }
+.takeaway-hero .takeaway-figure {
+  color: var(--crimson);
+  font-size: 1.45em;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
 
 /* --- MAP PLATE ---------------------------------------------- */
 .map-plate {
@@ -1920,20 +1926,26 @@ section:first-of-type {
   background: var(--crimson-bg);
   transform: translateY(-1px);
 }
-.ft-note {
+.ft-note-cols {
+  columns: 2;
+  column-gap: 2.5rem;
   margin-top: 1.75rem;
   padding-top: 1.1rem;
   border-top: 1px solid var(--rule);
+}
+.ft-note {
   font-family: var(--ff-sans);
   font-size: 0.8125rem;
   color: var(--ink-4);
   line-height: 1.75;
-  max-width: 78ch;
 }
 .ft-note + .ft-note {
   margin-top: 0.6rem;
-  padding-top: 0;
-  border-top: 0;
+}
+@media (max-width: 900px) {
+  .ft-note-cols {
+    columns: 1;
+  }
 }
 
 /* --- FOCUS -------------------------------------------------- */

@@ -14,15 +14,26 @@ const charts = JSON.parse(readFileSync('data/charts.json', 'utf8'));
 const geo = JSON.parse(readFileSync('data/map.geo.json', 'utf8'));
 const HTML = readFileSync('index.html', 'utf8');
 
-// Charts: death series non-decreasing, last label has year >= 2025
+// Death chart: interval bars + cumulative totals overlay. The invariants
+// that matter: intervals are non-negative, the cumulative totals never
+// decrease (an official count cannot drop), intervals sum to the final
+// total, and the last label is current.
 const death = charts.figures.find((f) => f.id === 'chart-death');
 if (!death) fail('chart-death missing');
-else {
+else if (!Array.isArray(death.totals) || death.totals.length !== death.series.length) {
+  fail('death chart missing totals overlay aligned with series');
+} else {
   const s = death.series;
-  for (let i = 1; i < s.length; i++) if (s[i] < s[i - 1]) fail('death series decreasing');
+  const t = death.totals;
+  if (s.some((v) => v < 0)) fail('death interval negative');
+  for (let i = 1; i < t.length; i++) if (t[i] < t[i - 1]) fail('death totals decreasing');
+  const sum = s.reduce((a, b) => a + b, 0);
+  if (sum !== t[t.length - 1]) {
+    fail(`death intervals sum ${sum} != final total ${t[t.length - 1]}`);
+  }
   const lastLabel = death.labels[death.labels.length - 1] || '';
   if (!/(202[5-9]|20[3-9]\d)/.test(lastLabel)) fail(`death last label stale: ${lastLabel}`);
-  else ok(`death series OK (${s.join('→')})`);
+  else ok(`death series OK (intervals ${s.join('→')}, totals ${t.join('→')})`);
 }
 
 // Tourism: 2024-25 < 2019-20 (conflict drop)
