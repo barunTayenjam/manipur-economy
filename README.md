@@ -171,6 +171,12 @@ The conflict is ongoing. To refresh figures:
    date on their URLs in `index.html` — GitHub Pages caches assets for 10
    minutes, and a changed URL forces every browser to fetch the new file
    immediately.
+7. If `data/charts.json` or `data/map.geo.json` changed, bump the version
+   stamp in the fetch URL inside `assets/js/charts.js` /
+   `assets/js/map.js` (`CHARTS_DATA_URL` / `MAP_DATA_URL`). These files are
+   fetched with `cache: 'force-cache'`, which serves stale copies
+   indefinitely — only a changed URL guarantees returning visitors get the
+   new data.
 
 ## 📄 License
 
