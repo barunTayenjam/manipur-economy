@@ -2,11 +2,11 @@
   "figures": [
     {
       "id": "chart-death",
-      "type": "line",
+      "type": "bar",
       "labels": ["May 2023", "Oct 2023", "Nov 2024", "Sep 2026", "Oct 2026"],
       "series": [60, 141, 258, 306, 306],
       "yMax": 340,
-      "xUnit": "month",
+      "colors": ["ink-2", "ink-2", "ink-2", "crimson", "crimson"],
       "tooltip": "killed",
       "unit": "deaths"
     },
