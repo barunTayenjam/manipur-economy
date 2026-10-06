@@ -1928,6 +1928,12 @@ section:first-of-type {
   font-size: 0.8125rem;
   color: var(--ink-4);
   line-height: 1.75;
+  max-width: 78ch;
+}
+.ft-note + .ft-note {
+  margin-top: 0.6rem;
+  padding-top: 0;
+  border-top: 0;
 }
 
 /* --- FOCUS -------------------------------------------------- */
