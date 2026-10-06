@@ -1927,8 +1927,6 @@ section:first-of-type {
   transform: translateY(-1px);
 }
 .ft-note-cols {
-  columns: 2;
-  column-gap: 2.5rem;
   margin-top: 1.75rem;
   padding-top: 1.1rem;
   border-top: 1px solid var(--rule);
@@ -1941,11 +1939,6 @@ section:first-of-type {
 }
 .ft-note + .ft-note {
   margin-top: 0.6rem;
-}
-@media (max-width: 900px) {
-  .ft-note-cols {
-    columns: 1;
-  }
 }
 
 /* --- FOCUS -------------------------------------------------- */

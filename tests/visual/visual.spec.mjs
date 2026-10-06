@@ -74,6 +74,22 @@ test.describe('Visual regression', () => {
         });
       });
 
+      test('hero header (document header: title, meta, takeaway, key indicators)', async ({
+        page,
+      }) => {
+        await page.goto('./', { waitUntil: 'domcontentloaded' });
+        await expect(page.locator('html')).toHaveClass(/js-ready/, { timeout: 15_000 });
+        // .chap-hdr sits before the first section — the hero shot above
+        // never covered it, leaving title/meta/takeaway ungated.
+        await expect(page.locator('[data-count-to="28899"]')).toHaveText('28,899', {
+          timeout: 10_000,
+        });
+        await expect(page.locator('.chap-hdr')).toHaveScreenshot(`chap-hdr-${vp.name}.png`, {
+          mask: [page.locator('#progress')],
+          maxDiffPixels: 100,
+        });
+      });
+
       test('chart frames (structure masked canvas)', async ({ page }) => {
         await page.goto('./', { waitUntil: 'domcontentloaded' }); // './' keeps subpath deploys (BASE_URL=…/manipur-economy/) on-origin
         await settle(page);
