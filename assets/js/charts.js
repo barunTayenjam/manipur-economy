@@ -334,8 +334,16 @@ function ensureChartJs() {
   return loadPromise;
 }
 
+/**
+ * Data URL carries a version stamp: force-cache serves stale copies
+ * indefinitely (even past max-age), so the ONLY way a changed
+ * charts.json reaches returning visitors is a changed URL. Bump this
+ * whenever data/charts.json changes (README → Updating the data).
+ */
+const CHARTS_DATA_URL = 'data/charts.json?v=2026-10-06';
+
 async function fetchFigureData() {
-  const res = await fetch('data/charts.json', { cache: 'force-cache' });
+  const res = await fetch(CHARTS_DATA_URL, { cache: 'force-cache' });
   if (!res.ok) throw new Error(`charts.json HTTP ${res.status}`);
   return res.json();
 }

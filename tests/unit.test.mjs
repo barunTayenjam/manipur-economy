@@ -422,7 +422,12 @@ test('buildConfigs maps editorial JSON to 3 Chart.js configs', () => {
   const configs = buildConfigs(chartsData, t);
   ok(Object.keys(configs).length === 3, '3 configs');
   ok(configs['chart-death'].type === 'line', 'death is line');
-  ok(configs['chart-death'].data.datasets[0].data.length === 4, 'death 4 points');
+  ok(configs['chart-death'].data.datasets[0].data.length === 5, 'death 5 points');
+  // time-proportional axis: x = month offsets from May 2023 (Oct 2026 = 41)
+  ok(configs['chart-death'].options.scales.x.type === 'linear', 'death x is linear');
+  const deathPts = configs['chart-death'].data.datasets[0].data;
+  ok(deathPts[deathPts.length - 1].x === 41, 'death last point is Oct 2026 (offset 41)');
+  ok(deathPts[deathPts.length - 1].y === 306, 'death Oct 2026 holds at 306');
   ok(configs['chart-tourism'].type === 'bar', 'tourism is bar');
   ok(configs['chart-disruption'].options.scales.y.max === 260, 'disruption yMax from JSON');
 });
