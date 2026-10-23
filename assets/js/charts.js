@@ -428,7 +428,7 @@ function ensureChartJs() {
  * charts.json reaches returning visitors is a changed URL. Bump this
  * whenever data/charts.json changes (README → Updating the data).
  */
-const CHARTS_DATA_URL = 'data/charts.json?v=2026-10-06c';
+const CHARTS_DATA_URL = 'data/charts.json?v=2026-10-21a';
 
 async function fetchFigureData() {
   const res = await fetch(CHARTS_DATA_URL, { cache: 'force-cache' });

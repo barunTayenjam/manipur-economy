@@ -12,7 +12,7 @@
 [![No deps](https://img.shields.io/badge/dependencies-0-1a7f37)](#)
 [![WCAG AA](https://img.shields.io/badge/WCAG-AA-passed-1a7f37)](#-performance--accessibility)
 [![License](https://img.shields.io/github/license/barunTayenjam/manipur-economy?color=blue)](./LICENSE)
-[![Last verified](https://img.shields.io/badge/data%20verified-5%20Oct%202026-blue)](#-data-verification)
+[![Last verified](https://img.shields.io/badge/data%20verified-21%20Oct%202026-blue)](#-data-verification)
 
 **🔗 Live site:** https://baruntayenjam.github.io/manipur-economy/
 

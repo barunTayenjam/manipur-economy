@@ -1525,6 +1525,23 @@ section:first-of-type {
   background: var(--bg);
   padding: 1px;
 }
+.tbl-hint {
+  display: none;
+}
+@media (max-width: 640px) {
+  .ledger-wrap > .tbl-hint {
+    display: block;
+    margin: 0;
+    padding: 0.6rem 1rem;
+    border-bottom: 1px solid var(--rule);
+    font-family: var(--ff-sans);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+}
 .ledger {
   width: 100%;
   border-collapse: collapse;
