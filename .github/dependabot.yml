@@ -2,12 +2,7 @@ version: 2
 updates:
   - package-ecosystem: npm
     directory: /
-    schedule:
-      interval: weekly
-      day: monday
-      time: '09:00'
-      timezone: Asia/Kolkata
-    open-pull-requests-limit: 10
+    security-updates: true
     labels:
       - dependencies
       - npm
@@ -23,11 +18,7 @@ updates:
           - patch
   - package-ecosystem: github-actions
     directory: /
-    schedule:
-      interval: weekly
-      day: monday
-      time: '09:00'
-      timezone: Asia/Kolkata
+    security-updates: true
     labels:
       - dependencies
       - github-actions
