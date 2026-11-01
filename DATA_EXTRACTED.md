@@ -702,3 +702,103 @@ Key facts:
   death-chart note/footer, losers "New Front" card, blockade chapter suspension note, timeline
   (+6 rows), officials (3 rows), outlook signals, FAQ (5 answers) + FAQPage JSON-LD mirrors,
   colophon (+9 sources, methodology note), sitemap lastmod.
+
+---
+
+## Verification & Update Run — 2026-11-01 (web, primary outlets)
+
+> Window covered: Oct 22 → Nov 1, 2026 (last commit 9838180 covered through Oct 21).
+> Method: Google News RSS (when:10d) discovery + direct fetches (e-pao headline pages
+> ge.asp, NENow, ThePrint, NIE, Assam Tribune, Assam Tribune via search). Camofox browser
+> down; WebSearch unavailable; used WebFetch + webReader.
+
+### UPDATED DATA (supersedes page values as of Nov 1, 2026)
+
+- **Death toll: 337 running (was 331).** 306 official (Aug 31) + 31 press-reported
+  (Sep 13 – Nov 1). The +6 over Oct 21: a fourth Sunurok victim — Sorokhaibam Ibomcha
+  (58), wounded fleeing the Oct 19 firewood-collector attack, died Oct 31 at RIMS after
+  the family could not pay a private hospital's surgery deposit; two abducted Kuki-Zo
+  youths — Paoginlal Hangshing (20) and Tinginlun/Thangginlun Chongloi (21) of Taphou
+  Kuki, Kangpokpi, taken Oct 28 evening between Hengbung and Taphou Kuki — found dead
+  Nov 1 ~7:30 am along Senapati–Phaibung road after a 4-day joint search (Police, AR,
+  COBRA, CRPF, RAF); three Kuki ultras killed Oct 31/Nov 1 by Naga village guards at
+  Tazeikaiphun (Noney) — third consecutive day of attacks; 3 AK rifles recovered.
+  Composition note: 28 civilians + 3 militants in the +31; the official 306 methodology
+  counts all conflict deaths, so militants stay in the tally.
+- charts.json: death chart 5th bar label "Oct 2026" → "Nov 2026" (labels parse as
+  "Mon YYYY" for x-spacing — format preserved), series 25 → 31, totals 331 → 337,
+  yMax 340 → 350. Cache-busters bumped (css/js v=2026-11-01a).
+- Conflict period: May 3, 2023 – November 1, 2026 (hero stamp, fn-1, meta
+  article:modified_time, both JSON-LD dateModified, sitemap lastmod).
+
+### NEW EVENTS (added to timeline, 5 rows)
+
+- **Oct 29, 2026 — Ex-Gratia for 32 Kuki-Zo Killed.** Manipur govt meets Kuki-Zo Council
+  cabinet in Churachandpur; ex-gratia cleared for 32 Kuki-Zo civilians killed in violence
+  attributed to Naga armed groups (NSCN-IM, ZUF-Kamson); deceased to be transported to
+  villages for last rites within seven days. ThePrint (Oct 31):
+  `theprint.in/india/manipur-seething-as-kukis-protest-duos-abduction-govt-offers-ex-gratia-for-32-killed-in-violence/`;
+  Outlook India (Oct 30).
+- **Oct 30, 2026 — CM takes revenue-loss case to Sitharaman.** CM Khemchand Singh meets
+  Union FM Nirmala Sitharaman on Manipur's financial health — centered on the ₹1,200 cr+
+  conflict-attributed GST loss (revealed Sep 16) — seeking enhanced central assistance.
+  e-pao (Sangai Express), Oct 30: `e-pao.net/ge.asp?heading=1&src=301026`; The Hans
+  India (Oct 30). First documented escalation of the fiscal-loss case to the Centre.
+- **Oct 30–31, 2026 — Over 1 Lakh Rally: End Proxy War, Abrogate SoO.** COCOMI + JTC +
+  FNCC + NPUI + NHACM + MNYO "Mass Uprising Against Govt of India's Proxy War" rally,
+  Imphal + hill district HQs; endorsed by UNC; demands: SoO not extended (rally says it
+  expired Sep 24, 2026), IDP resettlement, AR off border duty, NRC update 1951, remove
+  Dy-CM Nemcha Kipgen or govt resigns. e-pao (Nov 1): `e-pao.net/ge.asp?heading=1&src=011126`;
+  ET (Oct 31): "Thousands take part in rally demanding lasting peace, justice"; NIE
+  (Oct 31): "Meitei groups hold rally, seek CM's resignation, abrogation of SoO".
+  Largest joint hill–valley mobilization of the conflict.
+- **Oct 31, 2026 — Sunurok Massacre Toll Rises to 4.** Ibomcha dies ~10 am at RIMS;
+  JAC declines to claim any of the four bodies; villagers (who had 35th AR post
+  ~250 m away, refused help) demand AR withdrawal from Nongshum. e-pao (Nov 1):
+  `e-pao.net/ge.asp?heading=8&src=011126`.
+- **Nov 1, 2026 — Two Missing Kuki-Zo Youths Found Dead.** Bodies recovered along
+  Senapati–Phaibung road (13–14 km east of NH-2) after 4-day search; CoTU shutdown
+  (48-hr from Oct 29, extended 24 hr) ends; Chief Secretary separately reviews rehab at
+  three Thoubal IDP camps. NENow (Nov 1): `nenow.in/north-east-news/manipur/manipur-bodies-of-two-missing-kuki-zo-youths-recovered-along-senapati-phaibung-road.html`;
+  NENow (Nov 1, 3:58 pm): "Protests across Naga areas demand end to SoO pact".
+
+### CORROBORATED, NOT ADDED (context only)
+
+- Reuters (Nov 1): "Five killed in fresh ethnic violence" = 3 Tazeikaiphun ultras +
+  2 recovered youths. NIE/Deccan Herald/Assam Tribune (Nov 1): Noney gunfight, all
+  victims Kuki. Daily Pioneer (Nov 1): "Five Kuki men killed in two incidents".
+- Sound protest (Oct 22–23): thousands bang utensils/drums/horns over failure to
+  restore peace — Telegraph India (Oct 23), NDTV (Oct 24), e-pao gallery
+  "Noise protest : Manipur Violence". Matches the Reddit "women protest" signals in
+  research-manipur-women-protest-1000-days raw run; the "1000 days" framing in Reddit
+  titles did NOT verify against any dated report — sound-protest framing used instead.
+- Congress demanded CM resignation, assembly dissolution, fresh polls (The Hindu/NIE,
+  Oct 25) — political, not economic; left off timeline.
+- SoO fate: e-pao editorial "Politics of the SoO pact" (Oct 26); ET (Oct 31):
+  "What awaits the fate of suspension of operations agreement in Manipur?" — Centre's
+  position unclear; page does not assert expiry as fact beyond rally's claim.
+- "Manipur govt seeks relaxed permit norms for tourists amid security concerns"
+  (Assam Tribune, Oct 31 — Google News summary only; URL not pinned) — left off page;
+  candidate for next run.
+- Biren Singh "they plotted... made me resign" (TOI/Telegraph, Oct 30) — political;
+  left off.
+
+### REJECTED (insufficient sourcing)
+
+- Google News new-format article IDs (CBMi…) — not offline-decodable; batchexecute
+  decode returned null. Fetched outlet pages directly instead.
+- Any 2026 death-disruption aggregate update — Home Dept tally still ends Sep 8 (225
+  days, 2026); CoTU Oct 29–Nov 1 shutdown + Oct 19–20 valley strike + Oct 15 CorCom
+  shutdown noted qualitatively in fn-4-style prose only.
+
+### EDIT STATUS
+
+- index.html: hero stamp → November 1, 2026; key indicators 337 / +31; fn-1 period →
+  Nov 1; fn-2 extended to 31/337; chart aria-label + chart-note (+31/337 with full
+  post-cutoff list); timeline +5 rows (Oct 29, Oct 30, Oct 30–31, Oct 31, Nov 1);
+  FAQ-1 + FAQ-2 rewritten to Nov 1 (visible + FAQPage JSON-LD mirrors); meta
+  article:modified_time + both dateModified + sitemap lastmod → 2026-11-01; cache-busters
+  v=2026-11-01a (css + js).
+- data/charts.json: death chart updated as above.
+- Checks: npm run check:content PASS; npm run check:seo PASS; JSON-LD blocks parse
+  valid; charts.json parses valid.
