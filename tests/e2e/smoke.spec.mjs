@@ -99,7 +99,7 @@ test.describe('smoke', () => {
     await page.goto('./');
     await expect(page.locator('html')).toHaveClass(/js-ready/);
     await page.waitForTimeout(2500);
-    await expect(page.locator('[data-count-to="306"]')).toHaveText('306');
+    await expect(page.locator('[data-count-to="345"]')).toHaveText('345');
     await expect(page.locator('[data-count-to="28899"]')).toHaveText('28,899');
   });
 
