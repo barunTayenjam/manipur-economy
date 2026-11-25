@@ -22,6 +22,7 @@
 | 012 | Content Freshness + Fact-Check Automation | Content | MEDIUM | — | 📋 |
 | 013 | Rollback/Incident Runbook | Operations | LOW | — | 📋 |
 | 014 | Privacy-Friendly Analytics (Optional) | Analytics | LOW | — | 📋 |
+| 015 | SEO / GEO / AEO continuation (see [015](./015-seo-geo-aeo.md)) | SEO/Quality | MEDIUM | — | ✅ |
 
 ## Dependency Graph
 

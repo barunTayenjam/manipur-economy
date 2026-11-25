@@ -1692,6 +1692,10 @@ section:first-of-type {
 .faq-a p strong {
   color: var(--ink);
 }
+/* Two-paragraph answers: the lead answer sits apart from the detail. */
+.faq-a p + p {
+  margin-top: 0.7rem;
+}
 
 /* --- METHODOLOGY NOTE --------------------------------------- */
 .meth-note {

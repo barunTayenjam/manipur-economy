@@ -12,3 +12,6 @@ node_modules/
 test-results/
 playwright-report/
 .zcodeignore
+
+# Lighthouse CI (local runs)
+.lighthouseci/

@@ -12,7 +12,7 @@
 [![No deps](https://img.shields.io/badge/dependencies-0-1a7f37)](#)
 [![WCAG AA](https://img.shields.io/badge/WCAG-AA-passed-1a7f37)](#-performance--accessibility)
 [![License](https://img.shields.io/github/license/barunTayenjam/manipur-economy?color=blue)](./LICENSE)
-[![Last verified](https://img.shields.io/badge/data%20verified-21%20Oct%202026-blue)](#-data-verification)
+[![Last verified](https://img.shields.io/badge/data%20verified-25%20Nov%202026-blue)](#-data-verification)
 
 **🔗 Live site:** https://baruntayenjam.github.io/manipur-economy/
 
@@ -30,12 +30,12 @@ framework, no API keys. Just serve the directory.
   count-up readings and numbered footnote markers linking to sources.
 - **Booktabs statement tables** throughout — every key figure is a document
   row with a source line, never a dashboard widget.
-- **Interactive Leaflet map** with 9 OSM-verified locations, real NH-2 / NH-37
+- **Interactive Leaflet map** with 10 OSM-verified locations, real NH-2 / NH-37
   highway routes, categorized markers (capital · hotspots · border · nodes),
   a layer toggle, scale bar, and rich popups.
-- **Horizontal chronology** — 38 dated events, May 2023 → October 2026.
-- **Final ledger** — an 11-row consolidated balance sheet of losers and gainers.
-- **12-question FAQ** — source-linked answers, mirrored in FAQPage JSON-LD.
+- **Dated chronology** — 72 dated events in Statement 8.A, May 2023 → November 2026.
+- **Final ledger** — a 12-row consolidated balance sheet of losers and gainers.
+- **11-question FAQ** — source-linked answers, mirrored in FAQPage JSON-LD.
 - **Self-hosted fonts** (woff2, latin-subset, two preloads) — no font CDN.
 - **WCAG AA compliant** — every text surface passes 4.5:1 contrast.
 - **Fully responsive** — 320 px → 1920 px with zero horizontal overflow;
@@ -47,7 +47,7 @@ framework, no API keys. Just serve the directory.
 |---|---|
 | Markup | Semantic HTML5 (`index.html` — content + meta + JSON-LD only) |
 | Styles | `assets/css/site.css` — hand-written CSS, custom properties, Grid/Flexbox. **No preprocessor, no Tailwind.** |
-| Logic | `assets/js/site.js` — vanilla ES6 (IIFE). **No framework, no bundler, no dependencies** beyond the map library. |
+| Logic | `assets/js/main.js` — vanilla ES modules (`main.js` → `utils.js` / `map.js` / `charts.js`). **No framework, no bundler, no dependencies** beyond the map library. |
 | Maps | [Leaflet 1.9.4](https://leafletjs.com/) (CDN, lazy-loaded) + [OpenStreetMap](https://www.openstreetmap.org/copyright) tiles, grayscale-filtered |
 | Fonts | [Spectral](https://fonts.google.com/specimen/Spectral) (document serif, display + body) · [Archivo](https://fonts.google.com/specimen/Archivo) (labels + tables, tnum) · [Spline Sans Mono](https://fonts.google.com/specimen/Spline+Sans+Mono) (figures, dates, source refs) |
 | Icons | Inline SVG (custom paths, crimson strokes) |
@@ -105,6 +105,30 @@ labeled as a structural estimate**. Nothing is fabricated.
 
 The full verified-source list (with deep links) is in the page colophon.
 
+## 🔎 SEO, GEO & AEO
+
+The report is built to be **read, quoted and cited** by search engines and AI
+answer engines as well as people:
+
+- **Answer-first copy** — the hero carries an `In short:` summary (marked
+  `speakable`), every chapter opens with a plain-language takeaway, and the
+  11-question FAQ leads each answer with the number itself.
+- **Structured data** — `Article`, `FAQPage`, `Dataset`, `WebSite`, `WebPage`,
+  `Event` and a named `Person` author in JSON-LD, validated by
+  `npm run check:seo` (also enforced in CI).
+- **`llms.txt`** — a dated, plain-text brief with the key figures, citation
+  guidance and deep links, advertised via `<link rel="alternate">` and `robots.txt`.
+- **`robots.txt`** — GPTBot, ClaudeBot, PerplexityBot, Google-Extended,
+  Applebot-Extended, Amazonbot, CCBot and others are explicitly allowed; cite
+  figures with their as-of date and the original source.
+- **`sitemap.xml`** — canonical URL with `lastmod`, referenced from `robots.txt`.
+
+Deep links into the report: [key indicators](https://baruntayenjam.github.io/manipur-economy/#stmt-key)
+· [economic damage](https://baruntayenjam.github.io/manipur-economy/#economy)
+· [523-day blockade ledger](https://baruntayenjam.github.io/manipur-economy/#blockade)
+· [timeline](https://baruntayenjam.github.io/manipur-economy/#timeline)
+· [FAQ](https://baruntayenjam.github.io/manipur-economy/#faq)
+
 ## 📁 Project structure
 
 ```
@@ -112,8 +136,13 @@ manipur-economy/
 ├── index.html            ← content, meta, JSON-LD
 ├── assets/
 │   ├── css/site.css      ← the entire design system
-│   ├── js/site.js        ← map, reveals, count-up, scroll-spy
+│   ├── js/main.js        ← entry; map, reveals, count-up, scroll-spy
 │   └── fonts/            ← self-hosted woff2 (Spectral, Archivo, Spline Sans Mono)
+├── data/                 ← charts.json + map.geo.json (machine-readable)
+├── llms.txt              ← plain-text brief for AI answer engines
+├── robots.txt            ← crawler policy (AI/answer bots explicitly allowed)
+├── sitemap.xml           ← canonical URL + lastmod
+├── scripts/check-seo.mjs ← structured-data + SEO guard (npm run check:seo)
 ├── PRODUCT.md            ← durable product record (audience, purpose, constraints)
 ├── DESIGN.md             ← design-system spec (tokens, rules, components)
 ├── README.md             ← this file

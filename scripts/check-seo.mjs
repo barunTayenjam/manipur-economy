@@ -122,7 +122,18 @@ try {
 }
 try {
   const rb2 = readFileSync('robots.txt', 'utf8');
-  for (const bot of ['GPTBot', 'ClaudeBot', 'PerplexityBot']) {
+  for (const bot of [
+    'GPTBot',
+    'ClaudeBot',
+    'PerplexityBot',
+    'Google-Extended',
+    'Applebot',
+    'Amazonbot',
+    'meta-externalagent',
+    'cohere-ai',
+    'YouBot',
+    'Diffbot',
+  ]) {
     if (!rb2.includes(`User-agent: ${bot}`)) fail(`robots.txt missing ${bot} allowance`);
   }
   ok('robots.txt AI crawlers addressed');
@@ -137,6 +148,95 @@ try {
   else ok('manifest OK');
 } catch (e) {
   fail(`manifest invalid: ${e.message}`);
+}
+
+// 7. Head guardrails — canonical, twitter card, speakable, llms.txt alternate
+const canonLink = HTML.match(/<link rel="canonical" href="([^"]+)"/);
+if (!canonLink) fail('missing <link rel="canonical">');
+else if (canonLink[1] !== CANON) fail(`canonical "${canonLink[1]}" expected "${CANON}"`);
+else ok('canonical link present');
+
+const twCard = HTML.match(/name="twitter:card" content="([^"]+)"/);
+if (!twCard) fail('missing twitter:card');
+else if (twCard[1] !== 'summary_large_image') fail(`twitter:card "${twCard[1]}"`);
+else ok('twitter:card OK');
+
+if (!HTML.includes('SpeakableSpecification')) fail('JSON-LD missing SpeakableSpecification');
+else ok('speakable present');
+
+if (!/rel="alternate"[\s\S]{0,300}href="llms\.txt"/.test(HTML)) {
+  fail('missing <link rel="alternate" href="llms.txt">');
+} else ok('llms.txt alternate link present');
+
+// 8. Title: short, keyword-bearing
+const title = (HTML.match(/<title>([^<]+)<\/title>/) || [])[1];
+if (!title) fail('missing <title>');
+else if (title.length > 60) fail(`title length ${title.length} > 60`);
+else if (!/Manipur/.test(title)) fail('title missing "Manipur"');
+else ok(`title OK (${title.length} chars)`);
+
+// 9. Exactly one h1, no skipped heading levels (crawl + answer-engine structure)
+const h1Count = (HTML.match(/<h1[\s>]/g) || []).length;
+if (h1Count !== 1) fail(`expected exactly 1 <h1>, found ${h1Count}`);
+else ok('single h1');
+const headingLevels = [...HTML.matchAll(/<h([1-6])[\s>]/g)].map((m) => Number(m[1]));
+let prevLevel = 0;
+let skipAt = null;
+for (const lvl of headingLevels) {
+  if (prevLevel && lvl > prevLevel + 1) {
+    skipAt = `h${prevLevel} -> h${lvl}`;
+    break;
+  }
+  prevLevel = lvl;
+}
+if (skipAt) fail(`heading level skipped: ${skipAt}`);
+else ok(`heading hierarchy OK (${headingLevels.length} headings)`);
+
+// 10. Modified dates must agree across meta, JSON-LD and the sitemap
+const ldObjs = ldBlocks.flatMap((b) => {
+  try {
+    const j = JSON.parse(b);
+    return Array.isArray(j) ? j : [j];
+  } catch {
+    return [];
+  }
+});
+const flat = ldObjs.flatMap((o) => (Array.isArray(o['@graph']) ? o['@graph'] : [o]));
+const article = flat.find((o) => o['@type'] === 'Article');
+const metaMod = (HTML.match(/property="article:modified_time" content="([^"]+)"/) || [])[1];
+let sitemapMod = null;
+try {
+  sitemapMod = (readFileSync('sitemap.xml', 'utf8').match(/<lastmod>([^<]+)<\/lastmod>/) || [])[1];
+} catch {
+  /* reported by section 4 */
+}
+if (!metaMod) fail('missing article:modified_time');
+else if (!article || !article.dateModified) fail('JSON-LD Article missing dateModified');
+else if (article.dateModified !== metaMod)
+  fail(`dateModified ${article.dateModified} != article:modified_time ${metaMod}`);
+else if (sitemapMod !== metaMod) fail(`sitemap lastmod ${sitemapMod} != ${metaMod}`);
+else ok(`modified dates consistent (${metaMod})`);
+
+// 11. Dataset must stay downloadable, author must stay resolvable
+const dataset = flat.find((o) => o['@type'] === 'Dataset');
+const downloads = (dataset && dataset.distribution) || [];
+if (!downloads.length || downloads.some((d) => !d.contentUrl)) {
+  fail('Dataset missing distribution contentUrl downloads');
+} else ok(`Dataset downloads present (${downloads.length})`);
+const author = flat.find((o) => o['@id'] === `${CANON}#author`);
+if (!author || !Array.isArray(author.sameAs) || !author.sameAs.length) {
+  fail('author Person missing sameAs (entity resolution)');
+} else ok('author sameAs present');
+
+// 12. Custom 404 — GitHub Pages serves it for any missing path
+try {
+  const nf = readFileSync('404.html', 'utf8');
+  if (!/name="robots" content="[^"]*noindex/.test(nf)) fail('404.html missing noindex');
+  else if (!nf.includes('<base href=')) fail('404.html missing <base> (relative links break)');
+  else if (!nf.includes('#faq')) fail('404.html missing section links');
+  else ok('404.html present (noindex, base, section links)');
+} catch (e) {
+  fail(`404.html unreadable: ${e.message}`);
 }
 
 if (!process.exitCode) console.log('\nSEO check passed');
