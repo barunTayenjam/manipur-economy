@@ -53,7 +53,12 @@ function initReveal() {
         });
       });
     },
-    { threshold: 0.06, rootMargin: '0px 0px -36px 0px' }
+    // threshold: 0 — a percentage-of-self threshold (0.06) can never fire for
+    // elements taller than the viewport: the timeline ledger is ~19.5k px tall
+    // on phones, so 6% of it (~1.2k px) exceeds the viewport and the observer
+    // stayed silent, leaving the section at opacity 0 on mobile. Any
+    // intersection (plus the -36px bottom rootMargin) is the intended trigger.
+    { threshold: 0, rootMargin: '0px 0px -36px 0px' }
   );
   revealEls.forEach((el) => revealObs.observe(el));
 

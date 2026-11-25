@@ -70,8 +70,22 @@ test.describe('smoke', () => {
   });
 
   test('serves modular assets; legacy site.js is gone', async ({ request }) => {
-    for (const f of ['main.js', 'utils.js', 'charts.js', 'map.js']) {
+    // Source modules and the minified bundle the page actually loads.
+    for (const f of [
+      'main.js',
+      'utils.js',
+      'charts.js',
+      'map.js',
+      'main.min.js',
+      'utils.min.js',
+      'charts.min.js',
+      'map.min.js',
+    ]) {
       const r = await request.get(`./assets/js/${f}`);
+      expect(r.status(), f).toBe(200);
+    }
+    for (const f of ['site.css', 'site.min.css']) {
+      const r = await request.get(`./assets/css/${f}`);
       expect(r.status(), f).toBe(200);
     }
     const legacy = await request.get('./assets/js/site.js');
@@ -93,6 +107,20 @@ test.describe('smoke', () => {
     await page.locator('#timeline').scrollIntoViewIfNeeded();
     await page.waitForTimeout(700);
     await expect(page.locator('.toc-list a[href="#timeline"]')).toHaveClass(/active/);
+  });
+
+  // Regression (found via CI visual flake, live on mobile): the timeline
+  // ledger is ~19.5k px tall at phone width, so a 6%-of-self threshold could
+  // never be met inside a 667px viewport — the observer never fired and the
+  // whole chronology stayed at opacity 0 for mobile readers.
+  test('very tall sections still reveal on mobile (timeline ledger)', async ({ page }) => {
+    await page.setViewportSize({ width: 375, height: 667 });
+    await page.goto('./');
+    await expect(page.locator('html')).toHaveClass(/js-ready/);
+    await page.locator('#timeline .ledger-wrap').scrollIntoViewIfNeeded();
+    await page.waitForTimeout(700);
+    await expect(page.locator('#timeline .ledger-wrap')).toHaveClass(/v/);
+    await expect(page.locator('#timeline .ledger-wrap')).toBeVisible();
   });
 
   test('human-toll figures render at full value (no count-up)', async ({ page }) => {
