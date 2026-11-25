@@ -1,0 +1,51 @@
+# The Price of Conflict: Manipur's War Economy
+
+> A source-verified record of what Manipur's ethnic conflict has cost since 3 May 2023, and who has earned from it. Edited by Barun Tayenjam. Updated 25 November 2026. Every figure below is dated and linked to its source on the page.
+
+Manipur's conflict began on 3 May 2023 between Meitei and Kuki-Zo communities. Since early 2026, Kuki-Zo and Naga groups have also fought each other. The state has no settlement in sight as of November 2026.
+
+## Key figures (with as-of dates)
+
+- Reported deaths: 346 in total. 306 official to 31 August 2026 (Home Minister Govindas Konthoujam to the Manipur Assembly, 3 September 2026, reported by The Hindu), plus 40 reported in the press from 13 September to 20 November 2026. 49 people were still missing at 31 August 2026.
+- Displacement: 28,899 people still displaced at 3 September 2026; 31,823 had returned home. Peak displacement was about 60,000 in 2023. (State Home Department, reported by Northeast Now, 17 September 2026.)
+- Internally displaced people who died in relief camps: 731 since May 2023 (Right to Information reply, June 2026, reported by The Times of India).
+- Shutdowns: 523 days of bandhs, blockades and shutdowns from 3 May 2023 to 8 September 2026, out of 1,225 days (43%). Per year: 107 in 2023, 113 in 2024, 78 in 2025, 225 in 2026. Plus 385 days of internet suspension and 261 days of curfew. (State Home Department, reported by The Assam Tribune, 18 September 2026.)
+- GST revenue lost: over ₹1,200 crore for 2023–26, attributed to the conflict by Chief Minister Yumnam Khemchand Singh (16 September 2026, India Today NE and The Telegraph). Bandhs and blockades cost an estimated ₹25–30 crore a day in tax revenue (Chief Minister, 2026).
+- Wider economic cost: an estimated ₹5,000–8,000 crore in forgone output. This is the report's own estimate from sector figures, not an official total.
+- GSDP: ₹49,937 crore in 2024–25 at current prices, up 9.6% in nominal terms (PRS India, Manipur Budget Analysis 2024-25). The 2026–27 budget projects ₹68,823 crore (PRS India, Manipur Budget Analysis 2026-27).
+- Tourism: arrivals fell from 1,79,436 in 2019–20 to 17,078 in 2024–25 up to October only. The Manipur Tourism Department's visits PDF gives 1,75,404 for 2019–20 on an earlier series. (Manipur Tourism Department Annual Report 2024-25.)
+- Agriculture: ₹226.50 crore in estimated crop income loss and 9,719 hectares at risk in the first phase (LOUSAL farmers' survey, 2023). Later official figures put 11,967.4 hectares affected and 27,269 tonnes of foodgrain lost (2025).
+- Drug trade: UNODC estimates about ₹2,500 crore a year flows through Manipur. Police seized about ₹1,600 crore of contraband in one year, July 2022 to July 2023 (ORF). These are estimates, not audited figures.
+- UNC blockade: the United Naga Council's highway blockade ran from 17 May 2026, was made indefinite on 9 September 2026, and was suspended from 6 pm on 26 September 2026 after talks in Guwahati between the Centre, the Manipur government and the UNC. It remains suspended as of 24 November 2026.
+- Prices during the 2026 blockade: essential commodities rose about 140% (The Economic Times, August 2026). Reported peak prices: petrol ₹250 a litre, LPG ₹5,000 a cylinder, rice ₹80 a kilo in Kangpokpi.
+
+## How to cite this page
+
+Cite the figure, its as-of date, and the original source named on the page (for example, PRS India for GSDP, the State Home Department for shutdown days). Do not cite the ₹5,000–8,000 crore total as an official figure; it is this report's estimate.
+
+## Sections of the page
+
+- [Key indicators and summary](https://baruntayenjam.github.io/manipur-economy/#stmt-key)
+- [1. Three phases of the conflict](https://baruntayenjam.github.io/manipur-economy/#phases)
+- [2. Manipur before and during the conflict, with map](https://baruntayenjam.github.io/manipur-economy/#baseline)
+- [3. Who loses: farmers, workers, traders and tourism](https://baruntayenjam.github.io/manipur-economy/#losers)
+- [4. Who gains: drug, arms and security networks](https://baruntayenjam.github.io/manipur-economy/#gainers)
+- [5. How drug money keeps the conflict going](https://baruntayenjam.github.io/manipur-economy/#shadow)
+- [6. Estimated economic damage, 2023–2026](https://baruntayenjam.github.io/manipur-economy/#economy)
+- [7. The bandh and blockade ledger: 523 days](https://baruntayenjam.github.io/manipur-economy/#blockade)
+- [8. Timeline, May 2023 to November 2026](https://baruntayenjam.github.io/manipur-economy/#timeline)
+- [9. The economic ledger: who loses, who gains](https://baruntayenjam.github.io/manipur-economy/#ledger)
+- [10. Officials and command responsibility](https://baruntayenjam.github.io/manipur-economy/#officials)
+- [11. Outlook: what happens next](https://baruntayenjam.github.io/manipur-economy/#outlook)
+- [12. Quick answers (FAQ)](https://baruntayenjam.github.io/manipur-economy/#faq)
+
+## Data files
+
+- Chart data (deaths, tourist arrivals, disruption days): https://baruntayenjam.github.io/manipur-economy/data/charts.json
+- Map data (10 places, NH-2 and NH-37 routes): https://baruntayenjam.github.io/manipur-economy/data/map.geo.json
+
+## Main sources
+
+PRS India (Manipur Budget Analysis 2024-25 and 2026-27), NITI Aayog (Macro and Fiscal Landscape of Manipur), Economic Survey of Manipur 2024-25, Manipur State Home Department, Manipur Tourism Department, The Hindu, The Assam Tribune, India Today NE, Northeast Now, The Economic Times, ORF and UNODC. Full source list with dates is in the colophon at the end of the page.
+
+Licence: Apache License 2.0. Figures remain the property of their original sources; cite them when reusing the numbers.

@@ -94,6 +94,42 @@ try {
   fail(`robots.txt unreadable: ${e.message}`);
 }
 
+// 5b. AEO/GEO: answer-first summary + llms.txt + AI crawler access
+if (!/class="in-short[\s"]/.test(HTML)) fail('missing .in-short answer-first summary block');
+else ok('.in-short summary present');
+const desc = HTML.match(/name="description"[\s\S]*?content="([^"]+)"/);
+if (!desc) fail('missing meta description');
+else if (desc[1].length < 70 || desc[1].length > 320)
+  fail(`meta description length ${desc[1].length}`);
+else ok(`meta description length ${desc[1].length}`);
+if (!/name="author" content="[^"]*[A-Z][a-z]+ [A-Z][a-z]+/.test(HTML))
+  fail('meta author is not a named person');
+else ok('named author present');
+try {
+  const llms = readFileSync('llms.txt', 'utf8');
+  for (const needle of [
+    '346',
+    '28,899',
+    '523',
+    '₹1,200',
+    'baruntayenjam.github.io/manipur-economy/#faq',
+  ]) {
+    if (!llms.includes(needle)) fail(`llms.txt missing "${needle}"`);
+  }
+  ok('llms.txt readable');
+} catch (e) {
+  fail(`llms.txt unreadable: ${e.message}`);
+}
+try {
+  const rb2 = readFileSync('robots.txt', 'utf8');
+  for (const bot of ['GPTBot', 'ClaudeBot', 'PerplexityBot']) {
+    if (!rb2.includes(`User-agent: ${bot}`)) fail(`robots.txt missing ${bot} allowance`);
+  }
+  ok('robots.txt AI crawlers addressed');
+} catch (e) {
+  fail(`robots.txt unreadable: ${e.message}`);
+}
+
 // 6. manifest parses
 try {
   const mf = JSON.parse(readFileSync('site.webmanifest', 'utf8'));

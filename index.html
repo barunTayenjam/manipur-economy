@@ -21,9 +21,14 @@
     <!-- Primary meta -->
     <meta
       name="description"
-      content="Interactive data-journalism infographic on the economic impact of the 2023–26 Manipur ethnic conflict. Every figure primary-source verified — PRS India, NITI Aayog, Economic Survey of Manipur, HRW, The Hindu, Times of India."
+      content="How much has Manipur's conflict cost since May 2023? 346 reported deaths, 28,899 people still displaced (Sep 2026), over ₹1,200 crore in lost GST and 523 shutdown days, each figure dated and sourced from PRS India, NITI Aayog and state government statements."
     />
-    <meta name="author" content="Manipur Economy Report" />
+    <meta
+      name="keywords"
+      content="Manipur conflict, Manipur economy, Manipur deaths 2026, Manipur displacement, IDP Manipur, Manipur GSDP, Manipur GST loss, Manipur blockade, UNC blockade, NH-2 blockade, Manipur drug trade, Meitei Kuki-Zo conflict"
+    />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+    <meta name="author" content="Barun Tayenjam" />
     <meta name="theme-color" content="#FAFAF8" />
     <meta name="color-scheme" content="light" />
     <link rel="canonical" href="https://baruntayenjam.github.io/manipur-economy/" />
@@ -47,6 +52,7 @@
 
     <!-- Open Graph -->
     <meta property="og:type" content="article" />
+    <meta property="og:locale" content="en_IN" />
     <meta property="og:site_name" content="Manipur's War Economy" />
     <meta
       property="og:title"
@@ -54,7 +60,7 @@
     />
     <meta
       property="og:description"
-      content="Three years of ethnic violence fractured Manipur's economy across three communities. An interactive, data-verified visual report — May 2023 to October 2026."
+      content="346 reported deaths, 28,899 people still displaced, over ₹1,200 crore in lost GST. A sourced record of what Manipur's conflict has cost since May 2023, updated to November 2026."
     />
     <meta property="og:url" content="https://baruntayenjam.github.io/manipur-economy/" />
     <meta
@@ -70,7 +76,7 @@
     <meta name="twitter:title" content="The Price of Conflict — Manipur's War Economy" />
     <meta
       name="twitter:description"
-      content="An interactive, data-verified visual report on the economic impact of the 2023–26 Manipur conflict."
+      content="What has Manipur's conflict cost since May 2023? Deaths, displacement, GST and GSDP figures, each dated and sourced. Updated November 2026."
     />
     <meta
       name="twitter:image"
@@ -80,7 +86,7 @@
     <!-- Article meta -->
     <meta property="article:published_time" content="2026-06-18" />
     <meta property="article:modified_time" content="2026-11-25" />
-    <meta property="article:author" content="Manipur Economy Report" />
+    <meta property="article:author" content="Barun Tayenjam" />
     <meta property="article:section" content="Economy" />
     <meta property="article:tag" content="Manipur" />
     <meta property="article:tag" content="ethnic conflict" />
@@ -94,6 +100,12 @@
     <meta name="geo.position" content="24.8170;93.9368" />
     <meta name="ICBM" content="24.8170, 93.9368" />
     <link rel="sitemap" type="application/xml" href="sitemap.xml" />
+    <link
+      rel="alternate"
+      type="text/plain"
+      title="Plain-text summary for language models"
+      href="llms.txt"
+    />
 
     <!-- Leaflet styles: async, non-blocking -->
     <link
@@ -113,7 +125,7 @@
     /></noscript>
 
     <!-- Survey Chapter stylesheet — bump ?v= when it changes (README → Updating the data) -->
-    <link rel="stylesheet" href="assets/css/site.css?v=2026-11-01a" />
+    <link rel="stylesheet" href="assets/css/site.css?v=2026-11-25b" />
 
     <!-- Agentic browsing fix: JS-gated scroll reveals + load fallback -->
     <script>
@@ -138,8 +150,10 @@
           {
             "@type": "Person",
             "@id": "https://baruntayenjam.github.io/manipur-economy/#author",
-            "name": "Manipur Economy Report",
-            "url": "https://baruntayenjam.github.io/manipur-economy/"
+            "name": "Barun Tayenjam",
+            "url": "https://baruntayenjam.github.io/manipur-economy/",
+            "jobTitle": "Editor and researcher",
+            "description": "Editor of The Price of Conflict, a source-verified report on the economic cost of the Manipur conflict since May 2023. Each figure is dated and linked to a primary source."
           },
           {
             "@type": "WebSite",
@@ -166,16 +180,15 @@
             "@type": "Event",
             "@id": "https://baruntayenjam.github.io/manipur-economy/#event",
             "name": "2023-2026 Manipur ethnic conflict",
-            "description": "Ethnic conflict between the Meitei and Kuki-Zo communities in Manipur, India, beginning May 3, 2023.",
+            "description": "Ethnic conflict in Manipur, India, beginning 3 May 2023 between Meitei and Kuki-Zo communities, with Kuki-Zo and Naga groups also fighting since early 2026. As of November 2026: 346 reported deaths, 28,899 people still displaced, and 523 days of bandhs and blockades recorded to September 2026.",
             "startDate": "2023-05-03",
-            "eventStatus": "https://schema.org/EventScheduled",
             "location": { "@type": "AdministrativeArea", "name": "Manipur, India" }
           },
           {
             "@type": "Article",
             "@id": "https://baruntayenjam.github.io/manipur-economy/#article",
             "headline": "The Price of Conflict: Who Loses, Who Gains in Manipur's War Economy",
-            "description": "Three years of ethnic violence fractured Manipur's economy across three communities. An interactive, data-verified visual report — May 2023 to October 2026.",
+            "description": "How much has Manipur's conflict cost since May 2023? 346 reported deaths, 28,899 people still displaced (Sep 2026), over ₹1,200 crore in lost GST and 523 shutdown days. Each figure is dated and sourced from PRS India, NITI Aayog and state government statements.",
             "image": "https://baruntayenjam.github.io/manipur-economy/assets/og-image.png",
             "datePublished": "2026-06-18",
             "dateModified": "2026-11-25",
@@ -200,8 +213,17 @@
             "about": { "@id": "https://baruntayenjam.github.io/manipur-economy/#event" },
             "speakable": {
               "@type": "SpeakableSpecification",
-              "cssSelector": [".chap-title", ".chap-subtitle"]
-            }
+              "cssSelector": [".chap-title", ".chap-subtitle", ".in-short", ".faq-a"]
+            },
+            "isAccessibleForFree": true,
+            "citation": [
+              "PRS India — Manipur Budget Analysis 2024-25",
+              "PRS India — Manipur Budget Analysis 2026-27",
+              "NITI Aayog — Macro and Fiscal Landscape of Manipur",
+              "The Hindu — 306 killed, 49 missing in ethnic violence since May 2023 (Sep 3, 2026)",
+              "The Assam Tribune — Manipur witnesses 523 days of bandhs, blockades since May 2023 (Sep 18, 2026)",
+              "India Today NE — Manipur CM: prolonged ethnic conflict caused over Rs 1,200 crore GST revenue decline (Sep 16, 2026)"
+            ]
           },
           {
             "@type": "Dataset",
@@ -209,7 +231,22 @@
             "description": "Curated, source-verified economic and human-cost indicators for the 2023-26 Manipur ethnic conflict, including GSDP, per-capita income, casualties, displacement and sectoral losses.",
             "url": "https://baruntayenjam.github.io/manipur-economy/",
             "creator": { "@id": "https://baruntayenjam.github.io/manipur-economy/#author" },
-            "temporalCoverage": "2023-05/2026-10",
+            "dateModified": "2026-11-25",
+            "temporalCoverage": "2023-05/2026-11",
+            "distribution": [
+              {
+                "@type": "DataDownload",
+                "encodingFormat": "application/json",
+                "contentUrl": "https://baruntayenjam.github.io/manipur-economy/data/charts.json",
+                "name": "Chart series: deaths, tourist arrivals and disruption days"
+              },
+              {
+                "@type": "DataDownload",
+                "encodingFormat": "application/json",
+                "contentUrl": "https://baruntayenjam.github.io/manipur-economy/data/map.geo.json",
+                "name": "Map places and highway routes"
+              }
+            ],
             "spatialCoverage": {
               "@type": "Place",
               "name": "Manipur, India",
@@ -370,15 +407,19 @@
             The Price of Conflict:<br />Who Loses, Who Gains in Manipur&rsquo;s War Economy
           </h1>
           <p class="chap-subtitle r d1">
-            Three years of ethnic violence has fractured Manipur&rsquo;s economy across three
-            communities &mdash; Meitei, Kuki-Zo and Naga &mdash; destroying livelihoods for the
-            majority while fueling a parallel war economy that profits select networks. As of
-            November 2026, the UNC economic blockade stays suspended &mdash; yet November has killed
-            13 more by press count, from a CoTU bandh locking Kangpokpi to a farmer shot dead under
-            security escort and four civilians ambushed on the Imphal&ndash;Ukhrul road, with a
-            CM-counted &#8377;25&ndash;30 crore a day bleeding from tax revenue; a 30,000-visitor
-            textiles expo and &#8377;5.88 crore of festive relief for 58,863 camp IDPs mark what
-            normalcy remains.
+            Manipur&rsquo;s ethnic conflict began on 3 May 2023 between Meitei and Kuki-Zo
+            communities. Since early 2026 it has also set Kuki-Zo and Naga groups against each
+            other. This report counts what the conflict has cost so far: 346 reported deaths, 28,899
+            people still displaced in September 2026, and more than &#8377;1,200 crore in lost GST
+            revenue. It also looks at who earns from the disruption, mainly drug and arms networks.
+            Every figure is dated and linked to its source.
+          </p>
+          <p class="in-short r d2">
+            <strong>In short:</strong> As of 24 November 2026, Manipur&rsquo;s conflict has killed
+            346 people by official and press counts (306 official to 31 August 2026, plus 40
+            reported since), left 28,899 people displaced, shut the state for 523 of 1,225 days, and
+            cost over &#8377;1,200 crore in GST revenue. The UNC highway blockade, suspended on 26
+            September 2026, remains suspended. Details and sources are in the chapters below.
           </p>
           <div class="chap-meta r d2">
             <span><b>Period</b> May 2023 &ndash; November 2026</span>
@@ -392,17 +433,17 @@
 
           <!-- Key indicators statement -->
           <p class="sec-takeaway takeaway-hero r d3">
-            <strong class="takeaway-figure">&#8377;1,200+ crore</strong> in GST revenue lost &mdash;
-            the government&rsquo;s own floor. The real damage runs
-            <strong>five to seven times higher</strong>.<sup class="ref"
+            <strong class="takeaway-figure">&#8377;1,200+ crore</strong> in GST revenue lost, on the
+            state government&rsquo;s own count. Adding lost farm, tourism and trade output puts the
+            wider cost at an estimated
+            <strong>&#8377;5,000&ndash;8,000 crore</strong> (&sect;6).<sup class="ref"
               ><a
                 href="#fn-5"
                 title="CM Khemchand Singh, Sep 16 2026 &mdash; first official fiscal-cost figure; &sect;6 sectoral estimate: &#8377;5,000&ndash;8,000 cr"
                 >5</a
               ></sup
             >
-            Three years of conflict have rewritten the economics of an entire state; the numbers
-            below are the official record.
+            The table below is the official record, with each figure linked to its source.
           </p>
           <table class="ki-table r d3">
             <caption id="stmt-key">
@@ -601,15 +642,16 @@
         <!-- CHAPTER 1 — PHASES -->
         <section id="phases">
           <h2 class="sec-h2 r d1">
-            <span class="sec-no">1</span>Three Phases <em>of a Fractured State</em>
+            <span class="sec-no">1</span>Three Phases <em>of the Conflict</em>
           </h2>
           <p class="sec-lead r d1">
-            The conflict did not stay still. Over three years it moved through distinct phases —
-            each reshaping who bore the cost and who captured the gains.
+            The conflict has changed shape three times since May 2023. Each phase brought a
+            different set of people into it, and changed who was losing income and who was earning
+            it.
           </p>
           <p class="sec-takeaway r d1">
-            What began as a two-community war is now a three-front crisis — and 2026 is its most
-            violent year yet.
+            The fighting started between Meitei and Kuki-Zo groups. Since February 2026 it has also
+            set Kuki-Zo and Naga groups against each other.
           </p>
 
           <div class="phases r d2">
@@ -621,9 +663,9 @@
                 Meitei &harr; Kuki-Zo <span class="phase-sub">violence</span>
               </h3>
               <p class="phase-desc">
-                Ethnic violence splits the state along the valley&ndash;hill line. Curfews, highway
-                blockades and mass displacement define daily life; a parallel war economy takes root
-                in the vacuum.
+                Ethnic violence split the state along the valley&ndash;hill line. Curfews, highway
+                blockades and mass displacement became daily life, and drug and arms networks
+                expanded while the police were overstretched.
               </p>
               <div class="phase-stat">
                 <span class="phase-pair"
@@ -742,8 +784,8 @@
           </h2>
           <p class="sec-lead r d1">Strategic geography and key economic indicators at a glance.</p>
           <p class="sec-takeaway r d1">
-            The war didn't create Manipur's vulnerability — it detonated a poverty that was already
-            there.
+            Manipur was already poor before 2023. Per-capita income was about 41% below the national
+            average in 2021&ndash;22 (NITI Aayog), and the conflict has made it poorer.
           </p>
 
           <!-- Map exhibit -->
@@ -838,15 +880,16 @@
         <!-- CHAPTER 3 — LOSERS -->
         <section id="losers">
           <h2 class="sec-h2 r d1">
-            <span class="sec-no">3</span>Who Loses: A Livelihood <em>in Lockdown</em>
+            <span class="sec-no">3</span>Who Loses: Farmers, Workers, <em>Traders and Tourism</em>
           </h2>
           <p class="sec-lead r d1">
-            Who actually pays? These are the livelihoods — and the communities — the war has
-            dismantled, sector by sector.
+            This chapter goes sector by sector through the people who have lost income since May
+            2023: farmers, daily-wage workers, transporters, tourism businesses and young people
+            looking for work.
           </p>
           <p class="sec-takeaway r d1">
-            Suffering is not equally distributed: the poorest lose their livelihoods while the
-            mechanisms of profit stay fully intact.
+            The losses fall hardest on people with the least to fall back on: farmers who cannot
+            reach their fields, daily-wage workers with no work, and traders cut off from supplies.
           </p>
 
           <div class="ex-grid r d2">
@@ -1021,14 +1064,16 @@
         <!-- CHAPTER 4 — GAINERS -->
         <section id="gainers">
           <h2 class="sec-h2 r d1">
-            <span class="sec-no">4</span>Who Gains: Thriving <em>in the Vacuum</em>
+            <span class="sec-no">4</span>Who Gains: Drug, Arms and <em>Security Networks</em>
           </h2>
           <p class="sec-lead r d1">
-            A parallel war economy has emerged. These networks profit from instability.
+            Some networks earn more because of the conflict, not in spite of it. This chapter covers
+            drug traffickers, arms suppliers, security contractors and media that grows on conflict
+            coverage.
           </p>
           <p class="sec-takeaway r d1">
-            Every day the conflict continues, someone is paid — the war economy is a self-sustaining
-            industry, not a side effect.
+            Drug traffickers, arms suppliers and protection networks are paid whether or not peace
+            returns. That income does not depend on a settlement.
           </p>
 
           <div class="ex-grid r d2">
@@ -1132,15 +1177,15 @@
         <!-- CHAPTER 5 — SHADOW ECONOMY -->
         <section id="shadow">
           <h2 class="sec-h2 r d1">
-            <span class="sec-no">5</span>How the Drug Trade Fuels <em>the Conflict Loop</em>
+            <span class="sec-no">5</span>How Drug Money <em>Keeps the Conflict Going</em>
           </h2>
           <p class="sec-lead r d1">
             Myanmar's Golden Triangle connects directly to Manipur's conflict economy through porous
             borders and weakened governance.
           </p>
           <p class="sec-takeaway r d1">
-            Underwritten by narcotics: the drug trade is the engine that keeps the war funded when
-            ideology alone cannot.
+            Drug money helps armed groups pay for weapons and supplies. That funding keeps the
+            fighting going after the original grievances have faded.
           </p>
 
           <div class="exhibit r d2" id="ex-2">
@@ -1235,15 +1280,15 @@
         <!-- CHAPTER 6 — ECONOMIC TOLL -->
         <section id="economy">
           <h2 class="sec-h2 r d1">
-            <span class="sec-no">6</span>Three Years of Loss &mdash; <em>Estimated Damage</em>
+            <span class="sec-no">6</span>Estimated Economic Damage, <em>2023&ndash;2026</em>
           </h2>
           <p class="sec-lead r d1">
             Sector by sector: tourism, excise, horticulture, handloom, MSMEs and the fiscal bottom
             line — each with its own verified figure.
           </p>
           <p class="sec-takeaway r d1">
-            ₹1,200 crore in lost GST is the government's own floor — the real damage, measured
-            sector by sector below, runs five to seven times higher.
+            This chapter adds up the losses sector by sector. The totals are estimated ranges built
+            from official baselines, not audited accounts.
           </p>
 
           <!-- Tourism collapse chart -->
@@ -1484,12 +1529,13 @@
             <em>&mdash; 523 Days Disrupted</em>
           </h2>
           <p class="sec-lead r d1">
-            Official State Home Department data shows Manipur spent 43% of its post-May 2023
-            existence under shutdown, blockade, curfew or internet suspension.
+            From 3 May 2023 to 8 September 2026, 523 of 1,225 days saw a bandh, blockade or
+            shutdown, according to the State Home Department. That is 43% of the period, before
+            curfews and internet suspensions are counted.
           </p>
           <p class="sec-takeaway r d1">
-            Nearly half of all days since May 2023 have been disrupted. This is not a series of
-            isolated events — it is a sustained siege of the state's economy.
+            Shutdowns were not occasional. In 2026 they became close to continuous from mid-May
+            until the UNC suspension on 26 September.
           </p>
 
           <!-- Disruption days chart -->
@@ -1736,14 +1782,16 @@
 
         <!-- CHAPTER 8 — TIMELINE -->
         <section id="timeline">
-          <h2 class="sec-h2 r d1"><span class="sec-no">8</span>Three Years <em>of Conflict</em></h2>
+          <h2 class="sec-h2 r d1">
+            <span class="sec-no">8</span>Timeline: May 2023 <em>to November 2026</em>
+          </h2>
           <p class="sec-lead r d1">
-            Key milestones in Manipur&rsquo;s ethnic violence and economic disruption from May 3,
-            2023 to October 2026.
+            The main events in Manipur&rsquo;s ethnic violence and economic disruption, from 3 May
+            2023 to November 2026, in date order.
           </p>
           <p class="sec-takeaway r d1">
-            Periods of relative calm are not peace — they are the state catching its breath before
-            the next escalation.
+            The quiet periods have not produced a settlement. Since early 2026 the gaps between
+            attacks have shortened again.
           </p>
 
           <div class="ledger-wrap r d2">
@@ -3003,11 +3051,12 @@
             <span class="sec-no">9</span>The Economic Ledger &mdash; <em>Who Loses, Who Gains</em>
           </h2>
           <p class="sec-lead r d1">
-            One table. Every loser and every gainer from §3 and §4, netted out across three years.
+            One table covering the losers in &sect;3 and the gainers in &sect;4, with the source for
+            each row.
           </p>
           <p class="sec-takeaway r d1">
-            Losses are quantifiable and public; gains are opaque and self-reinforcing — that
-            asymmetry is the conflict's core economic feature.
+            The losses are counted in published figures. The gains are estimates, because drug and
+            arms income is not reported anywhere.
           </p>
 
           <div class="ledger-wrap r d2">
@@ -3123,8 +3172,8 @@
             shaped the conflict economy from May 2023 to September 2026.
           </p>
           <p class="sec-takeaway r d1">
-            Every major decision — and every failure to act — mapped to a named office and a dated
-            source.
+            This chapter lists who held each office at the main turning points, with a dated source
+            for each entry.
           </p>
 
           <div class="ledger-wrap r d2">
@@ -3383,51 +3432,52 @@
         <!-- CHAPTER 11 — OUTLOOK -->
         <section id="outlook">
           <h2 class="sec-h2 r d1">
-            <span class="sec-no">11</span>What This Adds Up To &mdash; <em>Outlook</em>
+            <span class="sec-no">11</span>Outlook: <em>What Happens Next</em>
           </h2>
           <p class="sec-lead r d1">
-            The evidence in this report points in one direction. Four conclusions, and the signals
-            that would change them.
+            Four conclusions from the figures in this report, and the signs that would show they are
+            changing.
           </p>
           <p class="sec-takeaway r d1">
-            The conflict is no longer an emergency to be waited out — it is a structural condition
-            with its own economy, and the data says it is still worsening.
+            Three years on, there is no settlement in sight, and 2026 has brought more disruption
+            than any year before it.
           </p>
 
           <div class="outlook-grid r d2">
             <article class="outlook-card">
               <div class="outlook-num">01</div>
-              <h3 class="outlook-h">2026 is the inflection point</h3>
+              <h3 class="outlook-h">2026 has been the most disrupted year so far</h3>
               <p class="outlook-p">
-                225 disruption days in eight months, a third ethnic axis open, and the first
-                official death toll in 19 months. Every trend line on this site steepens after March
-                2026.
+                The State Home Department counted 225 disruption days in 2026 to 8 September, more
+                than in 2023, 2024 or 2025. Kuki-Zo and Naga groups also began fighting each other,
+                and the government published its first official death toll in 19 months.
               </p>
             </article>
             <article class="outlook-card">
               <div class="outlook-num">02</div>
-              <h3 class="outlook-h">The war economy is stickier than the war</h3>
+              <h3 class="outlook-h">The war economy will outlast the fighting</h3>
               <p class="outlook-p">
-                Ceasefires end fighting faster than they end rents. Narcotics flows, blockade tolls
-                and security contracts have fixed constituencies that survive any political
-                settlement.
+                Fighting can stop faster than the income it created. Drug routes, highway payments
+                and security contracts now have people who depend on them, and they will not
+                disappear with a political settlement.
               </p>
             </article>
             <article class="outlook-card">
               <div class="outlook-num">03</div>
-              <h3 class="outlook-h">Reconstruction cost is compounding</h3>
+              <h3 class="outlook-h">Reconstruction costs rise the longer this lasts</h3>
               <p class="outlook-p">
-                ₹1,200 cr GST forgone is recurring, not one-off. Each year of blockade adds a fresh
-                layer of lost output on top of unrepaired houses, closed firms and out-migrated
-                workers.
+                The &#8377;1,200 crore GST loss is not a one-off; revenue is lost every year the
+                disruption continues. Each year also adds unrepaired houses, closed businesses and
+                workers who have left the state.
               </p>
             </article>
             <article class="outlook-card">
               <div class="outlook-num">04</div>
-              <h3 class="outlook-h">The missing-data problem is the story</h3>
+              <h3 class="outlook-h">Large gaps remain in the official data</h3>
               <p class="outlook-p">
-                No death toll for 19 months. No audited conflict-cost estimate. Accountability gaps
-                are not an oversight — they are how the status quo holds.
+                The government published no death toll for 19 months, and there is still no audited
+                estimate of what the conflict has cost. Several figures in this report are estimates
+                for that reason.
               </p>
             </article>
           </div>
@@ -3458,7 +3508,8 @@
             economy, displacement and the 2026 blockade cycle.
           </p>
           <p class="sec-takeaway r d1">
-            Each answer is anchored to an official figure or a named source — no speculation.
+            Short answers to the questions readers ask most often, each with its source and date.
+            The chapters above have the longer treatment.
           </p>
 
           <div class="faq-list r d2">
@@ -3609,11 +3660,10 @@
               <summary>How is the drug economy connected to the conflict?</summary>
               <div class="faq-a">
                 <p>
-                  Myanmar's Golden Triangle routes heroin and meth through Moreh into Manipur's
-                  governance vacuum. UNODC estimates ~&#8377;2,500 cr/yr flows through the state;
-                  police seized &#8377;1,600 cr in one year (ORF). The conflict's self-funding loop
-                  — drugs fund armed groups, armed groups sustain conflict — is the central
-                  mechanism.
+                  Heroin and meth from Myanmar's Golden Triangle move through Moreh into Manipur,
+                  where policing has been stretched thin since 2023. UNODC estimates ~&#8377;2,500
+                  cr/yr flows through the state; police seized &#8377;1,600 cr in one year (ORF).
+                  Drug income pays for weapons, and the weapons keep the conflict going.
                   <a
                     href="https://orfonline.org/research/from-poppy-fields-to-black-markets-understanding-the-drug-trade-across-india-and-myanmar"
                     target="_blank"
@@ -3627,12 +3677,11 @@
               <summary>Were the blockades community-specific or economy-wide?</summary>
               <div class="faq-a">
                 <p>
-                  Economy-wide. The blockades targeted national highways — the land-locked state's
-                  only freight arteries — so the economic effect fell on goods movement for all
-                  communities. 2,000+ trucks stranded on NH-2 within days of the May 2026
-                  escalation; freight costs 3&ndash;5&times; throughout. Community-specific controls
-                  existed at buffer-zone checkpoints, but the blockades themselves were
-                  community-agnostic in effect.
+                  Economy-wide. The blockades closed national highways, the landlocked state&rsquo;s
+                  only freight routes, so goods movement stopped for all communities. More than
+                  2,000 trucks were stranded on NH-2 within days of the May 2026 escalation, and
+                  freight costs rose 3&ndash;5&times;. Checkpoints in the buffer zones did stop
+                  people by community, but the highway closures themselves affected everyone.
                   <a
                     href="https://economictimes.indiatimes.com/news/india/manipur-blockade-essential-commodity-prices-surge-140-as-trucks-remain-stuck/articleshow/133164726.cms"
                     target="_blank"
@@ -3764,7 +3813,7 @@
             "name": "How is the drug economy connected to the conflict?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Myanmar's Golden Triangle routes heroin and meth through Moreh into Manipur's governance vacuum. UNODC estimates ~₹2,500 cr/year flows through the state; police seized ₹1,600 cr in one year (ORF). Drugs fund armed groups, armed groups sustain conflict — a self-funding loop."
+              "text": "Heroin and meth from Myanmar's Golden Triangle move through Moreh into Manipur, where policing has been stretched thin since 2023. UNODC estimates ~₹2,500 cr/year flows through the state; police seized ₹1,600 cr in one year (ORF). Drug income pays for weapons, and the weapons keep the conflict going."
             }
           },
           {
@@ -3772,7 +3821,7 @@
             "name": "Were the blockades community-specific or economy-wide?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Economy-wide. The blockades targeted national highways — the land-locked state's only freight arteries — so the economic effect fell on goods movement for all communities. 2,000+ trucks stranded on NH-2 within days of the May 2026 escalation; freight costs 3–5× throughout."
+              "text": "Economy-wide. The blockades closed national highways, the landlocked state's only freight routes, so goods movement stopped for all communities. More than 2,000 trucks were stranded on NH-2 within days of the May 2026 escalation, and freight costs rose 3–5×. Checkpoints in the buffer zones did stop people by community, but the highway closures themselves affected everyone."
             }
           },
           {

@@ -6,8 +6,8 @@
   "scope": "https://baruntayenjam.github.io/manipur-economy/",
   "display": "standalone",
   "orientation": "portrait-primary",
-  "background_color": "#0A0806",
-  "theme_color": "#0A0806",
+  "background_color": "#FAFAF8",
+  "theme_color": "#FAFAF8",
   "categories": ["news", "education", "reference"],
   "icons": [
     { "src": "assets/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },

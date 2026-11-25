@@ -335,6 +335,15 @@ a:hover {
   line-height: 1.5;
   margin-bottom: 1.5rem;
 }
+.in-short {
+  font-family: var(--ff-sans);
+  font-size: 0.9375rem;
+  color: var(--ink-2);
+  line-height: 1.65;
+  border-left: 3px solid var(--crimson, #a31621);
+  padding-left: 1rem;
+  margin-bottom: 1.5rem;
+}
 .chap-standfirst {
   font-family: var(--ff-sans);
   font-size: 0.875rem;
