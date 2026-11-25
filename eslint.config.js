@@ -5,6 +5,7 @@ export default [
     ignores: [
       'node_modules/**',
       'assets/vendor/**',
+      'assets/js/**/*.min.js',
       '.planning/**',
       'package-lock.json',
       'playwright-report/**',

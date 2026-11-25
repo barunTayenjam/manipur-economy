@@ -8,8 +8,9 @@
     "test": "node tests/unit.test.mjs",
     "lint": "eslint assets/js tests scripts eslint.config.js playwright.config.mjs",
     "lint:fix": "eslint assets/js tests scripts eslint.config.js playwright.config.mjs --fix",
-    "format": "prettier --write \"assets/**/*.{js,css}\" \"tests/**/*.{mjs,spec.mjs}\" \"scripts/**/*.mjs\" \"docs/**/*.html\" \"data/**/*.json\" \"index.html\" \"404.html\" \"*.mjs\" \"*.js\" \"*.json\"",
-    "format:check": "prettier --check \"assets/**/*.{js,css}\" \"tests/**/*.{mjs,spec.mjs}\" \"scripts/**/*.mjs\" \"docs/**/*.html\" \"data/**/*.json\" \"index.html\" \"404.html\" \"*.mjs\" \"*.js\" \"*.json\"",
+    "format": "prettier --write \"assets/**/*.{js,css}\" \"!assets/**/*.min.js\" \"!assets/**/*.min.css\" \"tests/**/*.{mjs,spec.mjs}\" \"scripts/**/*.mjs\" \"docs/**/*.html\" \"data/**/*.json\" \"index.html\" \"404.html\" \"*.mjs\" \"*.js\" \"*.json\"",
+    "format:check": "prettier --check \"assets/**/*.{js,css}\" \"!assets/**/*.min.js\" \"!assets/**/*.min.css\" \"tests/**/*.{mjs,spec.mjs}\" \"scripts/**/*.mjs\" \"docs/**/*.html\" \"data/**/*.json\" \"index.html\" \"404.html\" \"*.mjs\" \"*.js\" \"*.json\"",
+    "minify": "cleancss -o assets/css/site.min.css assets/css/site.css && terser assets/js/utils.js -o assets/js/utils.min.js --module --compress --mangle && terser assets/js/map.js -o assets/js/map.min.js --module --compress --mangle && terser assets/js/charts.js -o assets/js/charts.min.js --module --compress --mangle && terser assets/js/main.js -o assets/js/main.min.js --module --compress --mangle && sed -i 's|from\"\\./utils\\.js\"|from\"./utils.min.js\"|g; s|from\"\\./map\\.js\"|from\"./map.min.js\"|g; s|from\"\\./charts\\.js\"|from\"./charts.min.js\"|g' assets/js/map.min.js assets/js/charts.min.js assets/js/main.min.js",
     "test:e2e": "playwright test tests/e2e/smoke.spec.mjs",
     "test:a11y": "playwright test tests/e2e/a11y.spec.mjs",
     "test:visual": "playwright test tests/visual/visual.spec.mjs",
@@ -29,8 +30,10 @@
     "@playwright/test": "^1.57.0",
     "@types/leaflet": "^1.9.22",
     "@types/node": "^26.6.2",
+    "clean-css-cli": "^5.6.3",
     "eslint": "^9.39.0",
     "prettier": "^3.6.2",
+    "terser": "^5.51.4",
     "typescript": "^7.0.2"
   },
   "engines": {

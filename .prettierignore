@@ -5,3 +5,5 @@ package-lock.json
 site.webmanifest
 playwright-report/
 test-results/
+# Minified build artifacts (committed for zero-build-step serving)
+assets/**/*.min.{js,css}

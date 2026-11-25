@@ -41,7 +41,7 @@ const cssC = css
 const htmlFlat = html.replace(/\s+/g, ' ');
 
 const jsFiles = readdirSync(JS_DIR)
-  .filter((f) => f.endsWith('.js'))
+  .filter((f) => f.endsWith('.js') && !f.endsWith('.min.js'))
   .sort();
 const js = jsFiles.map((f) => readFileSync(join(JS_DIR, f), 'utf8')).join('\n');
 
@@ -753,7 +753,7 @@ test('webmanifest linked', () => {
 
 test('entry is ES module (type=module), not legacy defer script', () => {
   includes(html, 'type="module"');
-  includes(html, 'assets/js/main.js');
+  includes(html, 'assets/js/main.min.js');
   ok(!html.includes('assets/js/site.js'), 'legacy site.js reference should be gone');
 });
 

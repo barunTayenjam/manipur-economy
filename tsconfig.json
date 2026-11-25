@@ -17,5 +17,5 @@
     "allowUmdGlobalAccess": true
   },
   "include": ["assets/js/**/*.js", "types/**/*.d.ts"],
-  "exclude": ["node_modules", "test-results", "playwright-report"]
+  "exclude": ["node_modules", "test-results", "playwright-report", "assets/js/**/*.min.js"]
 }
