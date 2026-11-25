@@ -431,13 +431,13 @@ test('buildConfigs maps editorial JSON to 3 Chart.js configs', () => {
   const deathBars = configs['chart-death'].data.datasets[0];
   ok(deathBars.data.length === 5, 'death 5 intervals');
   ok(
-    JSON.stringify(deathBars.data) === JSON.stringify([60, 81, 117, 48, 39]),
-    'death interval values (60/81/117/48/39)'
+    JSON.stringify(deathBars.data) === JSON.stringify([60, 81, 117, 48, 40]),
+    'death interval values (60/81/117/48/40)'
   );
   const deathLine = configs['chart-death'].data.datasets[1];
   ok(deathLine && deathLine.type === 'line', 'cumulative total drawn as line overlay');
   ok(
-    JSON.stringify(deathLine.data) === JSON.stringify([60, 141, 258, 306, 345]),
+    JSON.stringify(deathLine.data) === JSON.stringify([60, 141, 258, 306, 346]),
     'cumulative totals match official statements'
   );
   ok(
@@ -694,8 +694,8 @@ test('FAQ has 10 questions', () => {
   ok(faqItems >= 8 && faqItems <= 12, `expected 8-12 FAQ items, got ${faqItems}`);
 });
 
-test('human-toll figures render static (no count-up on 345 / 28,899)', () => {
-  matches(html, /data-static="1"[^>]*data-count-to="345"/, 'lives lost static');
+test('human-toll figures render static (no count-up on 346 / 28,899)', () => {
+  matches(html, /data-static="1"[^>]*data-count-to="346"/, 'lives lost static');
   matches(html, /data-static="1"[^>]*data-count-to="28899"/, 'displaced static');
   matches(html, /data-count-to="523"/, 'non-toll figures still animate');
 });

@@ -66,7 +66,7 @@ function drawHighway(pts, color, code) {
  * indefinitely, so a changed map.geo.json needs a changed URL.
  * Bump when data/map.geo.json changes (README → Updating the data).
  */
-const MAP_DATA_URL = 'data/map.geo.json?v=2026-10-06';
+const MAP_DATA_URL = 'data/map.geo.json?v=2026-11-25a';
 
 async function fetchGeo() {
   const res = await fetch(MAP_DATA_URL, { cache: 'force-cache' });
