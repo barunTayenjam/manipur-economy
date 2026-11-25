@@ -1,0 +1,35 @@
+name: Visual Baselines
+
+# Manual-only workflow: regenerates Playwright visual-regression snapshots on
+# a CI runner. Pixel-exact baselines must come from CI (font rasterization
+# differs per OS, so locally generated snapshots never match on CI). This file
+# is separate from ci.yml so it never appears as a skipped job on CI runs.
+#
+# Usage: Actions tab → Visual Baselines → Run workflow (on main) → download
+# the visual-baselines artifact → replace tests/visual/visual.spec.mjs-snapshots/
+# locally → commit and push.
+on:
+  workflow_dispatch: {}
+
+jobs:
+  regenerate:
+    name: Regenerate snapshots
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+      - name: Regenerate snapshots in the CI environment
+        run: npx playwright test tests/visual/visual.spec.mjs --update-snapshots
+      - name: Upload regenerated snapshots
+        uses: actions/upload-artifact@v7
+        with:
+          name: visual-baselines
+          path: tests/visual/visual.spec.mjs-snapshots/
+          retention-days: 7
