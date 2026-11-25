@@ -131,7 +131,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      pages: read
+      pages: write
     steps:
       # Pages is configured to build from the main branch (build_type:
       # legacy), so the site publishes on push independent of CI. This job
@@ -140,22 +140,41 @@ jobs:
       # service: deploy-pages queried the artifact list ~300ms after upload,
       # before the artifact had registered, and failed with 'No artifacts
       # named "github-pages" were found' even though the upload succeeded.
+      # Pages also sometimes skips a build entirely for pushes that touch no
+      # published files (observed: snapshots-only commit got no build), so
+      # after waiting we request a build ourselves as a fallback.
       - name: Wait for the Pages build of this commit
         env:
           GH_TOKEN: ${{ github.token }}
           EXPECTED_SHA: ${{ github.sha }}
         run: |
-          for i in $(seq 1 40); do
-            COMMIT=$(gh api "repos/${GITHUB_REPOSITORY}/pages/builds/latest" --jq '.commit // "none"' 2>/dev/null || echo none)
+          latest() {
+            gh api "repos/${GITHUB_REPOSITORY}/pages/builds/latest" \
+              --jq '.commit // "none"' 2>/dev/null || echo none
+          }
+          for i in $(seq 1 20); do
+            COMMIT=$(latest)
             STATUS=$(gh api "repos/${GITHUB_REPOSITORY}/pages/builds/latest" --jq '.status // "none"' 2>/dev/null || echo none)
-            echo "attempt ${i}/40: pages build commit=${COMMIT:0:7} status=${STATUS}"
+            echo "attempt ${i}/20: pages build commit=${COMMIT:0:7} status=${STATUS}"
             if [ "$COMMIT" = "$EXPECTED_SHA" ] && [ "$STATUS" = "built" ]; then
               echo "Pages build for ${COMMIT:0:7} is live."
               exit 0
             fi
             sleep 15
           done
-          echo "::error::Pages did not build ${EXPECTED_SHA:0:7} within 10 minutes (latest: ${COMMIT:0:7}, ${STATUS})."
+          echo "No Pages build for ${EXPECTED_SHA:0:7} after 5 minutes — requesting one."
+          gh api -X POST "repos/${GITHUB_REPOSITORY}/pages/builds" >/dev/null 2>&1 || true
+          for i in $(seq 1 40); do
+            COMMIT=$(latest)
+            STATUS=$(gh api "repos/${GITHUB_REPOSITORY}/pages/builds/latest" --jq '.status // "none"' 2>/dev/null || echo none)
+            echo "post-request attempt ${i}/40: commit=${COMMIT:0:7} status=${STATUS}"
+            if [ "$COMMIT" = "$EXPECTED_SHA" ] && [ "$STATUS" = "built" ]; then
+              echo "Pages build for ${COMMIT:0:7} is live."
+              exit 0
+            fi
+            sleep 15
+          done
+          echo "::error::Pages did not build ${EXPECTED_SHA:0:7} (latest: ${COMMIT:0:7}, ${STATUS})."
           exit 1
       - name: Verify site health
         run: |
