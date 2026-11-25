@@ -791,6 +791,65 @@ test('no inline styles on takeaway (token-driven only)', () => {
   );
 });
 
+console.log('\n\x1b[1m─── PLAN 016: MODERN PRACTICES ───\x1b[0m');
+
+/* Extract visible prose: strip scripts, styles, comments, tags; keep text. */
+const visibleText = html
+  .replace(/<script[\s\S]*?<\/script>/g, ' ')
+  .replace(/<style[\s\S]*?<\/style>/g, ' ')
+  .replace(/<!--[\s\S]*?-->/g, ' ')
+  .replace(/<[^>]+>/g, ' ')
+  .replace(/\s+/g, ' ');
+
+test('no visible sentence repeats verbatim (foreign-arrivals)', () => {
+  const count = (visibleText.match(/Foreign arrivals fell from 12,102 to 1,325/g) || []).length;
+  ok(count <= 1, `expected ≤1 occurrence of the sentence, got ${count}`);
+});
+
+test('scroll-sideways hint appears at most once', () => {
+  const count = (visibleText.match(/Scroll sideways to read the full table/g) || []).length;
+  ok(count <= 1, `expected ≤1 hint occurrence, got ${count}`);
+});
+
+test('meta description length is 70-160 chars', () => {
+  const m = html.match(/<meta\s+name="description"\s+content="([^"]*)"/);
+  ok(m, 'meta description present');
+  const len = m[1].length;
+  ok(len >= 70, `description too short: ${len}`);
+  ok(len <= 160, `description too long: ${len} (aim 50-160)`);
+});
+
+test('visible em-dash count is low (not an AI tell)', () => {
+  const emDashes = (visibleText.match(/—/g) || []).length;
+  ok(emDashes <= 8, `${emDashes} visible em-dashes (aim ≤8 in prose)`);
+});
+
+test('body has touch-action: manipulation', () => {
+  matches(cssC, /body\{[^}]*touch-action:manipulation/, 'body needs touch-action:manipulation');
+});
+
+test('overscroll-behavior: contain on root', () => {
+  matches(cssC, /overscroll-behavior:contain/, 'needs overscroll-behavior:contain');
+});
+
+test('print styles avoid page-break inside boxed exhibits', () => {
+  const printBlock = css.match(/@media print\s*\{([\s\S]*?)\n\}/);
+  ok(printBlock, 'print block exists');
+  matches(
+    printBlock[1].replace(/\s+/g, ' '),
+    /page-break-inside:\s*avoid/,
+    'print block needs page-break-inside:avoid'
+  );
+});
+
+test('sup.ref has padded tap area for touch (min hit)', () => {
+  matches(css, /sup\.ref\s*\{[^}]*padding/s, 'sup.ref needs padding for ≥24px tap target');
+});
+
+test('TOC links have a visible hover treatment', () => {
+  includes(css, '.toc-list li a:hover');
+});
+
 console.log('\n\x1b[1m─── DOCS ───\x1b[0m');
 
 test('ADRs present with Decision + Consequences', () => {

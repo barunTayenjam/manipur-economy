@@ -137,6 +137,8 @@ body {
   line-height: 1.72;
   color: var(--ink);
   background: var(--bg);
+  touch-action: manipulation;
+  overscroll-behavior: contain;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-feature-settings: 'onum', 'kern';
@@ -471,6 +473,7 @@ sup.ref {
     color var(--dur-fast) var(--ease),
     transform var(--dur-fast) var(--ease);
   display: inline-block;
+  padding: 0 0.25rem;
 }
 sup.ref:hover {
   transform: translateY(-1px);
@@ -2184,6 +2187,7 @@ section:first-of-type {
   section {
     border-top: 0.5pt solid #ccc;
     break-inside: avoid;
+    page-break-inside: avoid;
   }
   .exhibit,
   .phases,
@@ -2195,6 +2199,7 @@ section:first-of-type {
   .ki-table tr,
   .ledger tr {
     break-inside: avoid;
+    page-break-inside: avoid;
   }
   a[href]::after {
     content: ' [' attr(href) ']';

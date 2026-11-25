@@ -15,3 +15,6 @@ playwright-report/
 
 # Lighthouse CI (local runs)
 .lighthouseci/
+
+# Jury audit evidence (screenshots, reports)
+jury-cache/
