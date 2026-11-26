@@ -267,9 +267,18 @@ a:hover {
 }
 .toc-list li a:hover {
   color: var(--ink-2);
+  border-left-color: var(--crimson);
+  padding-left: 1.1rem;
 }
 .toc-list li a:hover .toc-num {
-  color: var(--ink-3);
+  color: var(--crimson);
+}
+.toc-list li a:focus-visible {
+  outline: 2px solid var(--crimson);
+  outline-offset: -2px;
+  color: var(--ink);
+  border-left-color: var(--crimson);
+  padding-left: 1.1rem;
 }
 .toc-list li a.active {
   color: var(--ink);
@@ -473,7 +482,7 @@ sup.ref {
     color var(--dur-fast) var(--ease),
     transform var(--dur-fast) var(--ease);
   display: inline-block;
-  padding: 0 0.25rem;
+  padding: 0.3rem 0.6rem;
 }
 sup.ref:hover {
   transform: translateY(-1px);
@@ -482,6 +491,9 @@ sup.ref:hover {
 sup.ref a {
   color: inherit;
   text-decoration: none;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
 }
 sup.ref a:focus-visible {
   outline: 2px solid var(--crimson);
@@ -746,6 +758,8 @@ section:first-of-type {
 }
 .leaflet-bar a:hover {
   color: var(--crimson) !important;
+  background: var(--bg-offset) !important;
+  transform: translateY(-1px);
 }
 .leaflet-control-layers {
   background: var(--bg) !important;
@@ -1200,6 +1214,7 @@ section:first-of-type {
 .ex-card-src a {
   color: var(--crimson);
   font-weight: 600;
+  padding: 0.25rem 0.4rem;
 }
 
 /* impact badge */
@@ -1888,6 +1903,7 @@ section:first-of-type {
 }
 .fn-list li a {
   color: var(--crimson);
+  padding: 0.15rem 0.3rem;
 }
 
 /* --- FOOTER ------------------------------------------------- */
